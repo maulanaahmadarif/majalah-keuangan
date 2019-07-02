@@ -3,11 +3,13 @@ import { createStackNavigator, createAppContainer } from 'react-navigation'
 
 import Login from './views/Login'
 import Signup from './views/Signup'
+import Main from './views/Main'
 
 const MainNavigator = createStackNavigator(
   {
     Login,
-    Signup
+    Signup,
+    Main
   },
   {
     initialRouteName: 'Login'

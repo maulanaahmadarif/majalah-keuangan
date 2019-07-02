@@ -1,5 +1,16 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Image, TextInput, Button, StatusBar } from 'react-native'
+import firebase from 'react-native-firebase'
+import { GoogleSignin } from 'react-native-google-signin'
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TextInput,
+  Button,
+  StatusBar,
+  TouchableHighlight,
+  ToastAndroid } from 'react-native'
 
 const styles = StyleSheet.create({
   backgroundImage: {
@@ -67,13 +78,52 @@ class Login extends Component {
     super(props)
 
     this.state = {
-      username: '',
-      password: ''
+      email: '',
+      password: '',
+      errorMessage: null
     }
   }
 
   static navigationOptions = {
     header: null
+  }
+
+  handleSignIn = () => {
+    ToastAndroid.show(`Email: ${this.state.email}, Password: ${this.state.password}`, ToastAndroid.SHORT);
+  }
+
+  handleSignUp = () => {
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .then(() => {
+        this.props.navigation.navigate('Main')
+      })
+      .catch((err) => {
+        ToastAndroid.show(`Err: ${err.message}`, ToastAndroid.SHORT)
+      })
+  }
+
+  signInWithGoogle = async () => {
+    try {
+      // add any configuration settings here:
+      await GoogleSignin.configure({
+        webClientId: '269582413397-7jhcqsa4adjl1phc11avr872fai7lpbv.apps.googleusercontent.com'
+      })
+  
+      const data = await GoogleSignin.signIn();
+  
+      // create a new firebase credential with the token
+      const credential = firebase.auth.GoogleAuthProvider.credential(data.idToken, data.accessToken)
+      // login with credential
+      const firebaseUserCredential = await firebase.auth().signInWithCredential(credential)
+
+      ToastAndroid.show(`Err: ${data}`, ToastAndroid.SHORT)
+      console.warn(JSON.stringify(firebaseUserCredential.user.toJSON()));
+    } catch (e) {
+      console.log(e)
+      ToastAndroid.show(`Err: ${e.message}`, ToastAndroid.SHORT)
+    }
   }
 
   render() {
@@ -90,8 +140,8 @@ class Login extends Component {
             <View style={{ alignItems: 'stretch', marginBottom: 10 }}>
               <TextInput
                 style={styles.inputField}
-                onChangeText={(username) => this.setState({ username })}
-                value={this.state.username}
+                onChangeText={(email) => this.setState({ email })}
+                value={this.state.email}
                 placeholder='Email'
                 multiline={false}
               />
@@ -109,7 +159,7 @@ class Login extends Component {
           </View>
           <View style={{ flexDirection: 'row', marginBottom: 10 }}>
             <View style={[styles.buttonContainer, { marginRight: 5 }]}>
-              <Button color='rgba(255,255,255,.8)' title='sign in'>
+              <Button color='rgba(255,255,255,.8)' title='sign in' onPress={ this.handleSignUp }>
                 {/* TODO: DOESNT WORK */}
                 <Text style={styles.buttonText}>Sign In</Text>
               </Button>
@@ -134,9 +184,11 @@ class Login extends Component {
                 <Image source={require('../assets/images/logo-facebook.png')} />
               </View>
             </View>
-            <View style={styles.logoContainer}>
+            <View style={styles.logoContainer} onPress>
               <View style={styles.logoBorder}>
-                <Image source={require('../assets/images/logo-gmail.png')} />
+                <TouchableHighlight onPress={this.signInWithGoogle}>
+                  <Image source={require('../assets/images/logo-gmail.png')} />
+                </TouchableHighlight>
               </View>
             </View>
             <View style={styles.logoContainer}>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "923476260855",
+    "firebase_url": "https://majalah-keuangan.firebaseio.com",
+    "project_id": "majalah-keuangan",
+    "storage_bucket": "majalah-keuangan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923476260855:android:a51de6c9597df1f5",
+        "android_client_info": {
+          "package_name": "com.majalahkeuangan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923476260855-vmsombd2vbn8g8bdak2fvtqetekog66o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.majalahkeuangan",
+            "certificate_hash": "cf4eb4d9d7cdbde6e815663f8c25cd7ac85ba46c"
+          }
+        },
+        {
+          "client_id": "923476260855-iub4m381e2i04t8cpk7uj7t6v81n86h2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6-gow2Nr44cEJ-zYQCOXvcbfXoJ6wj0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923476260855-iub4m381e2i04t8cpk7uj7t6v81n86h2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
