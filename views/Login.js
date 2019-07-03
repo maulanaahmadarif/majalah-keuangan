@@ -106,24 +106,6 @@ class Login extends Component {
     header: null
   }
 
-  _shareLinkWithShareDialog = async () => {
-    const canShow = await ShareDialog.canShow(SHARE_LINK_CONTENT);
-    if (canShow) {
-      try {
-        const {isCancelled, postId} = await ShareDialog.show(
-          SHARE_LINK_CONTENT,
-        );
-        if (isCancelled) {
-          Alert.alert('Share cancelled');
-        } else {
-          Alert.alert('Share success with postId: ' + postId);
-        }
-      } catch (error) {
-        Alert.alert('Share fail with error: ' + error);
-      }
-    }
-  };
-
   handleSignIn = () => {
     ToastAndroid.show(`Email: ${this.state.email}, Password: ${this.state.password}`, ToastAndroid.SHORT);
   }
@@ -183,7 +165,7 @@ class Login extends Component {
 
   signInWithFacebook = async () => {
     try {
-      const result = await LoginManager.logInWithPermissions(['email']);
+      const result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
   
       if (result.isCancelled) {
         // handle this however suites the flow of your app
@@ -207,6 +189,7 @@ class Login extends Component {
       const firebaseUserCredential = await firebase.auth().signInWithCredential(credential);
   
       console.warn(JSON.stringify(firebaseUserCredential.user.toJSON()))
+      this.props.navigation.navigate('Main')
     } catch (e) {
       console.error(e);
     }
@@ -267,7 +250,7 @@ class Login extends Component {
           <View style={{ flexDirection: 'row', marginBottom: 20 }}>
             <View style={styles.logoContainer}>
               <View style={styles.logoBorder}>
-                <TouchableOpacity onPress={this._shareLinkWithShareDialog}>
+                <TouchableOpacity onPress={this.signInWithFacebook}>
                   <Image source={require('../assets/images/logo-facebook.png')} />
                 </TouchableOpacity>
               </View>
