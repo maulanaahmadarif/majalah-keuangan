@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import firebase from 'react-native-firebase'
 import { GoogleSignin } from 'react-native-google-signin'
+import { AccessToken, LoginManager, ShareDialog } from 'react-native-fbsdk';
 import {
   View,
   Text,
@@ -9,8 +10,20 @@ import {
   TextInput,
   Button,
   StatusBar,
-  TouchableHighlight,
-  ToastAndroid } from 'react-native'
+  TouchableOpacity,
+  ToastAndroid,
+  Alert,
+  NativeModules } from 'react-native'
+  
+const { RNTwitterSignIn } = NativeModules
+const { TwitterAuthProvider } = firebase.auth
+
+const TwitterKeys = {
+  // TWITTER_CONSUMER_KEY: '53uuJ2EOu8BiXXM2ZyVnB5YRf',
+  // TWITTER_CONSUMER_SECRET: '1IL22rZwwYhvDI08Upxlt7u0IwQDCKkT6UqL5Ae70aNiqxSnMh'
+  TWITTER_CONSUMER_KEY: 'x54O8e8WxBSyd0nyXbqwQ8cd5',
+  TWITTER_CONSUMER_SECRET: 'BvGSyM2y2WxtIpcATsbru13crC5dbQLNc1gExIyM8cCtGnwyM2'
+}
 
 const styles = StyleSheet.create({
   backgroundImage: {
@@ -73,6 +86,11 @@ const styles = StyleSheet.create({
   }
 })
 
+const SHARE_LINK_CONTENT = {
+  contentType: 'link',
+  contentUrl: 'https://www.facebook.com/',
+};
+
 class Login extends Component {
   constructor(props) {
     super(props)
@@ -87,6 +105,24 @@ class Login extends Component {
   static navigationOptions = {
     header: null
   }
+
+  _shareLinkWithShareDialog = async () => {
+    const canShow = await ShareDialog.canShow(SHARE_LINK_CONTENT);
+    if (canShow) {
+      try {
+        const {isCancelled, postId} = await ShareDialog.show(
+          SHARE_LINK_CONTENT,
+        );
+        if (isCancelled) {
+          Alert.alert('Share cancelled');
+        } else {
+          Alert.alert('Share success with postId: ' + postId);
+        }
+      } catch (error) {
+        Alert.alert('Share fail with error: ' + error);
+      }
+    }
+  };
 
   handleSignIn = () => {
     ToastAndroid.show(`Email: ${this.state.email}, Password: ${this.state.password}`, ToastAndroid.SHORT);
@@ -118,11 +154,61 @@ class Login extends Component {
       // login with credential
       const firebaseUserCredential = await firebase.auth().signInWithCredential(credential)
 
-      ToastAndroid.show(`Err: ${data}`, ToastAndroid.SHORT)
-      console.warn(JSON.stringify(firebaseUserCredential.user.toJSON()));
+      // ToastAndroid.show(`Err: ${data}`, ToastAndroid.SHORT)
+      // console.warn(JSON.stringify(firebaseUserCredential.user.toJSON()));
+      this.props.navigation.navigate('Main')
     } catch (e) {
       console.log(e)
       ToastAndroid.show(`Err: ${e.message}`, ToastAndroid.SHORT)
+    }
+  }
+
+  signInWithTwitter = async () => {
+    try {
+      await RNTwitterSignIn.init(TwitterKeys.TWITTER_CONSUMER_KEY, TwitterKeys.TWITTER_CONSUMER_SECRET);
+  
+      // also includes: name, userID & userName
+      const { authToken, authTokenSecret } = await RNTwitterSignIn.logIn();    
+  
+      const credential = TwitterAuthProvider.credential(authToken, authTokenSecret);
+  
+      const firebaseUserCredential = await firebase.auth().signInWithCredential(credential);
+  
+      // console.warn(JSON.stringify(firebaseUserCredential.user.toJSON()));
+      this.props.navigation.navigate('Main')
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  signInWithFacebook = async () => {
+    try {
+      const result = await LoginManager.logInWithPermissions(['email']);
+  
+      if (result.isCancelled) {
+        // handle this however suites the flow of your app
+        throw new Error('User cancelled request'); 
+      }
+  
+      console.log(`Login success with permissions: ${result.grantedPermissions.toString()}`);
+  
+      // get the access token
+      const data = await AccessToken.getCurrentAccessToken();
+  
+      if (!data) {
+        // handle this however suites the flow of your app
+        throw new Error('Something went wrong obtaining the users access token');
+      }
+  
+      // create a new firebase credential with the token
+      const credential = firebase.auth.FacebookAuthProvider.credential(data.accessToken);
+
+      // login with credential
+      const firebaseUserCredential = await firebase.auth().signInWithCredential(credential);
+  
+      console.warn(JSON.stringify(firebaseUserCredential.user.toJSON()))
+    } catch (e) {
+      console.error(e);
     }
   }
 
@@ -181,19 +267,23 @@ class Login extends Component {
           <View style={{ flexDirection: 'row', marginBottom: 20 }}>
             <View style={styles.logoContainer}>
               <View style={styles.logoBorder}>
-                <Image source={require('../assets/images/logo-facebook.png')} />
+                <TouchableOpacity onPress={this._shareLinkWithShareDialog}>
+                  <Image source={require('../assets/images/logo-facebook.png')} />
+                </TouchableOpacity>
               </View>
             </View>
             <View style={styles.logoContainer} onPress>
               <View style={styles.logoBorder}>
-                <TouchableHighlight onPress={this.signInWithGoogle}>
+                <TouchableOpacity onPress={this.signInWithGoogle}>
                   <Image source={require('../assets/images/logo-gmail.png')} />
-                </TouchableHighlight>
+                </TouchableOpacity>
               </View>
             </View>
             <View style={styles.logoContainer}>
               <View style={styles.logoBorder}>
-                <Image source={require('../assets/images/logo-twitter.png')} />
+                <TouchableOpacity onPress={this.signInWithTwitter}>
+                  <Image source={require('../assets/images/logo-twitter.png')} />
+                </TouchableOpacity>
               </View>
             </View>
           </View>
