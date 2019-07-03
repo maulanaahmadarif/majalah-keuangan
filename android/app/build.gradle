@@ -102,7 +102,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.majalahkeuangan"
+        applicationId "go.id.kemenkeu.iMagazine"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -138,6 +138,8 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-fbsdk')
+    implementation project(':react-native-twitter-signin')
     implementation project(':react-native-google-signin')
     implementation project(':react-native-firebase')
     implementation project(':react-native-gesture-handler')
@@ -147,8 +149,7 @@ dependencies {
     implementation "com.google.android.gms:play-services-base:16.1.0" // FROM rnfirebase
     implementation "com.google.firebase:firebase-core:16.0.9" // FROM rnfirebase
     implementation "com.google.firebase:firebase-auth:17.0.0" // FROM rnfirebase
-
-    // implementation 'com.google.firebase:firebase-core:17.0.0' // FROM firebase
+    implementation "com.facebook.android:facebook-android-sdk:[5,6)"
 }
 
 // Run this once to be able to run the application with BUCK

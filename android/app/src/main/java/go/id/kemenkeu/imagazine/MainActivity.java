@@ -1,9 +1,11 @@
-package com.majalahkeuangan;
+package go.id.kemenkeu.iMagazine;
 
+import android.content.Intent;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
 
 
 public class MainActivity extends ReactActivity {
@@ -14,7 +16,7 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "majalahkeuangan";
+        return "MajalahKeuangan";
     }
 
     @Override
@@ -25,5 +27,11 @@ public class MainActivity extends ReactActivity {
          return new RNGestureHandlerEnabledRootView(MainActivity.this);
         }
       };
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        MainApplication.getCallbackManager().onActivityResult(requestCode, resultCode, data);
     }
 }

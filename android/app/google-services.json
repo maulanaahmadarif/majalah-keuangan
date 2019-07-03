@@ -1,43 +1,82 @@
 {
   "project_info": {
-    "project_number": "923476260855",
-    "firebase_url": "https://majalah-keuangan.firebaseio.com",
-    "project_id": "majalah-keuangan",
-    "storage_bucket": "majalah-keuangan.appspot.com"
+    "project_number": "269582413397",
+    "firebase_url": "https://staging-mediakeuangan.firebaseio.com",
+    "project_id": "staging-mediakeuangan",
+    "storage_bucket": "staging-mediakeuangan.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:923476260855:android:a51de6c9597df1f5",
+        "mobilesdk_app_id": "1:269582413397:android:2f673df5d19dd8ed",
         "android_client_info": {
-          "package_name": "com.majalahkeuangan"
+          "package_name": "go.id.kemenkeu.iMagazine"
         }
       },
       "oauth_client": [
         {
-          "client_id": "923476260855-vmsombd2vbn8g8bdak2fvtqetekog66o.apps.googleusercontent.com",
+          "client_id": "269582413397-or3gr10rb6r3gptlm9r2qd494qtsg11e.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.majalahkeuangan",
+            "package_name": "go.id.kemenkeu.iMagazine",
             "certificate_hash": "cf4eb4d9d7cdbde6e815663f8c25cd7ac85ba46c"
           }
         },
         {
-          "client_id": "923476260855-iub4m381e2i04t8cpk7uj7t6v81n86h2.apps.googleusercontent.com",
+          "client_id": "269582413397-2jpblhm8lmsn5ankodanl8naeq04sl3h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "go.id.kemenkeu.iMagazine",
+            "certificate_hash": "9c1fa03c8c063324b0be1e09fce8b8241e1509f8"
+          }
+        },
+        {
+          "client_id": "269582413397-elja0c4jbvbboti6rkjuupsfc6mjlejn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "go.id.kemenkeu.iMagazine",
+            "certificate_hash": "e8a9c55eff11f21f4a2914164a851d94f1d0896a"
+          }
+        },
+        {
+          "client_id": "269582413397-jl0fur4jqjvnp1q61nev2shtpiechj3m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "go.id.kemenkeu.iMagazine",
+            "certificate_hash": "3aaac2519b5710eb0c10f6f9ea70c653c17f1ca9"
+          }
+        },
+        {
+          "client_id": "269582413397-c22folc2ndhpddeihq8k424gcbv0n13h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "go.id.kemenkeu.iMagazine",
+            "certificate_hash": "2dc98d5202f1b14e313cc8a1548141056cf79917"
+          }
+        },
+        {
+          "client_id": "269582413397-7jhcqsa4adjl1phc11avr872fai7lpbv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA6-gow2Nr44cEJ-zYQCOXvcbfXoJ6wj0Y"
+          "current_key": "AIzaSyAEC26__CvGxass-XLvJceIw8tKjXOZpng"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "923476260855-iub4m381e2i04t8cpk7uj7t6v81n86h2.apps.googleusercontent.com",
+              "client_id": "269582413397-7jhcqsa4adjl1phc11avr872fai7lpbv.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "269582413397-r5el20m6cjlaojobsmp24v2j3c943bsb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "go.id.kemenkeu.eMagazine"
+              }
             }
           ]
         }
