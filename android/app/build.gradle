@@ -160,3 +160,4 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply plugin: 'com.google.gms.google-services' // FROM rnfirebase
+apply from: '../../node_modules/react-native-vector-icons/fonts.gradle' // FROM react-native-vector-icons
