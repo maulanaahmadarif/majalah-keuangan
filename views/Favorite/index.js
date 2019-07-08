@@ -10,21 +10,32 @@ YellowBox.ignoreWarnings(['ViewPagerAndroid'])
 
 const TabScreen = createMaterialTopTabNavigator(
   {
-    Readed,
-    Loved,
+    Readed: {
+      screen: Readed,
+      navigationOptions: {
+        title: 'Sudah Dibaca'
+      },
+    },
+    Loved: {
+      screen: Loved,
+      navigationOptions: {
+        title: 'Disukai'
+      },
+    }
   },
   {
     tabBarPosition: 'top',
     swipeEnabled: true,
     animationEnabled: true,
     tabBarOptions: {
-      activeTintColor: '#000000',
-      inactiveTintColor: '#000000',
+      activeTintColor: '#FFFFFF',
+      inactiveTintColor: '#FFFFFF',
       style: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#888888',
       },
       labelStyle: {
         textAlign: 'center',
+        textTransform: 'capitalize'
       },
       indicatorStyle: {
         borderBottomColor: '#87B56A',

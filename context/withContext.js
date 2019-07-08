@@ -1,12 +1,12 @@
 import React from 'react'
-import { UserContext } from './UserContext'
+import { Context } from './Context'
 
-export function withUser (Component) {
+export function withContext (Component) {
   return function UserComponent (props) {
     return (
-      <UserContext.Consumer>
+      <Context.Consumer>
         {(contexts) => <Component {...props} {...contexts} />}
-      </UserContext.Consumer>
+      </Context.Consumer>
     )
   }
 }

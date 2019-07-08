@@ -14,12 +14,7 @@ const AppStack = createBottomTabNavigator(
           Magazine: {
             screen: Magazine,
             navigationOptions: {
-              title: 'Magazine',
-              headerTitleStyle: { 
-                textAlign: 'center', 
-                flex: 1,
-                alignSelf: 'center'
-              },
+              header: null
             },
           }
         }

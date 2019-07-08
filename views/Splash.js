@@ -5,7 +5,7 @@ import {
   Image
 } from 'react-native'
 
-import { withUser } from '../context/withUser'
+import { withContext } from '../context/withContext'
 
 class Splash extends Component {
   componentDidMount () {
@@ -13,7 +13,7 @@ class Splash extends Component {
       firebase
         .auth()
         .onAuthStateChanged((user) => {
-          this.props.userContext.setUser(user)
+          this.props.context.setUser(user)
           if (user) {
             this.props.navigation.navigate('App')
           } else {
@@ -32,4 +32,4 @@ class Splash extends Component {
   }
 }
 
-export default withUser(Splash)
+export default withContext(Splash)

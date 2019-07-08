@@ -1,23 +1,31 @@
-import React, { Component } from 'react'
-import {
-  View,
-  Text
-} from 'react-native'
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
-import { withUser } from '../../context/withUser'
+import Magazine from './Magazine'
+import Article from './Article'
 
-class Magazine extends Component {
-  componentDidMount () {
-    console.log(this.props)
+const MagazineStack = createStackNavigator(
+  {
+    Magazine: {
+      screen: Magazine,
+      navigationOptions: {
+        title: 'Tahun Terbit',
+        headerTitleStyle: { 
+          textAlign: 'center', 
+          flex: 1,
+          alignSelf: 'center'
+        },
+      },
+    },
+    Article: {
+      screen: Article,
+      navigationOptions: {
+        title: 'Article'
+      },
+    }
+  },
+  {
+    initialRouteName: 'Magazine'
   }
+)
 
-  render () {
-    return (
-      <View>
-        <Text>This is Magazine</Text>
-      </View>
-    )
-  }
-}
-
-export default withUser(Magazine)
+export default createAppContainer(MagazineStack)

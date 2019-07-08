@@ -2,16 +2,16 @@ import React, { Component } from 'react'
 import { createAppContainer } from 'react-navigation'
 
 import stack from './stack'
-import UserProvider from './context/UserProvider'
+import ContextProvider from './context/ContextProvider'
 
 const AppContainer = createAppContainer(stack)
 
 class App extends Component {
   render() {
     return (
-      <UserProvider>
+      <ContextProvider>
         <AppContainer />
-      </UserProvider>
+      </ContextProvider>
     )
   }
 }

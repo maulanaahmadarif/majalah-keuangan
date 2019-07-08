@@ -5,14 +5,15 @@ import {
   View,
   ScrollView,
   Text,
-  Alert
+  Alert,
+  Linking
 } from 'react-native'
 
 import Container from '../../components/layout/Container'
 import CardList from '../../components/card/CardList'
 import SocialAuth from '../../components/layout/SocialAuth'
 import LoginAuth from '../../components/layout/LoginAuth'
-import { withUser } from '../../context/withUser'
+import { withContext } from '../../context/withContext'
 
 class Settings extends Component {
   constructor (props) {
@@ -24,7 +25,7 @@ class Settings extends Component {
   }
 
   isLoggedIn = () => {
-    return this.props.userContext.user !== null
+    return this.props.context.user !== null
   }
 
   onSignOut = () => {
@@ -33,7 +34,7 @@ class Settings extends Component {
       .auth()
       .signOut()
       .then(() => {
-        this.props.userContext.setUser(null)
+        this.props.context.setUser(null)
         this.props.navigation.navigate('Auth')
       })
       .catch((err) => {
@@ -47,9 +48,10 @@ class Settings extends Component {
 
   renderAuthSettings = () => {
     if (this.isLoggedIn()) {
-      return (
-        <CardList text="Akun" onPress={() => this.props.navigation.navigate('Account')} />
-      )
+      // return (
+      //   <CardList text="Akun" onPress={() => this.props.navigation.navigate('Account')} />
+      // )
+      return null
     } else {
       return (
         <View style={{ paddingTop: 20, paddingBottom: 20 }}>
@@ -63,6 +65,14 @@ class Settings extends Component {
         </View>
       )
     }
+  }
+
+  handleOpenURL = (url) => {
+    Linking
+      .openURL(url)
+      .catch((err) => {
+        Alert.alert('Error', err.message)
+      })
   }
 
   onAlertPopup = () => {
@@ -94,17 +104,17 @@ class Settings extends Component {
           textStyle={{ color: '#fff' }}
         />
         { this.renderAuthSettings() }
-        <CardList text="Berikan Rating di Google Play" />
-        <CardList text="Cara Penggunaan" />
+        <CardList text="Berikan Rating di Google Play" onPress={() => this.handleOpenURL('market://details?id=com.facebook.katana')} />
+        <CardList text="Cara Penggunaan" onPress={() => this.props.navigation.navigate('Guide')} />
         <CardList text="Hapus Majalah" onPress={this.onAlertPopup} />
         <CardList text="Hapus Riwayat Majalah" onPress={this.onAlertPopup} />
         <CardList text="Pengaturan Mode Baca" />
         <CardList text="Tentang Kami" onPress={() => this.props.navigation.navigate('About')} />
-        <CardList text="Website Kemenkeu" />
+        <CardList text="Website Kemenkeu" onPress={() => this.handleOpenURL('http://mediakeuangan.kemenkeu.go.id/')} />
         { this.isLoggedIn() && <CardList text="Logout" onPress={this.onSignOut} /> }
       </ScrollView>
     )
   }
 }
 
-export default withUser(Settings)
+export default withContext(Settings)

@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 
 import Container from './Container'
-import { withUser } from '../../context/withUser'
+import { withContext } from '../../context/withContext'
 import { withNavigation } from 'react-navigation'
 
 const styles = StyleSheet.create({
@@ -133,4 +133,4 @@ class SignupAuth extends Component {
   }
 }
 
-export default withUser(withNavigation(SignupAuth))
+export default withContext(withNavigation(SignupAuth))

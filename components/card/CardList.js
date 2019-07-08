@@ -3,8 +3,7 @@ import {
   StyleSheet,
   View,
   Text,
-  TouchableNativeFeedback,
-  Alert
+  TouchableNativeFeedback
 } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
