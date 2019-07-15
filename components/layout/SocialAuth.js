@@ -3,7 +3,7 @@ import firebase from 'react-native-firebase'
 import { GoogleSignin } from 'react-native-google-signin'
 import { AccessToken, LoginManager } from 'react-native-fbsdk'
 import { withNavigation } from 'react-navigation'
-import { withUser } from '../../context/withUser'
+import { withContext } from '../../context/withContext'
 import Spinner from 'react-native-loading-spinner-overlay'
 import {
   View,
@@ -41,7 +41,7 @@ class SocialAuth extends Component {
       const data = await GoogleSignin.signIn();
       const credential = firebase.auth.GoogleAuthProvider.credential(data.idToken, data.accessToken)
       const firebaseUserCredential = await firebase.auth().signInWithCredential(credential)
-      this.props.userContext.setUser(firebaseUserCredential.user)
+      this.props.context.setUser(firebaseUserCredential.user)
       this.props.navigation.navigate('App')
     } catch (e) {
       this.setState({ isLoading: false })
@@ -56,7 +56,7 @@ class SocialAuth extends Component {
       const { authToken, authTokenSecret } = await RNTwitterSignIn.logIn();
       const credential = TwitterAuthProvider.credential(authToken, authTokenSecret);
       const firebaseUserCredential = await firebase.auth().signInWithCredential(credential);
-      this.props.userContext.setUser(firebaseUserCredential.user)
+      this.props.context.setUser(firebaseUserCredential.user)
       this.props.navigation.navigate('App')
     } catch (e) {
       this.setState({ isLoading: false })
@@ -83,7 +83,7 @@ class SocialAuth extends Component {
       const credential = firebase.auth.FacebookAuthProvider.credential(data.accessToken);
       // login with credential
       const firebaseUserCredential = await firebase.auth().signInWithCredential(credential);
-      this.props.userContext.setUser(firebaseUserCredential.user)
+      this.props.context.setUser(firebaseUserCredential.user)
       this.props.navigation.navigate('App')
     } catch (e) {
       this.setState({ isLoading: false })
@@ -111,4 +111,4 @@ class SocialAuth extends Component {
   }
 }
 
-export default withUser(withNavigation(SocialAuth))
+export default withContext(withNavigation(SocialAuth))

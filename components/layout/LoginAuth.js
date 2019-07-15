@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 
 import RegularButton from '../button/RegularButton'
-import { withUser } from '../../context/withUser'
+import { withContext } from '../../context/withContext'
 
 const styles = StyleSheet.create({
   inputField: {
@@ -57,7 +57,7 @@ class LoginAuth extends Component {
         .auth()
         .signInWithEmailAndPassword(email, password)
         .then((res) => {
-          this.props.userContext.setUser(res.user)
+          this.props.context.setUser(res.user)
           this.props.navigation.navigate('App')
         })
         .catch((err) => {
@@ -122,4 +122,4 @@ class LoginAuth extends Component {
   }
 }
 
-export default withUser(withNavigation(LoginAuth))
+export default withContext(withNavigation(LoginAuth))

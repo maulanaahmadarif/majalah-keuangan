@@ -14,13 +14,8 @@ const AppStack = createBottomTabNavigator(
           Magazine: {
             screen: Magazine,
             navigationOptions: {
-              title: 'Magazine',
-              headerTitleStyle: { 
-                textAlign: 'center', 
-                flex: 1,
-                alignSelf: 'center'
-              },
-            },
+              header: null
+            }
           }
         }
       )
@@ -31,7 +26,7 @@ const AppStack = createBottomTabNavigator(
           Favorite: {
             screen: Favorite,
             navigationOptions: {
-              header: null
+              header: null,
             },
           }
         }
@@ -51,26 +46,38 @@ const AppStack = createBottomTabNavigator(
     }
   },
   {
-    defaultNavigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, horizontal, tintColor }) => {
-        const { routeName } = navigation.state;
-        let IconComponent = Ionicons;
-        let iconName;
-        if (routeName === 'Magazine') {
-          iconName = `ios-book`;
-        } else if (routeName === 'Settings') {
-          iconName = `ios-cog`;
-        } else if (routeName === 'Favorite') {
-          iconName = `ios-heart`;
+    defaultNavigationOptions: ({ navigation }) => {
+      const currentRoute = navigation.state.routes[navigation.state.index];
+      const { routeName } = currentRoute;
+      let tabBarVisible = true
+      if (routeName === 'Magazine') {
+        const { routeName } = currentRoute.routes[currentRoute.index]
+        if (routeName === 'Category') {
+          tabBarVisible = false
         }
-        // You can return any component that you like here!
-        return <IconComponent name={iconName} size={25} color={tintColor} />;
-      },
-    }),
+      }
+      return {
+        tabBarIcon: ({ focused, horizontal, tintColor }) => {
+          const { routeName } = navigation.state
+          let IconComponent = Ionicons
+          let iconName
+          if (routeName === 'Magazine') {
+            iconName = 'ios-book'
+          } else if (routeName === 'Settings') {
+            iconName = 'ios-cog'
+          } else if (routeName === 'Favorite') {
+            iconName = 'ios-heart'
+          }
+          // You can return any component that you like here!
+          return <IconComponent name={iconName} size={25} color={tintColor} />
+        },
+        tabBarVisible
+      }
+    },
     tabBarOptions: {
       activeTintColor: 'black',
       inactiveTintColor: 'gray',
-    },
+    }
   }
 )
 

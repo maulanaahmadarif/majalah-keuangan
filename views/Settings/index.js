@@ -3,20 +3,26 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 import About from './About'
 import Account from './Account'
 import Setting from './Setting'
-
+import Guide from './Guide'
 
 const SettingStack = createStackNavigator(
   {
     About: {
       screen: About,
       navigationOptions: {
-        title: 'About'
+        title: 'Tentang Kami'
       },
     },
     Account: {
       screen: Account,
       navigationOptions: {
         title: 'Account'
+      },
+    },
+    Guide: {
+      screen: Guide,
+      navigationOptions: {
+        header: null
       },
     },
     Setting: {
