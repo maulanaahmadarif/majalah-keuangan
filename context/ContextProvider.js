@@ -11,7 +11,15 @@ export default class ContextProvider extends Component {
       magazines: [],
       setMagazines: this.setMagazines,
       edition: [],
-      setEdition: this.setEdition
+      setEdition: this.setEdition,
+      articles: null,
+      setArticles: this.setArticles,
+      currentCategory: null,
+      setCurrentCategory: this.setCurrentCategory,
+      category: null,
+      setCategory: this.setCategory,
+      showShare: false,
+      setShowShare: this.setShowShare
     }
   }
 
@@ -25,6 +33,22 @@ export default class ContextProvider extends Component {
 
   setEdition = (edition) => {
     this.setState({ edition })
+  }
+
+  setArticles = (articles) => {
+    this.setState({ articles })
+  }
+
+  setCurrentCategory = (index) => {
+    this.setState({ currentCategory: index })
+  }
+
+  setCategory = (category) => {
+    this.setState({ category })
+  }
+
+  setShowShare = (value) => {
+    this.setState({ showShare: value })
   }
 
   render () {

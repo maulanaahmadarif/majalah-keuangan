@@ -128,7 +128,7 @@ class Magazine extends Component {
         .filter(magazine => magazine.edition_years === activeEdition)
         .map((mag) => {
           return (
-            <View key={mag.id} style={[styles.magazineContainer]}>
+            <TouchableOpacity activeOpacity={1} key={mag.id} style={[styles.magazineContainer]} onPress={() => this.props.navigation.navigate('Article', { id: mag.id, title: formatDate(mag.edition, 'MMMM YYYY') })}>
               <View style={{ marginBottom: 10 }}>
                 <Text style={[styles.magazineText, { textTransform: 'uppercase' }]}>
                   { formatDate(mag.edition, 'MMMM YYYY') }
@@ -145,7 +145,7 @@ class Magazine extends Component {
               <View>
                 <Text style={[styles.magazineText]}>{ this.generateExcerpt(mag.description, 8) }</Text>
               </View>
-            </View>
+            </TouchableOpacity>
           )
         })
     }

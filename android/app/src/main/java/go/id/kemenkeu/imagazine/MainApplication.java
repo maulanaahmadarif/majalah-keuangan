@@ -2,6 +2,8 @@ package go.id.kemenkeu.iMagazine;
 
 import android.app.Application;
 
+import cl.json.RNSharePackage;
+import cl.json.ShareApplication;
 import com.facebook.react.ReactApplication;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.facebook.CallbackManager;
@@ -45,7 +47,8 @@ public class MainApplication extends Application implements ReactApplication {
           new RNGestureHandlerPackage(),
           new RNFirebasePackage(),
           new RNFirebaseAuthPackage(),
-          new RNFirebaseMessagingPackage()
+          new RNFirebaseMessagingPackage(),
+          new RNSharePackage()
       );
     }
 

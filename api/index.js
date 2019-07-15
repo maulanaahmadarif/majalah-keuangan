@@ -8,3 +8,10 @@ export const fetchMagazine = () => {
     .then(res => res.data)
     .catch(err => err.message)
 }
+
+export const fetchArticles = (id) => {
+  return axios
+    .get(`${BASE_URL}/api/v1/magazines/show/${id}`)
+    .then(res => res.data)
+    .catch(err => err.message)
+}

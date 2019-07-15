@@ -8,7 +8,15 @@ export const Context = createContext(
       magazines: [],
       setMagazines: () => {},
       edition: [],
-      setEdition: () => {}
+      setEdition: () => {},
+      articles: null,
+      setArticles: () => {},
+      category: null,
+      setCategory: () => {},
+      currentCategory: null,
+      setCurrentCategory: () => {},
+      showShare: false,
+      setShowShare: () => {}
     }
   }
 )
