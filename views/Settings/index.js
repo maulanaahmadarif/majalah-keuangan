@@ -27,13 +27,19 @@ const SettingStack = createStackNavigator(
     },
     Setting: {
       screen: Setting,
-      navigationOptions: {
-        title: 'Setting',
-        headerTitleStyle: { 
-          textAlign: 'center', 
-          flex: 1,
-          alignSelf: 'center'
-        },
+      navigationOptions: ({ navigation, screenProps }) => {
+        return {
+          title: 'Setting',
+          // headerTintColor: '#FFFFFF',
+          // headerStyle: {
+          //   backgroundColor: '#000000'
+          // },
+          headerTitleStyle: { 
+            textAlign: 'center', 
+            flex: 1,
+            alignSelf: 'center'
+          },
+        }
       },
     }
   },

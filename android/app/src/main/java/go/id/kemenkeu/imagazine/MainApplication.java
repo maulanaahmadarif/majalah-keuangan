@@ -4,7 +4,9 @@ import android.app.Application;
 
 import cl.json.RNSharePackage;
 import cl.json.ShareApplication;
+import org.pgsqlite.SQLitePluginPackage;
 import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
@@ -41,6 +43,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+          new AsyncStoragePackage(),
+          new SQLitePluginPackage(),
           new FBSDKPackage(mCallbackManager),
           new TwitterSigninPackage(),
           new RNGoogleSigninPackage(),

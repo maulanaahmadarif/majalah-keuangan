@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import HTML from 'react-native-render-html'
-import Share, { ShareSheet, Button } from 'react-native-share';
+import Share, { ShareSheet } from 'react-native-share';
 import {
   View,
   Text,
@@ -10,20 +10,79 @@ import {
   Alert
 } from 'react-native'
 
+import Database from '../../Database'
+
 import { withContext } from '../../context/withContext'
+import SettingsModal from '../../components/layout/SettingsModal'
+import CardModal from '../../components/card/CardModal'
 import Container from '../../components/layout/Container'
 
+const db = new Database()
+
 class Category extends Component {
-  constructor (props) {
-    super(props)
+  constructor () {
+    super()
 
     this.state = {
       currentIndex: null
     }
   }
 
+  componentDidMount () {
+    const { category, currentCategory } = this.props.context
+    const article = category[currentCategory]
+    const data = {
+      id: article.id,
+      title: article.title,
+      main_image: article.main_image,
+      author: article.author,
+      content: JSON.stringify(article.content),
+      isLoved: 'no'
+    }
+    db.addMagazine(data)
+      .then((res) => {
+        console.log('res', res)
+      })
+      .catch((err) => {
+        console.log('err', err)
+      })
+  }
+
   removeAdditionalWhiteSpace = (text) => {
     return text.split(/\s+/).join(' ');
+  }
+
+  getHTMLStyle = () => {
+    return {
+      p: {
+        marginBottom: 15,
+        fontSize: this.getFontSize(),
+        lineHeight: this.getLineHeight(),
+        color: this.isDarkMode() ? '#FFF' : '#000'
+      }
+    }
+  }
+
+  getFontSize = () => {
+    const { fontSizeMode } = this.props.context.userSettings
+    if (fontSizeMode === 'big') {
+      return 20
+    } else if (fontSizeMode === 'medium') {
+      return 16
+    } else {
+      return 12
+    }
+  }
+
+  getLineHeight = () => {
+    const { lineHeightMode } = this.props.context.userSettings
+    if (lineHeightMode === 'wide') {
+      return 20
+    } else if (lineHeightMode === 'medium') {
+      return 16
+    } else {
+      return 12
+    }
   }
 
   componentDidUpdate (prevProps) {
@@ -57,11 +116,13 @@ class Category extends Component {
       return category[currentCategory].content.map((content, index) => {
         let bodyContent = null
         if (content.type === 'paragraph') {
-          bodyContent = <HTML html={content.body} />
+          bodyContent = <HTML html={content.body} tagsStyles={this.getHTMLStyle()} />
         } else if (content.type === 'keterangan') {
-          bodyContent = <Text>{ content.body }</Text>
+          bodyContent = <Text style={[this.isDarkMode() && { color: '#FFFFFF'}, { fontSize: this.getFontSize() }]}>{ content.body }</Text>
         } else if (content.type === 'image') {
-          bodyContent = <Image source={{ uri: content.body }} style={{ width: (Dimensions.get('window').width * 0.9), height: 200 }} resizeMode='contain' />
+          !this.isImageHide() ? (
+            bodyContent = <Image source={{ uri: content.body }} style={[{ width: (Dimensions.get('window').width * 0.9), height: 200 }]} resizeMode='contain' />
+          ) : null
         }
         return (
           <View key={index} style={{ marginBottom: 10 }}>
@@ -72,20 +133,28 @@ class Category extends Component {
     }
   }
 
-  componentDidMount () {
-    const { index } = this.props.navigation.state.params
-    this.setState({
-      currentIndex: index
-    })
-  }
-
   onCancel = () => {
     this.props.context.setShowShare(false)
   }
 
+  isDarkMode = () => {
+    return this.props.context.userSettings.readMode !== 'normal'
+  }
+
+  isImageHide = () => {
+    return this.props.context.userSettings.imageMode !== 'show'
+  }
+
   render () {
     return (
-      <ScrollView>
+      <ScrollView style={[this.isDarkMode() && { backgroundColor: '#000000'}]}>
+        <CardModal
+          onBackButtonPress={() => this.props.context.setShowSettingsModal(false)}
+          onBackdropPress={() => this.props.context.setShowSettingsModal(false)}
+          title="Pengaturan Mode Baca"
+          isVisible={this.props.context.showSettingsModal}>
+          <SettingsModal onCloseModal={() => this.props.context.setShowSettingsModal(false)} />
+        </CardModal>
         <Container>
           <View style={{ paddingVertical: 15 }}>{ this.renderContent() }</View>
         </Container>

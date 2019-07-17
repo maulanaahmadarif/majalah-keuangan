@@ -83,17 +83,25 @@ class Magazine extends Component {
     //   })
     fetchMagazine()
       .then((res) => {
-        const activeEdition = res.years.sort((a, b) => b.HeaderEdition - a.HeaderEdition)[0]
-        this.props.context.setMagazines(res.magazine)
-        this.props.context.setEdition(res.years)
-        this.setState({ activeEdition: activeEdition.HeaderEdition })
+        if (res.status === 200) {
+          // const activeEdition = res.years.sort((a, b) => b.HeaderEdition - a.HeaderEdition)[0]
+          this.props.context.setMagazines(res.magazine)
+          this.props.context.setEdition(res.years)
+          // this.setState({ activeEdition: activeEdition.HeaderEdition })
+          this.setState({ activeEdition: res.years[0].HeaderEdition })
+        }
       })
       .catch((err) => {
-        Alert.alert('Error', err)
+        Alert.alert('Error', err.message)
+        console.log(err)
       })
       .finally(() => {
         this.setState({ isLoading: false })
       })
+  }
+
+  isDarkMode = () => {
+    return this.props.context.userSettings.readMode !== 'normal'
   }
 
   renderEdition = () => {
@@ -102,8 +110,8 @@ class Magazine extends Component {
         .sort((a, b) => b.HeaderEdition - a.HeaderEdition)
         .map(year => (
           // TODO: WHEN CLICK, SCROLL TO MUST BE IMPLEMENT TO ENHANCE UX
-          <TouchableOpacity activeOpacity={0.5} style={[styles.editionContainerStyle, year.HeaderEdition === this.state.activeEdition && styles.editionActiveStyle]} key={year.HeaderEdition} onPress={() => this.setState({ activeEdition: year.HeaderEdition })}>
-            <Text style={[styles.editionStyle]}>{ year.HeaderEdition }</Text>
+          <TouchableOpacity activeOpacity={0.5} style={[styles.editionContainerStyle, year.HeaderEdition === this.state.activeEdition && styles.editionActiveStyle, this.isDarkMode() && { borderBottomColor: '#FFFFFF'}]} key={year.HeaderEdition} onPress={() => this.setState({ activeEdition: year.HeaderEdition })}>
+            <Text style={[styles.editionStyle, this.isDarkMode() && { color: '#FFFFFF' }]}>{ year.HeaderEdition }</Text>
           </TouchableOpacity>
         ))
     } 
@@ -130,20 +138,20 @@ class Magazine extends Component {
           return (
             <TouchableOpacity activeOpacity={1} key={mag.id} style={[styles.magazineContainer]} onPress={() => this.props.navigation.navigate('Article', { id: mag.id, title: formatDate(mag.edition, 'MMMM YYYY') })}>
               <View style={{ marginBottom: 10 }}>
-                <Text style={[styles.magazineText, { textTransform: 'uppercase' }]}>
+                <Text style={[styles.magazineText, { textTransform: 'uppercase' }, this.isDarkMode() && { color: '#FFFFFF' }]}>
                   { formatDate(mag.edition, 'MMMM YYYY') }
                   { '\n' }
-                  <Text style={[styles.magazineText, { color: '#000' }]}>{ mag.edition_number }</Text>
+                  <Text style={[styles.magazineText, { color: '#000' }, this.isDarkMode() && { color: '#FFFFFF' }]}>{ mag.edition_number }</Text>
                 </Text>
               </View>
               <View>
                 <Image source={{ uri: mag.cover_image }} style={[styles.imageStyle]} />
               </View>
               <View style={{ marginVertical: 15 }}>
-                <Text style={[styles.magazineText, { color: '#000', fontWeight: 'bold' }]}>{ mag.title }</Text>
+                <Text style={[styles.magazineText, { color: '#000', fontWeight: 'bold' }, this.isDarkMode() && { color: '#FFFFFF' }]}>{ mag.title }</Text>
               </View>
               <View>
-                <Text style={[styles.magazineText]}>{ this.generateExcerpt(mag.description, 8) }</Text>
+                <Text style={[styles.magazineText, this.isDarkMode() && { color: '#FFFFFF' }]}>{ this.generateExcerpt(mag.description, 8) }</Text>
               </View>
             </TouchableOpacity>
           )
@@ -153,13 +161,13 @@ class Magazine extends Component {
 
   render () {
     return (
-      <ScrollView stickyHeaderIndices={[1]} >
+      <ScrollView stickyHeaderIndices={[1]} style={[ this.isDarkMode() && { backgroundColor: '#000000'} ]}>
         <Spinner
           visible={this.state.isLoading}
           overlayColor="rgba(0,0,0,0.7)"
           textStyle={{ color: '#fff' }}
         />
-        <ScrollView style={[styles.editionWrapper]} horizontal showsHorizontalScrollIndicator={false}>
+        <ScrollView style={[styles.editionWrapper, this.isDarkMode() && { backgroundColor: '#000000'}]} horizontal showsHorizontalScrollIndicator={false} >
           { this.renderEdition() }
         </ScrollView>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>

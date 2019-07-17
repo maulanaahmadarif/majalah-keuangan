@@ -138,6 +138,8 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-sqlite-storage')
+    implementation project(':@react-native-community_async-storage')
     implementation project(':react-native-fbsdk')
     implementation project(':react-native-twitter-signin')
     implementation project(':react-native-google-signin')

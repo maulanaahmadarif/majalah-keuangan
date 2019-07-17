@@ -6,7 +6,10 @@ import {
   TouchableOpacity
 } from 'react-native'
 
+import Database from '../../Database'
 import { withContext } from '../../context/withContext'
+
+const db = new Database()
 
 class TabBarCategory extends Component {
   constructor (props) {
@@ -57,6 +60,22 @@ class TabBarCategory extends Component {
     this.props.navigation.setParams({ title })
   }
 
+  onFavoritePress = async () => {
+    console.log(this.state)
+    console.log(this.props.context)
+    const { category } = this.props.context
+    const article = category[this.state.index]
+    const data = {
+      id: article.id,
+      title: article.title,
+      main_image: article.main_image,
+      author: article.author,
+      content: JSON.stringify(article.content),
+      isLoved: 'yes'
+    }
+    await db.updateMagazine(data)
+  }
+
   render () {
     const { nextIndex, prevIndex } = this.state
     return (
@@ -64,10 +83,10 @@ class TabBarCategory extends Component {
         <TouchableOpacity disabled={prevIndex === null} style={{ flex: 1, alignItems: 'center' }} onPress={this.onPrevCategory}>
           <Ionicons name="ios-arrow-back" size={25} color={prevIndex === null ? 'rgba(0,0,0,.2)' : '#000000'} />
         </TouchableOpacity>
-        <TouchableOpacity style={{ flex: 1, alignItems: 'center' }}>
+        <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => this.onFavoritePress()}>
           <Ionicons name="ios-heart-empty" size={25} color="#000000" />
         </TouchableOpacity>
-        <TouchableOpacity style={{ flex: 1, alignItems: 'center' }}>
+        <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => this.props.context.setShowSettingsModal(true)}>
           <Ionicons name="ios-options" size={25} color="#000000" />
         </TouchableOpacity>
         <TouchableOpacity disabled={nextIndex === null} style={{ flex: 1, alignItems: 'center' }} onPress={this.onNextCategory}>

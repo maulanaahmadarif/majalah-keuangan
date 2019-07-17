@@ -3,7 +3,8 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native'
 
 const styles = StyleSheet.create({
@@ -14,7 +15,8 @@ const styles = StyleSheet.create({
   },
   radioButtonContainerInline: {
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
   radioButtonStyle: {
     width: 17,
@@ -39,20 +41,38 @@ class RadioButton extends Component {
     }
   }
 
-  onRadioPress = (value, index) => {
+  onRadioPress = (value, name, index) => {
     if (this.state.activeButton !== index) {
-      this.props.onChange(value)
+      this.props.onChange(value, name)
       this.setState({ activeButton: index })
     }
+  }
+
+  componentDidMount () {
+    this.props.data.map((item, index) => {
+      if (this.props.value !== null) {
+        if (this.props.value === item.value) {
+          this.props.onChange(item.value)
+          this.setState({ activeButton: index })
+        }
+      }
+    })
   }
 
   renderRadioList () {
     return this.props.data.map((item, index) => {
       return (
-        <TouchableOpacity activeOpacity={1} style={[styles.radioButtonContainer, this.props.inline && { marginRight: 10 }]} key={index} onPress={() => this.onRadioPress(item.value, index)}>
+        <TouchableOpacity activeOpacity={1} style={[styles.radioButtonContainer, this.props.inline && { marginRight: 10 }]} key={index} onPress={() => this.onRadioPress(item.value, item.name, index)}>
           <View style={[styles.radioButtonStyle, this.state.activeButton === index && { backgroundColor: 'gray' } ]}></View>
           <View>
-            <Text style={[styles.radioLabelStyle, this.props.inline && { fontSize: 14 }]}>{ item.label }</Text>
+            { item.label !== '' && (
+              <Text style={[styles.radioLabelStyle, this.props.inline && { fontSize: 14 }, item.labelSize && { fontSize: item.labelSize }]}>
+                { item.label }
+              </Text>
+            ) }
+            { item.icon && (
+              <Image source={ item.icon } style={{ width: 20, height: item.iconHeight ? item.iconHeight : 20 }} resizeMode='cover' />
+            ) }
           </View>
         </TouchableOpacity>
       )

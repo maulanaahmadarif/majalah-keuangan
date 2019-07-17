@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
-import firebase from 'react-native-firebase';
+import firebase from 'react-native-firebase'
+import AsyncStorage from '@react-native-community/async-storage'
 import {
   View,
-  Image
+  Image,
+  Alert
 } from 'react-native'
 
 import { withContext } from '../context/withContext'
 
+import Database from '../Database'
+
+const db = new Database()
+
 class Splash extends Component {
-  componentDidMount () {
+  async componentDidMount () {
     setTimeout(() => {
       firebase
         .auth()
@@ -20,7 +26,28 @@ class Splash extends Component {
             this.props.navigation.navigate('Auth')
           }
         })
-    }, 2500)
+    }, 1000)
+    
+    try {
+      const imageMode = await AsyncStorage.getItem('imageMode')
+      const fontSizeMode = await AsyncStorage.getItem('fontSizeMode')
+      const readMode = await AsyncStorage.getItem('readMode')
+      const lineHeightMode = await AsyncStorage.getItem('lineHeightMode')
+      if (imageMode !== null) {
+        this.props.context.setUserSettings(['imageMode', imageMode])
+      }
+      if (fontSizeMode !== null) {
+        this.props.context.setUserSettings(['fontSizeMode', fontSizeMode])
+      }
+      if (readMode !== null) {
+        this.props.context.setUserSettings(['readMode', readMode])
+      }
+      if (lineHeightMode !== null) {
+        this.props.context.setUserSettings(['lineHeightMode', lineHeightMode])
+      }
+    } catch (e) {
+      Alert.alert('Error', e.message)
+    }
   }
 
   render () {

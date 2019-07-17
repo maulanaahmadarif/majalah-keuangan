@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import firebase from 'react-native-firebase'
 import Spinner from 'react-native-loading-spinner-overlay'
+import AsyncStorage from '@react-native-community/async-storage'
+import { withNavigation } from 'react-navigation'
 import {
   View,
   ScrollView,
@@ -11,6 +13,7 @@ import {
 } from 'react-native'
 
 import Container from '../../components/layout/Container'
+import SettingsModal from '../../components/layout/SettingsModal'
 import CardList from '../../components/card/CardList'
 import CardModal from '../../components/card/CardModal'
 import SocialAuth from '../../components/layout/SocialAuth'
@@ -33,59 +36,6 @@ const deleteMagazineRadioItem = [
   }
 ]
 
-const readMode = [
-  {
-    label: 'Normal Mode',
-    value: 'normal'
-  },
-  {
-    label: 'Night Mode',
-    value: 'night'
-  }
-]
-
-const fontSizeMode = [
-  {
-    label: 'Big',
-    value: 'big'
-  },
-  {
-    label: 'Medium',
-    value: 'medium'
-  },
-  {
-    label: 'Small',
-    value: 'small'
-  }
-]
-
-const lineHeightMode = [
-  {
-    label: 'Wide',
-    value: 'wide'
-  },
-  {
-    label: 'Medium',
-    value: 'medium'
-  },
-  {
-    label: 'Narrow',
-    value: 'narrow'
-  }
-]
-
-const imageMode = [
-  {
-    label: 'Show',
-    value: 'show'
-  },
-  {
-    label: 'Hide',
-    value: 'hide'
-  }
-]
-
-
 class Settings extends Component {
   constructor (props) {
     super(props)
@@ -93,7 +43,7 @@ class Settings extends Component {
     this.state = {
       isLoading: false,
       modalModeVisible: false,
-      modalDeleteMagazineVisible: false
+      modalDeleteMagazineVisible: false,
     }
   }
 
@@ -168,37 +118,28 @@ class Settings extends Component {
     );
   }
 
-  onRadioDeleteMagazineChange = (value) => {
-    Alert.alert('Value', `Value ${value}`)
+  onRadioDeleteMagazineChange = async (value, name) => {
+    // try {
+    //   await AsyncStorage.setItem(name, value)
+    //   this.props.context.setUserSettings([name, value])
+    // } catch (e) {
+    //   Alert.alert('Error', e.message)
+    // }
   }
 
+  isDarkMode = () => {
+    return this.props.context.userSettings.readMode !== 'normal'
+  }
+  
   render () {
     return (
-      <ScrollView>
+      <ScrollView style={this.isDarkMode() ? { backgroundColor: '#000000' } : { backgroundColor: '#FFFFFF' }}>
         <CardModal
           onBackButtonPress={() => this.setState({ modalModeVisible: false })}
           onBackdropPress={() => this.setState({ modalModeVisible: false })}
           title="Pengaturan Mode Baca"
           isVisible={this.state.modalModeVisible}>
-          <ScrollView>
-            <View style={{ paddingVertical: 10, borderTopWidth: 1, borderTopColor: 'gray' }}>
-              <RadioButton label="Pilihan Mode Baca" inline data={readMode} onChange={this.onRadioDeleteMagazineChange} />
-            </View>
-            <View style={{ paddingVertical: 10, borderTopWidth: 1, borderTopColor: 'gray' }}>
-              <RadioButton label="Ukuran Huruf" inline data={fontSizeMode} onChange={this.onRadioDeleteMagazineChange} />
-            </View>
-            <View style={{ paddingVertical: 10, borderTopWidth: 1, borderTopColor: 'gray' }}>
-              <RadioButton label="Jarak Paragraf" inline data={lineHeightMode} onChange={this.onRadioDeleteMagazineChange} />
-            </View>
-            <View style={{ paddingVertical: 10, borderTopWidth: 1, borderTopColor: 'gray' }}>
-              <RadioButton label="Show or Hide Image" inline data={imageMode} onChange={this.onRadioDeleteMagazineChange} />
-            </View>
-            <View style={{ marginVertical: 5 }}>
-              <TouchableOpacity style={{ backgroundColor: '#000000', padding: 10 }} onPress={() => this.setState({ modalModeVisible: false })}>
-                <Text style={{ fontSize: 16, color: '#FFFFFF', textAlign: 'center' }}>Tutup</Text>
-              </TouchableOpacity>
-            </View>
-          </ScrollView>
+          <SettingsModal onCloseModal={() => this.setState({ modalModeVisible: false })} />
         </CardModal>
         <CardModal
           onBackButtonPress={() => this.setState({ modalDeleteMagazineVisible: false })}
@@ -207,14 +148,14 @@ class Settings extends Component {
           isVisible={this.state.modalDeleteMagazineVisible}>
           <View>
             <RadioButton label="Hapus otomatis, kecuali" data={deleteMagazineRadioItem} onChange={this.onRadioDeleteMagazineChange} />
-            <View style={{ marginVertical: 5 }}>
-              <TouchableOpacity style={{ backgroundColor: '#000000', padding: 10 }} onPress={() => this.setState({ modalDeleteMagazineVisible: false })}>
-                <Text style={{ fontSize: 16, color: '#FFFFFF', textAlign: 'center' }}>Batal</Text>
-              </TouchableOpacity>
-            </View>
             <View>
               <TouchableOpacity style={{ backgroundColor: '#000000', padding: 10 }}>
                 <Text style={{ fontSize: 16, color: '#FFFFFF', textAlign: 'center' }}>Hapus</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={{ marginVertical: 5 }}>
+              <TouchableOpacity style={{ backgroundColor: '#000000', padding: 10 }} onPress={() => this.setState({ modalDeleteMagazineVisible: false })}>
+                <Text style={{ fontSize: 16, color: '#FFFFFF', textAlign: 'center' }}>Batal</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -229,7 +170,7 @@ class Settings extends Component {
         <CardList text="Cara Penggunaan" onPress={() => this.props.navigation.navigate('Guide')} />
         <CardList text="Hapus Majalah" onPress={this.onAlertPopup} />
         <CardList text="Hapus Riwayat Majalah" onPress={() => this.setState({ modalDeleteMagazineVisible: true }) } />
-        <CardList text="Pengaturan Mode Baca" onPress={() => this.setState({ modalModeVisible: true }) } />
+        <CardList text="Pengaturan Mode Baca" onPress={() => this.setState({ modalModeVisible: true })} />
         <CardList text="Tentang Kami" onPress={() => this.props.navigation.navigate('About')} />
         <CardList text="Website Kemenkeu" onPress={() => this.handleOpenURL('http://mediakeuangan.kemenkeu.go.id/')} />
         { this.isLoggedIn() && <CardList text="Logout" onPress={this.onSignOut} /> }
@@ -238,4 +179,4 @@ class Settings extends Component {
   }
 }
 
-export default withContext(Settings)
+export default withContext(withNavigation(Settings))
