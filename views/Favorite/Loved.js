@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import {
-  ScrollView
+  ScrollView,
+  TouchableOpacity
 } from 'react-native'
 
 import Database from '../../Database';
 import ArticleCard from '../../components/card/ArticleCard'
 import Container from '../../components/layout/Container'
+import { withContext } from '../../context/withContext'
 
 const db = new Database()
 class Loved extends Component {
@@ -35,14 +37,26 @@ class Loved extends Component {
     const { magazines } = this.state
     if (magazines.length !== 0) {
       return magazines.map((mag, index) => {
-        return <ArticleCard key={index} image={mag.main_image} title={mag.title} author={mag.author} />
+        return (
+          <TouchableOpacity key={index} activeOpacity={1} onPress={() => this.onClickCard(mag)}>
+            <ArticleCard image={mag.main_image} title={mag.title} author={mag.author} />
+          </TouchableOpacity>
+        )
       })
     }
   }
 
+  onClickCard = (data) => {
+    this.props.navigation.navigate('Detail', { id: data.id, title: data.title, author: data.author, content: JSON.parse(data.content) })
+  }
+
+  isDarkMode = () => {
+    return this.props.context.userSettings.readMode !== 'normal'
+  }
+
   render () {
     return (
-      <ScrollView>
+      <ScrollView style={this.isDarkMode() && { backgroundColor: '#000000' }}>
         <Container style={{ marginVertical: 15 }}>
           { this.renderArticleCard() }
         </Container>
@@ -51,4 +65,4 @@ class Loved extends Component {
   }
 }
 
-export default Loved
+export default withContext(Loved)

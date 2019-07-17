@@ -18,7 +18,9 @@ class TabBarCategory extends Component {
     this.state = {
       nextIndex: null,
       prevIndex: null,
-      index: null
+      index: null,
+      lovedMagazines: [],
+      isFavorite: false
     }
   }
 
@@ -30,6 +32,19 @@ class TabBarCategory extends Component {
       index
     })
     this.props.context.setCurrentCategory(index)
+    this.refresh()
+  }
+
+  refresh = () => {
+    db.listFavoriteMagazine('yes')
+      .then((data) => {
+        this.setState({
+          lovedMagazines: data
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   onNextCategory = () => {
@@ -60,9 +75,7 @@ class TabBarCategory extends Component {
     this.props.navigation.setParams({ title })
   }
 
-  onFavoritePress = async () => {
-    console.log(this.state)
-    console.log(this.props.context)
+  onFavoritePress = () => {
     const { category } = this.props.context
     const article = category[this.state.index]
     const data = {
@@ -73,7 +86,49 @@ class TabBarCategory extends Component {
       content: JSON.stringify(article.content),
       isLoved: 'yes'
     }
-    await db.updateMagazine(data)
+    db.updateMagazine(data)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log('err', err)
+      })
+    this.refresh()
+  }
+
+  onRemoveFavorite = () => {
+    const { category } = this.props.context
+    const article = category[this.state.index]
+    const data = {
+      id: article.id,
+      title: article.title,
+      main_image: article.main_image,
+      author: article.author,
+      content: JSON.stringify(article.content),
+      isLoved: 'no'
+    }
+    db.updateMagazine(data)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log('err', err)
+      })
+    this.refresh()
+  }
+
+  isFavoriteArticle = () => {
+    let isFavorite = false
+    const { category } = this.props.context
+    const article = category[this.state.index]
+    const { lovedMagazines } = this.state
+    for (let i = 0;i < lovedMagazines.length; i++) {
+      if (lovedMagazines[i].id === article.id) {
+        isFavorite = true
+        break
+      }
+    }
+    return isFavorite
   }
 
   render () {
@@ -83,9 +138,15 @@ class TabBarCategory extends Component {
         <TouchableOpacity disabled={prevIndex === null} style={{ flex: 1, alignItems: 'center' }} onPress={this.onPrevCategory}>
           <Ionicons name="ios-arrow-back" size={25} color={prevIndex === null ? 'rgba(0,0,0,.2)' : '#000000'} />
         </TouchableOpacity>
-        <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => this.onFavoritePress()}>
-          <Ionicons name="ios-heart-empty" size={25} color="#000000" />
-        </TouchableOpacity>
+        { this.isFavoriteArticle() ? (
+          <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => this.onRemoveFavorite()}>
+            <Ionicons name="ios-heart" size={25} color="#000000" />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => this.onFavoritePress()}>
+            <Ionicons name="ios-heart-empty" size={25} color="#000000" />
+          </TouchableOpacity>
+        ) }
         <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => this.props.context.setShowSettingsModal(true)}>
           <Ionicons name="ios-options" size={25} color="#000000" />
         </TouchableOpacity>

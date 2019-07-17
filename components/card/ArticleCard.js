@@ -3,7 +3,6 @@ import {
   View,
   Image,
   Text,
-  TouchableOpacity,
   StyleSheet,
   Dimensions
 } from 'react-native'
@@ -29,7 +28,7 @@ const styles = StyleSheet.create({
 class ArticleCard extends Component {
   render () {
     return (
-      <TouchableOpacity style={styles.viewContainer}>
+      <View style={styles.viewContainer}>
         <View>
           { this.props.image ? (
             <Image source={{ uri: `http://mediakeuangan.kemenkeu.go.id/Images/article/${this.props.image}` }} style={{ width: viewportWidth * 0.9, height: 150 }} resizeMode="cover" />
@@ -41,7 +40,7 @@ class ArticleCard extends Component {
           <Text style={{ textAlign: 'center', fontSize: 20, color: '#000000', fontWeight: 'bold' }}>{ this.props.title }</Text>
           <Text style={{ textAlign: 'center' }}>{ this.props.author }</Text>
         </View>
-      </TouchableOpacity>
+      </View>
     )
   }
 }

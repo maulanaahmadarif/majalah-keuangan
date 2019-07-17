@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     elevation: 4
   },
   inputSearchIcon: {
-    paddingVertical: 10,
+    paddingVertical: 7,
     position: 'absolute',
     right: 15
   },
@@ -94,7 +94,9 @@ class Article extends Component {
     super(props)
 
     this.state = {
-      isLoading: true
+      isLoading: true,
+      articles: null,
+      searchText: ''
     }
   }
 
@@ -103,6 +105,9 @@ class Article extends Component {
     fetchArticles(id)
       .then((res) => {
         this.props.context.setArticles(res.magazine[0])
+        this.setState({
+          articles: res.magazine[0]
+        })
       })
       .catch((err) => {
         Alert.alert('Error', err)
@@ -113,8 +118,8 @@ class Article extends Component {
   }
 
   renderBanner () {
-    if (this.props.context.articles !== null) {
-      const { title, description, cover_image } = this.props.context.articles
+    if (this.state.articles !== null) {
+      const { title, description, cover_image } = this.state.articles
       return (
         <View>
           <ImageBackground source={{ uri: cover_image }} style={styles.bannerImage}>
@@ -146,8 +151,8 @@ class Article extends Component {
   }
 
   renderArticles () {
-    if (this.props.context.articles !== null) {
-      const { section } = this.props.context.articles
+    if (this.state.articles !== null) {
+      const { section } = this.state.articles
       return section.map((sec) => {
         return (
           <View key={sec.id} style={{ marginBottom: 20 }} ref={`section-${sec.id}`}>
@@ -174,6 +179,10 @@ class Article extends Component {
     return this.props.context.userSettings.readMode !== 'normal'
   }
 
+  onSearch = () => {
+    
+  }
+
   render () {
     return (
       <ScrollView stickyHeaderIndices={[1]} ref="scrollContainer" style={[ this.isDarkMode() && { backgroundColor: '#000000'} ]} >
@@ -185,10 +194,11 @@ class Article extends Component {
         <View style={[styles.inputSearchContainer, this.isDarkMode() && { backgroundColor: '#000000'}]} >
           <TextInput
             style={[styles.inputField, this.isDarkMode() && { borderColor: '#FFFFFF'}]}
-            onChangeText={(name) => this.setState({ name })}
-            value={this.state.name}
+            onChangeText={(searchText) => this.setState({ searchText })}
+            value={this.state.searchText}
             placeholder='Cari Artikel'
             multiline={false}
+            onSubmitEditing={this.onSearch}
           />
           <Ionicons style={[styles.inputSearchIcon]} name="ios-search" size={25} color={ this.isDarkMode() ? '#FFFFFF' : '#000000' } />
         </View>
