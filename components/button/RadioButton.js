@@ -52,7 +52,7 @@ class RadioButton extends Component {
     this.props.data.map((item, index) => {
       if (this.props.value !== null) {
         if (this.props.value === item.value) {
-          this.props.onChange(item.value)
+          this.props.onChange(item.value, item.name)
           this.setState({ activeButton: index })
         }
       }

@@ -15,6 +15,7 @@ const db = new Database()
 
 class Splash extends Component {
   async componentDidMount () {
+    // db.resetDB()
     setTimeout(() => {
       firebase
         .auth()

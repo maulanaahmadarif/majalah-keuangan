@@ -5,6 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import Magazine from '../views/Magazine'
 import Settings from '../views/Settings'
 import Favorite from '../views/Favorite'
+import TabBarMagazine from '../components/layout/TabBarMagazine'
 
 const AppStack = createBottomTabNavigator(
   {
@@ -74,6 +75,7 @@ const AppStack = createBottomTabNavigator(
         tabBarVisible
       }
     },
+    tabBarComponent: TabBarMagazine,
     tabBarOptions: {
       activeTintColor: 'black',
       inactiveTintColor: 'gray',

@@ -6,7 +6,7 @@ SQLite.enablePromise(true)
 const database_name = 'media_keuangan.db'
 const database_version = '1.0'
 const database_displayname = 'Media Keuangan Database'
-const database_size = 200000
+// const database_size = 200000
 
 export default class Database {
   initDB () {
@@ -20,8 +20,8 @@ export default class Database {
           SQLite.openDatabase(
             database_name,
             database_version,
-            database_displayname,
-            database_size
+            database_displayname
+            // database_size
           )
             .then(DB => {
               db = DB;
@@ -59,7 +59,7 @@ export default class Database {
           console.log("Database CLOSED")
         })
         .catch((error) => {
-          this.errorCB(error)
+          console.log(error)
         })
     } else {
       console.log("Database was not OPENED")
@@ -102,22 +102,23 @@ export default class Database {
   listFavoriteMagazine (isLoved) {
     return new Promise((resolve) => {
       const magazine = [];
-      this.initDB().then((db) => {
-        db.transaction((tx) => {
-          tx.executeSql('SELECT * FROM Magazine WHERE isLoved = ?', [isLoved]).then(([tx,results]) => {
-            var len = results.rows.length;
-            for (let i = 0; i < len; i++) {
-              let row = results.rows.item(i);
-              const { id, title, main_image, author, content, isLoved } = row;
-              magazine.push({
-                id,
-                title,
-                main_image,
-                author,
-                content,
-                isLoved
-              });
-            }
+      this.initDB()
+        .then((db) => {
+          db.transaction((tx) => {
+            tx.executeSql('SELECT * FROM Magazine WHERE isLoved = ?', [isLoved]).then(([tx,results]) => {
+              var len = results.rows.length;
+              for (let i = 0; i < len; i++) {
+                let row = results.rows.item(i);
+                const { id, title, main_image, author, content, isLoved } = row;
+                magazine.push({
+                  id,
+                  title,
+                  main_image,
+                  author,
+                  content,
+                  isLoved
+                });
+              }
             console.log(magazine);
             resolve(magazine);
           });

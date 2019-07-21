@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
-  TouchableNativeFeedback,
+  TouchableOpacity,
   View,
   Text,
   StyleSheet
@@ -9,7 +9,6 @@ import {
 const styles = StyleSheet.create({
   buttonStyle: {
     height: 35,
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 3
@@ -19,14 +18,11 @@ const styles = StyleSheet.create({
 class RegularButton extends Component {
   render () {
     return (
-      <TouchableNativeFeedback
+      <TouchableOpacity
         onPress={this.props.onPress}
-        background={TouchableNativeFeedback.SelectableBackground()}
-      >
-        <View style={[styles.buttonStyle, { backgroundColor: this.props.bgColor }]}>
-          <Text style={{ color: this.props.color }}>{ this.props.text }</Text>
-        </View>
-      </TouchableNativeFeedback>
+        style={[styles.buttonStyle, { backgroundColor: this.props.bgColor }]}>
+        <Text style={{ color: this.props.color }}>{ this.props.text }</Text>
+      </TouchableOpacity>
     )
   }
 }

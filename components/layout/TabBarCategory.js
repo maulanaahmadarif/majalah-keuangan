@@ -3,13 +3,24 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import { withNavigation } from 'react-navigation'
 import {
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  StyleSheet
 } from 'react-native'
 
 import Database from '../../Database'
 import { withContext } from '../../context/withContext'
 
 const db = new Database()
+
+const styles = StyleSheet.create({
+  tabBarContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 10,
+    borderTopColor: 'rgba(0,0,0,.2)',
+    borderTopWidth: 1
+  }
+})
 
 class TabBarCategory extends Component {
   constructor (props) {
@@ -18,7 +29,9 @@ class TabBarCategory extends Component {
     this.state = {
       nextIndex: null,
       prevIndex: null,
-      index: null
+      index: null,
+      lovedMagazines: [],
+      isFavorite: false
     }
   }
 
@@ -30,6 +43,19 @@ class TabBarCategory extends Component {
       index
     })
     this.props.context.setCurrentCategory(index)
+    this.refresh()
+  }
+
+  refresh = () => {
+    db.listFavoriteMagazine('yes')
+      .then((data) => {
+        this.setState({
+          lovedMagazines: data
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   onNextCategory = () => {
@@ -60,9 +86,7 @@ class TabBarCategory extends Component {
     this.props.navigation.setParams({ title })
   }
 
-  onFavoritePress = async () => {
-    console.log(this.state)
-    console.log(this.props.context)
+  onFavoritePress = () => {
     const { category } = this.props.context
     const article = category[this.state.index]
     const data = {
@@ -73,24 +97,114 @@ class TabBarCategory extends Component {
       content: JSON.stringify(article.content),
       isLoved: 'yes'
     }
-    await db.updateMagazine(data)
+    db.updateMagazine(data)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log('err', err)
+      })
+    this.refresh()
+  }
+
+  onRemoveFavorite = () => {
+    const { category } = this.props.context
+    const article = category[this.state.index]
+    const data = {
+      id: article.id,
+      title: article.title,
+      main_image: article.main_image,
+      author: article.author,
+      content: JSON.stringify(article.content),
+      isLoved: 'no'
+    }
+    db.updateMagazine(data)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log('err', err)
+      })
+    this.refresh()
+  }
+
+  isFavoriteArticle = () => {
+    let isFavorite = false
+    const { category } = this.props.context
+    const article = category[this.state.index]
+    const { lovedMagazines } = this.state
+    for (let i = 0;i < lovedMagazines.length; i++) {
+      if (lovedMagazines[i].id === article.id) {
+        isFavorite = true
+        break
+      }
+    }
+    return isFavorite
+  }
+
+  isDarkMode = () => {
+    return this.props.context.userSettings.readMode !== 'normal'
+  }
+
+  getPrevArrowColor = () => {
+    const { prevIndex } = this.state
+    let color = 'rgba(0,0,0,.2)'
+    if (this.isDarkMode()) {
+      if (prevIndex === null) {
+        color = 'rgba(255,255,255,.2)'
+      } else {
+        color = '#FFFFFF'
+      }
+    } else {
+      if (prevIndex === null) {
+        color = 'rgba(0,0,0,.2)'
+      } else {
+        color = '#FFFFFF'
+      }
+    }
+    return color
+  }
+
+  getNextArrowColor = () => {
+    const { nextIndex } = this.state
+    let color = 'rgba(0,0,0,.2)'
+    if (this.isDarkMode()) {
+      if (nextIndex === null) {
+        color = 'rgba(255,255,255,.2)'
+      } else {
+        color = '#FFFFFF'
+      }
+    } else {
+      if (nextIndex === null) {
+        color = 'rgba(0,0,0,.2)'
+      } else {
+        color = '#FFFFFF'
+      }
+    }
+    return color
   }
 
   render () {
     const { nextIndex, prevIndex } = this.state
     return (
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 10, borderTopColor: 'rgba(0,0,0,.2)', borderTopWidth: 1 }}>
+      <View style={[styles.tabBarContainer, this.isDarkMode() && { backgroundColor: '#000000', borderTopColor: 'rgba(255,255,255,.2)' }]}>
         <TouchableOpacity disabled={prevIndex === null} style={{ flex: 1, alignItems: 'center' }} onPress={this.onPrevCategory}>
-          <Ionicons name="ios-arrow-back" size={25} color={prevIndex === null ? 'rgba(0,0,0,.2)' : '#000000'} />
+          <Ionicons name="ios-arrow-back" size={25} color={this.getPrevArrowColor()} />
         </TouchableOpacity>
-        <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => this.onFavoritePress()}>
-          <Ionicons name="ios-heart-empty" size={25} color="#000000" />
-        </TouchableOpacity>
+        { this.isFavoriteArticle() ? (
+          <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => this.onRemoveFavorite()}>
+            <Ionicons name="ios-heart" size={25} color={ this.isDarkMode() ? '#FFFFFF' : '#000000' } />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => this.onFavoritePress()}>
+            <Ionicons name="ios-heart-empty" size={25} color={ this.isDarkMode() ? '#FFFFFF' : '#000000' } />
+          </TouchableOpacity>
+        ) }
         <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => this.props.context.setShowSettingsModal(true)}>
-          <Ionicons name="ios-options" size={25} color="#000000" />
+          <Ionicons name="ios-options" size={25} color={ this.isDarkMode() ? '#FFFFFF' : '#000000' } />
         </TouchableOpacity>
         <TouchableOpacity disabled={nextIndex === null} style={{ flex: 1, alignItems: 'center' }} onPress={this.onNextCategory}>
-          <Ionicons name="ios-arrow-forward" size={25} color={nextIndex === null ? 'rgba(0,0,0,.2)' : '#000000'} />
+          <Ionicons name="ios-arrow-forward" size={25} color={this.getNextArrowColor()} />
         </TouchableOpacity>
       </View>
     )

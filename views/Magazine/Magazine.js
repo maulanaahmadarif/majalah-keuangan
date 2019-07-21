@@ -24,11 +24,11 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 4
+      height: 2
     },
     shadowOpacity: 0.5,
-    shadowRadius: 5,
-    elevation: 4
+    shadowRadius: 3,
+    elevation: 3
   },
   editionContainerStyle: {
     paddingVertical: 5,
@@ -167,7 +167,7 @@ class Magazine extends Component {
           overlayColor="rgba(0,0,0,0.7)"
           textStyle={{ color: '#fff' }}
         />
-        <ScrollView style={[styles.editionWrapper, this.isDarkMode() && { backgroundColor: '#000000'}]} horizontal showsHorizontalScrollIndicator={false} >
+        <ScrollView style={[styles.editionWrapper, this.isDarkMode() && { backgroundColor: '#000000', shadowColor: '#FFFFFF' }]} horizontal showsHorizontalScrollIndicator={false} >
           { this.renderEdition() }
         </ScrollView>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
