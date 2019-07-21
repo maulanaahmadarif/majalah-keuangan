@@ -3,13 +3,24 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import { withNavigation } from 'react-navigation'
 import {
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  StyleSheet
 } from 'react-native'
 
 import Database from '../../Database'
 import { withContext } from '../../context/withContext'
 
 const db = new Database()
+
+const styles = StyleSheet.create({
+  tabBarContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 10,
+    borderTopColor: 'rgba(0,0,0,.2)',
+    borderTopWidth: 1
+  }
+})
 
 class TabBarCategory extends Component {
   constructor (props) {
@@ -131,27 +142,69 @@ class TabBarCategory extends Component {
     return isFavorite
   }
 
+  isDarkMode = () => {
+    return this.props.context.userSettings.readMode !== 'normal'
+  }
+
+  getPrevArrowColor = () => {
+    const { prevIndex } = this.state
+    let color = 'rgba(0,0,0,.2)'
+    if (this.isDarkMode()) {
+      if (prevIndex === null) {
+        color = 'rgba(255,255,255,.2)'
+      } else {
+        color = '#FFFFFF'
+      }
+    } else {
+      if (prevIndex === null) {
+        color = 'rgba(0,0,0,.2)'
+      } else {
+        color = '#FFFFFF'
+      }
+    }
+    return color
+  }
+
+  getNextArrowColor = () => {
+    const { nextIndex } = this.state
+    let color = 'rgba(0,0,0,.2)'
+    if (this.isDarkMode()) {
+      if (nextIndex === null) {
+        color = 'rgba(255,255,255,.2)'
+      } else {
+        color = '#FFFFFF'
+      }
+    } else {
+      if (nextIndex === null) {
+        color = 'rgba(0,0,0,.2)'
+      } else {
+        color = '#FFFFFF'
+      }
+    }
+    return color
+  }
+
   render () {
     const { nextIndex, prevIndex } = this.state
     return (
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 10, borderTopColor: 'rgba(0,0,0,.2)', borderTopWidth: 1 }}>
+      <View style={[styles.tabBarContainer, this.isDarkMode() && { backgroundColor: '#000000', borderTopColor: 'rgba(255,255,255,.2)' }]}>
         <TouchableOpacity disabled={prevIndex === null} style={{ flex: 1, alignItems: 'center' }} onPress={this.onPrevCategory}>
-          <Ionicons name="ios-arrow-back" size={25} color={prevIndex === null ? 'rgba(0,0,0,.2)' : '#000000'} />
+          <Ionicons name="ios-arrow-back" size={25} color={this.getPrevArrowColor()} />
         </TouchableOpacity>
         { this.isFavoriteArticle() ? (
           <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => this.onRemoveFavorite()}>
-            <Ionicons name="ios-heart" size={25} color="#000000" />
+            <Ionicons name="ios-heart" size={25} color={ this.isDarkMode() ? '#FFFFFF' : '#000000' } />
           </TouchableOpacity>
         ) : (
           <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => this.onFavoritePress()}>
-            <Ionicons name="ios-heart-empty" size={25} color="#000000" />
+            <Ionicons name="ios-heart-empty" size={25} color={ this.isDarkMode() ? '#FFFFFF' : '#000000' } />
           </TouchableOpacity>
         ) }
         <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => this.props.context.setShowSettingsModal(true)}>
-          <Ionicons name="ios-options" size={25} color="#000000" />
+          <Ionicons name="ios-options" size={25} color={ this.isDarkMode() ? '#FFFFFF' : '#000000' } />
         </TouchableOpacity>
         <TouchableOpacity disabled={nextIndex === null} style={{ flex: 1, alignItems: 'center' }} onPress={this.onNextCategory}>
-          <Ionicons name="ios-arrow-forward" size={25} color={nextIndex === null ? 'rgba(0,0,0,.2)' : '#000000'} />
+          <Ionicons name="ios-arrow-forward" size={25} color={this.getNextArrowColor()} />
         </TouchableOpacity>
       </View>
     )

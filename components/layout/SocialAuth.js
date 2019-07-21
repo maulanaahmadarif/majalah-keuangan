@@ -46,21 +46,25 @@ class SocialAuth extends Component {
     } catch (e) {
       this.setState({ isLoading: false })
       Alert.alert('Error', e.message)
+    } finally {
+      this.setState({ isLoading: false })
     }
   }
 
   signInWithTwitter = async () => {
     try {
       this.setState({ isLoading: true })
-      await RNTwitterSignIn.init(TwitterKeys.TWITTER_CONSUMER_KEY, TwitterKeys.TWITTER_CONSUMER_SECRET);
-      const { authToken, authTokenSecret } = await RNTwitterSignIn.logIn();
-      const credential = TwitterAuthProvider.credential(authToken, authTokenSecret);
-      const firebaseUserCredential = await firebase.auth().signInWithCredential(credential);
+      await RNTwitterSignIn.init(TwitterKeys.TWITTER_CONSUMER_KEY, TwitterKeys.TWITTER_CONSUMER_SECRET)
+      const { authToken, authTokenSecret } = await RNTwitterSignIn.logIn()
+      const credential = TwitterAuthProvider.credential(authToken, authTokenSecret)
+      const firebaseUserCredential = await firebase.auth().signInWithCredential(credential)
       this.props.context.setUser(firebaseUserCredential.user)
       this.props.navigation.navigate('App')
     } catch (e) {
       this.setState({ isLoading: false })
       Alert.alert('Error', e.message)
+    } finally {
+      this.setState({ isLoading: false })
     }
   }
 
@@ -71,6 +75,7 @@ class SocialAuth extends Component {
       if (result.isCancelled) {
         // handle this however suites the flow of your app
         Alert.alert('Error', 'User cancelled request')
+        this.setState({ isLoading: false })
       }
       // console.log(`Login success with permissions: ${result.grantedPermissions.toString()}`);
       // get the access token
@@ -88,6 +93,8 @@ class SocialAuth extends Component {
     } catch (e) {
       this.setState({ isLoading: false })
       Alert.alert('Error', e.message)
+    } finally {
+      this.setState({ isLoading: false })
     }
   }
 

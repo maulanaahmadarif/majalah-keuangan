@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import firebase from 'react-native-firebase'
 import Spinner from 'react-native-loading-spinner-overlay'
-import AsyncStorage from '@react-native-community/async-storage'
 import { withNavigation } from 'react-navigation'
 import {
   View,

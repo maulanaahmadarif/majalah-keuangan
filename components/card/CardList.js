@@ -3,7 +3,7 @@ import {
   StyleSheet,
   View,
   Text,
-  TouchableNativeFeedback
+  TouchableOpacity
 } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
@@ -37,7 +37,7 @@ class CardList extends Component {
 
   render () {
     return (
-      <TouchableNativeFeedback onPress={this.props.onPress}>
+      <TouchableOpacity activeOpacity={0.2} onPress={this.props.onPress}>
         <View style={styles.cardListWrapper}>
           <View>
             <Text style={[styles.cardListText, this.isDarkMode() && { color: '#FFFFFF' }]}>{ this.props.text }</Text>
@@ -46,7 +46,7 @@ class CardList extends Component {
             <IconComponent name="ios-arrow-forward" size={20} color="gray" />
           </View>
         </View>
-      </TouchableNativeFeedback>
+      </TouchableOpacity>
     )
   }
 }

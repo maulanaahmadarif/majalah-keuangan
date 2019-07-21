@@ -1,7 +1,4 @@
 PODS:
-  - Crashlytics (3.13.4):
-    - Fabric (~> 1.10.2)
-  - Fabric (1.10.2)
   - Firebase/Auth (6.3.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.1.2)
@@ -75,33 +72,18 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
-  - React (0.59.8):
-    - React/Core (= 0.59.8)
-  - React/Core (0.59.8):
-    - yoga (= 0.59.8.React)
-  - RNFirebase (5.5.4):
-    - Firebase/Core
-    - React
-    - RNFirebase/Crashlytics (= 5.5.4)
-  - RNFirebase/Crashlytics (5.5.4):
-    - Crashlytics
-    - Fabric
-    - Firebase/Core
-    - React
-  - yoga (0.59.8.React)
+  - TwitterCore (3.2.0)
+  - TwitterKit (3.3.0):
+    - TwitterCore (>= 3.1.0)
 
 DEPENDENCIES:
   - Firebase/Auth (~> 6.3.0)
   - Firebase/Core (~> 6.3.0)
   - GoogleSignIn (~> 4.4.0)
-  - React (from `../node_modules/react-native`)
-  - RNFirebase (from `../node_modules/react-native-firebase/ios`)
-  - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
+  - TwitterKit (~> 3.3.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Crashlytics
-    - Fabric
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -114,18 +96,10 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMSessionFetcher
     - nanopb
-
-EXTERNAL SOURCES:
-  React:
-    :path: "../node_modules/react-native"
-  RNFirebase:
-    :path: "../node_modules/react-native-firebase/ios"
-  yoga:
-    :path: "../node_modules/react-native/ReactCommon/yoga"
+    - TwitterCore
+    - TwitterKit
 
 SPEC CHECKSUMS:
-  Crashlytics: 2dfd686bcb918dc10ee0e76f7f853fe42c7bd552
-  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   Firebase: 8432d732974498afd5987e9001a05f90f1a3d625
   FirebaseAnalytics: 470ddab7253b21ad5a40bebd4a9903d7ae19386a
   FirebaseAuth: 7fa2cc010b93770831a4e7a60651b52c3b8d111a
@@ -138,10 +112,9 @@ SPEC CHECKSUMS:
   GoogleUtilities: d2b0e277a95962e09bb27f5cd42f5f0b6a506c7d
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
-  React: 76e6aa2b87d05eb6cccb6926d72685c9a07df152
-  RNFirebase: 7d4733713a0f436d55388b55ca3744385c70fd2d
-  yoga: 92b2102c3d373d1a790db4ab761d2b0ffc634f64
+  TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
+  TwitterKit: a2e60ddcedbf54091eac6f27685ca7a87681e1d7
 
-PODFILE CHECKSUM: 72110fb3051466b714dde3647e30198a8ea499e7
+PODFILE CHECKSUM: c0ac97fdf749cb42fba3c2568c0d0b572aab807c
 
 COCOAPODS: 1.7.4

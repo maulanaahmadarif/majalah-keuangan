@@ -7,7 +7,7 @@ import {
 import Readed from './Readed'
 import Loved from './Loved'
 import Detail from './Detail'
-
+import TopBar from '../../components/layout/TopBar'
 import ButtonShare from '../../components/button/ButtonShare'
 
 YellowBox.ignoreWarnings(['ViewPagerAndroid'])
@@ -28,6 +28,7 @@ const TabScreen = createMaterialTopTabNavigator(
     }
   },
   {
+    tabBarComponent: TopBar,
     tabBarPosition: 'top',
     swipeEnabled: true,
     animationEnabled: true,
@@ -44,7 +45,7 @@ const TabScreen = createMaterialTopTabNavigator(
       indicatorStyle: {
         borderBottomColor: 'rgb(2, 46, 91)',
         borderBottomWidth: 2,
-      },
+      }
     },
   }
 );

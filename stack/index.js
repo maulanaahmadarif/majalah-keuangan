@@ -1,4 +1,4 @@
-import { createSwitchNavigator } from 'react-navigation'
+import { createSwitchNavigator, withNavigation } from 'react-navigation'
 
 import AuthStack from './AuthStack'
 import AppStack from './AppStack'

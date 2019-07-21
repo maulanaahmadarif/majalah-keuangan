@@ -10,6 +10,7 @@ import {
 } from 'react-native'
 
 import Container from './Container'
+import RegularButton from '../button/RegularButton'
 import { withContext } from '../../context/withContext'
 import { withNavigation } from 'react-navigation'
 
@@ -121,9 +122,10 @@ class SignupAuth extends Component {
             />
           </View>
           <View>
-            <Button
-              color='#000'
-              title='Register'
+            <RegularButton
+              text="Register"
+              bgColor='#000000'
+              color='#FFFFFF'
               onPress={this.handleSignUp}
             />
           </View>
