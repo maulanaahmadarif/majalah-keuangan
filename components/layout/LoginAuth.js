@@ -63,11 +63,22 @@ class LoginAuth extends Component {
         .catch((err) => {
           Alert.alert('Error', err.message)
         })
+        .finally(() => {
+          this.setState({ isLoading: false })
+        })
     }
   }
 
   componentWillUnmount () {
     this.setState({ isLoading: false })
+  }
+
+  onPressSignup = () => {
+    if (this.props.settingPage) {
+      this.props.navigation.navigate('SignupSetting')
+    } else {
+      this.props.navigation.navigate('Signup')
+    }
   }
 
   render () {
@@ -101,7 +112,7 @@ class LoginAuth extends Component {
           </View>
         </View>
         <View style={{ flexDirection: 'row', marginBottom: 10 }}>
-          <View style={{ flex: 1, marginRight: 5 }}>
+          <View style={{ marginRight: 5, flex: 1 }}>
             <RegularButton
               text="SIGN IN"
               bgColor={this.props.settingPage ? 'rgb(188,188,188)' : 'rgba(255,255,255,.8)'}
@@ -109,13 +120,15 @@ class LoginAuth extends Component {
               onPress={this.handleSignIn}
             />
           </View>
-          <RegularButton
-            text="DAFTAR"
-            bgColor={this.props.settingPage ? 'rgb(254,116,118)' : 'rgba(255,255,255,.8)'}
-            color={this.props.settingPage ? 'rgb(255,255,255)' : 'rgb(0,0,0)'}
-            onPress={() => this.props.navigation.navigate('Signup')}
-            settingPage={this.props.settingPage}
-          />
+          <View style={{ flex: 1 }}>
+            <RegularButton
+              text="DAFTAR"
+              bgColor={this.props.settingPage ? 'rgb(254,116,118)' : 'rgba(255,255,255,.8)'}
+              color={this.props.settingPage ? 'rgb(255,255,255)' : 'rgb(0,0,0)'}
+              onPress={this.onPressSignup}
+              settingPage={this.props.settingPage}
+            />
+          </View>
         </View>
       </View>
     )

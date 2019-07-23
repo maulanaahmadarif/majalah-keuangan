@@ -19,7 +19,16 @@ export default class ContextProvider extends Component {
       category: null,
       setCategory: this.setCategory,
       showShare: false,
-      setShowShare: this.setShowShare
+      setShowShare: this.setShowShare,
+      userSettings: {
+        imageMode: 'show',
+        readMode: 'normal',
+        fontSizeMode: 'medium',
+        lineHeightMode: 'medium'
+      },
+      setUserSettings: this.setUserSettings,
+      showSettingsModal: false,
+      setShowSettingsModal: this.setShowSettingsModal
     }
   }
 
@@ -49,6 +58,16 @@ export default class ContextProvider extends Component {
 
   setShowShare = (value) => {
     this.setState({ showShare: value })
+  }
+
+  setUserSettings = (settings) => {
+    let newSetting = this.state.userSettings
+    newSetting[settings[0]] = settings[1]
+    this.setState({ userSettings: newSetting })
+  }
+
+  setShowSettingsModal = (value) => {
+    this.setState({ showSettingsModal: value })
   }
 
   render () {

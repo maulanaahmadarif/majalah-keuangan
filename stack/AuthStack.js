@@ -2,6 +2,7 @@ import { createStackNavigator } from 'react-navigation'
 
 import Login from '../views/Login'
 import Signup from '../views/Signup'
+import Forgot from '../views/Forgot'
 
 const AuthStack = createStackNavigator(
   {
@@ -15,6 +16,12 @@ const AuthStack = createStackNavigator(
       screen: Signup,
       navigationOptions: {
         title: 'Registrasi'
+      },
+    },
+    Forgot: {
+      screen: Forgot,
+      navigationOptions: {
+        title: 'Forgot Password'
       },
     }
   },

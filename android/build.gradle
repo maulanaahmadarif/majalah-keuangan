@@ -11,13 +11,16 @@ buildscript {
     }
     repositories {
         google()
+        maven {
+           url 'https://maven.fabric.io/public'
+        }
         jcenter()
         mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.1'
         classpath 'com.google.gms:google-services:4.2.0' // FROM rnfirebase
-        // classpath 'com.google.gms:google-services:4.2.0' // FROM firebase
+        classpath 'io.fabric.tools:gradle:1.30.0' // Crashlytics plugin
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -31,6 +34,25 @@ allprojects {
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
             url "$rootDir/../node_modules/react-native/android"
+        }
+    }
+}
+
+subprojects {
+    afterEvaluate {project ->
+        if (project.hasProperty("android")) {
+            android {
+                compileSdkVersion 28     // have to match with build.gradle and app/build.gradle ones
+                buildToolsVersion '28.0.3'  // have to match with build.gradle and app/build.gradle ones
+                variantFilter { variant ->
+                    def names = variant.flavors*.name
+                    // To check for a certain build type, use variant.buildType.name == "<buildType>"
+                    if (names.contains("reactNative51") || names.contains("reactNative55") || names.contains("reactNative56")) {
+                        // Gradle ignores any variants that satisfy the conditions above.
+                        setIgnore(true)
+                    }
+                }
+            }
         }
     }
 }

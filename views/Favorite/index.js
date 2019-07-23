@@ -1,3 +1,4 @@
+import React from 'react'
 import { createMaterialTopTabNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
 import {
   YellowBox
@@ -5,42 +6,46 @@ import {
 
 import Readed from './Readed'
 import Loved from './Loved'
+import Detail from './Detail'
+import TopBar from '../../components/layout/TopBar'
+import ButtonShare from '../../components/button/ButtonShare'
 
 YellowBox.ignoreWarnings(['ViewPagerAndroid'])
 
 const TabScreen = createMaterialTopTabNavigator(
   {
-    Readed: {
-      screen: Readed,
-      navigationOptions: {
-        title: 'Sudah Dibaca'
-      },
-    },
     Loved: {
       screen: Loved,
       navigationOptions: {
         title: 'Disukai'
       },
+    },
+    Readed: {
+      screen: Readed,
+      navigationOptions: {
+        title: 'Sudah Dibaca'
+      },
     }
   },
   {
+    tabBarComponent: TopBar,
     tabBarPosition: 'top',
     swipeEnabled: true,
     animationEnabled: true,
     tabBarOptions: {
-      activeTintColor: '#FFFFFF',
-      inactiveTintColor: '#FFFFFF',
+      activeTintColor: '#000000',
+      inactiveTintColor: '#000000',
       style: {
-        backgroundColor: '#888888',
+        backgroundColor: '#FFFFFF',
       },
       labelStyle: {
         textAlign: 'center',
-        textTransform: 'capitalize'
+        textTransform: 'uppercase'
       },
       indicatorStyle: {
-        borderBottomColor: '#87B56A',
+        borderBottomColor: 'rgb(2, 46, 91)',
         borderBottomWidth: 2,
-      },
+      }
     },
   }
 );
@@ -52,6 +57,20 @@ const App = createStackNavigator({
       header: null
     }
   },
+  Detail: {
+    screen: Detail,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: navigation.state.params.title,
+        headerTitleStyle: { 
+          textAlign: 'center', 
+          flex: 1,
+          alignSelf: 'center'
+        },
+        headerRight: <ButtonShare />
+      }
+    }
+  }
 });
 
 export default createAppContainer(App)

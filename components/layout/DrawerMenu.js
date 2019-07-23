@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withNavigation } from 'react-navigation'
 import {
   ScrollView,
   Text,
@@ -39,6 +40,7 @@ class DrawerMenu extends Component {
       const title = sec.article[0].title
       const totalCategory = sec.article.length
       this.props.context.setCategory(sec.article)
+      this.props.context.setCurrentCategory(0)
       this.props.navigation.navigate('Category', { id, index: 0, title, totalCategory })
     }
   }
@@ -54,4 +56,4 @@ class DrawerMenu extends Component {
   }
 }
 
-export default withContext(DrawerMenu)
+export default withNavigation(withContext(DrawerMenu))

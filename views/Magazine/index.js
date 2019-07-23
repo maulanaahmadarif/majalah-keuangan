@@ -7,12 +7,7 @@ import {
 } from 'react-navigation'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import {
-  TouchableOpacity,
-  DrawerItems,
-  ScrollView,
-  SafeAreaView,
-  View,
-  Text
+  TouchableOpacity
 } from 'react-native'
 
 import Magazine from './Magazine'

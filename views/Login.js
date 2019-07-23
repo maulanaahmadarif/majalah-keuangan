@@ -47,6 +47,9 @@ class Login extends Component {
         <StatusBar hidden={true} />
         <Image source={require('../assets/images/bg.jpg')} style={styles.backgroundImage}></Image>
         <View style={styles.container}>
+          <View style={{ alignItems: 'center' }}>
+            <Image source={require('../assets/images/logo-kemenkeu.png')} style={{ width: 125, height: 86 }} />
+          </View>
           <View style={{ marginBottom: 100 }}>
             <Text textBreakStrategy='balanced' style={{ color: '#fff', fontFamily: 'FiraSans-Medium', fontSize: 40, textAlign: 'center' }}>MEDIA<Text style={{ fontFamily: 'FiraSans-Black' }}>KEUANGAN</Text></Text>
             <Text style={{ color: '#fff', fontFamily: 'FiraSans-Medium', fontSize: 12, textAlign: 'center' }}>TRANSAPARNSI INFORMASI KEBIJAKAN FISKAL</Text>
@@ -58,14 +61,11 @@ class Login extends Component {
           <SocialAuth />
           <View style={{ flexDirection: 'row', marginBottom: 10 }}>
             <View style={[styles.forgetContainer, { marginRight: 10 }]}>
-              <Text style={styles.textForget}>Lupa Password</Text>
+              <Text style={styles.textForget} onPress={() => this.props.navigation.navigate('Forgot')}>Lupa Password</Text>
             </View>
             <View style={[styles.forgetContainer, { marginLeft: 10 }]}>
               <Text style={styles.textForget} onPress={() => this.props.navigation.navigate('App')}>Masuk Tanpa Login</Text>
             </View>
-          </View>
-          <View style={{ alignItems: 'center' }}>
-            <Image source={require('../assets/images/logo-kemenkeu.png')} />
           </View>
         </View>
       </View>

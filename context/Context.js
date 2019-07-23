@@ -16,7 +16,16 @@ export const Context = createContext(
       currentCategory: null,
       setCurrentCategory: () => {},
       showShare: false,
-      setShowShare: () => {}
+      setShowShare: () => {},
+      userSettings: {
+        imageMode: 'show',
+        readMode: 'normal',
+        fontSizeMode: 'medium',
+        lineHeightMode: 'medium'
+      },
+      setUserSettings: () => {},
+      showSettingsModal: false,
+      setShowSettingsModal: () => {}
     }
   }
 )

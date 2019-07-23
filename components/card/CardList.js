@@ -3,9 +3,11 @@ import {
   StyleSheet,
   View,
   Text,
-  TouchableNativeFeedback
+  TouchableOpacity
 } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+
+import { withContext } from '../../context/withContext'
 
 const IconComponent = Ionicons;
 
@@ -29,20 +31,24 @@ const styles = StyleSheet.create({
 })
 
 class CardList extends Component {
+  isDarkMode = () => {
+    return this.props.context.userSettings.readMode !== 'normal'
+  }
+
   render () {
     return (
-      <TouchableNativeFeedback onPress={this.props.onPress}>
+      <TouchableOpacity activeOpacity={1} onPress={this.props.onPress}>
         <View style={styles.cardListWrapper}>
           <View>
-            <Text style={styles.cardListText}>{ this.props.text }</Text>
+            <Text style={[styles.cardListText, this.isDarkMode() && { color: '#FFFFFF' }]}>{ this.props.text }</Text>
           </View>
           <View>
             <IconComponent name="ios-arrow-forward" size={20} color="gray" />
           </View>
         </View>
-      </TouchableNativeFeedback>
+      </TouchableOpacity>
     )
   }
 }
 
-export default CardList
+export default withContext(CardList)
