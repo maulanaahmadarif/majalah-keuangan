@@ -11,7 +11,7 @@ const database_displayname = 'Media Keuangan Database'
 export default class Database {
   initDB () {
     let db;
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       console.log("Plugin integrity check ...");
       SQLite.echoTest()
         .then(() => {
@@ -32,7 +32,7 @@ export default class Database {
                 console.log("Received error: ", error);
                 console.log("Database not yet ready ... populating data");
                 db.transaction((tx) => {
-                  tx.executeSql('CREATE TABLE IF NOT EXISTS Magazine (id integer PRIMARY KEY, title , main_image, author DEFAULT "", content, isLoved)');
+                  tx.executeSql('CREATE TABLE IF NOT EXISTS Magazine (id INTEGER PRIMARY KEY, title , main_image, author, content, isLoved, createdAt)');
                 }).then(() => {
                   console.log("Table created successfully");
                 }).catch(error => {
@@ -67,7 +67,7 @@ export default class Database {
   }
 
   listMagazine () {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       const magazine = [];
       this.initDB().then((db) => {
         db.transaction((tx) => {
@@ -75,32 +75,34 @@ export default class Database {
             var len = results.rows.length;
             for (let i = 0; i < len; i++) {
               let row = results.rows.item(i);
-              const { id, title, main_image, author, content, isLoved } = row;
+              const { id, title, main_image, author, content, isLoved, createdAt } = row;
               magazine.push({
                 id,
                 title,
                 main_image,
                 author,
                 content,
-                isLoved
+                isLoved,
+                createdAt
               });
             }
-            console.log(magazine);
             resolve(magazine);
           });
         }).then((result) => {
           this.closeDatabase(db);
         }).catch((err) => {
-          console.log(err);
+          reject(Error(err))
+          // console.log(err);
         });
       }).catch((err) => {
-        console.log(err);
+        reject(Error(err))
+        // console.log(err);
       });
     });
   }
 
   listFavoriteMagazine (isLoved) {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       const magazine = [];
       this.initDB()
         .then((db) => {
@@ -109,14 +111,15 @@ export default class Database {
               var len = results.rows.length;
               for (let i = 0; i < len; i++) {
                 let row = results.rows.item(i);
-                const { id, title, main_image, author, content, isLoved } = row;
+                const { id, title, main_image, author, content, isLoved, createdAt } = row;
                 magazine.push({
                   id,
                   title,
                   main_image,
                   author,
                   content,
-                  isLoved
+                  isLoved,
+                  createdAt
                 });
               }
             console.log(magazine);
@@ -125,16 +128,18 @@ export default class Database {
         }).then((result) => {
           this.closeDatabase(db);
         }).catch((err) => {
-          console.log(err);
+          // console.log(err);
+          reject(Error(err))
         });
       }).catch((err) => {
-        console.log(err);
+        reject(Error(err))
+        // console.log(err);
       });
     });
   }
 
   magazinesById (id) {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       this.initDB()
         .then((db) => {
           db.transaction((tx) => {
@@ -151,39 +156,43 @@ export default class Database {
             this.closeDatabase(db)
           })
           .catch((err) => {
-            console.log(err)
+            reject(Error(err))
+            // console.log(err)
           })
         })
         .catch((err) => {
-          console.log(err)
+          reject(Error(err))
+          // console.log(err)
         })
     })
   }
 
   addMagazine (magazine) {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       this.initDB().then((db) => {
         db.transaction((tx) => {
-          tx.executeSql('INSERT INTO Magazine VALUES (?, ?, ?, ?, ?, ?)', [magazine.id, magazine.title, magazine.main_image, magazine.author, magazine.content, magazine.isLoved]).then(([tx, results]) => {
+          tx.executeSql('INSERT INTO Magazine VALUES (?, ?, ?, ?, ?, ?, ?)', [magazine.id, magazine.title, magazine.main_image, magazine.author, magazine.content, magazine.isLoved, magazine.createdAt]).then(([tx, results]) => {
             resolve(results)
           });
         }).then((result) => {
           this.closeDatabase(db);
         }).catch((err) => {
-          console.log(err)
+          reject(Error(err))
+          // console.log(err)
         });
       }).catch((err) => {
-        console.log(err)
+        reject(Error(err))
+        // console.log(err)
       })
     })
   }
 
   updateMagazine (magazine) {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       this.initDB()
         .then((db) => {
           db.transaction((tx) => {
-            tx.executeSql('INSERT OR REPLACE INTO Magazine (id, title, main_image, author, content, isLoved) VALUES (?, ?, ?, ?, ?, ?)', [magazine.id, magazine.title, magazine.main_image, magazine.author, magazine.content, magazine.isLoved])
+            tx.executeSql('INSERT OR REPLACE INTO Magazine (id, title, main_image, author, content, isLoved, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?)', [magazine.id, magazine.title, magazine.main_image, magazine.author, magazine.content, magazine.isLoved, magazine.createdAt])
               .then(([tx, results]) => {
                 resolve(results)
               })
@@ -192,17 +201,17 @@ export default class Database {
             this.closeDatabase(db)
           })
           .catch((err) => {
-            console.log(err)
+            reject(Error(err))
           })
         })
         .catch((err) => {
-          console.log(err)
+          reject(Error(err))
         })
     })
   }
 
   deleteMagazine (id) {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       this.initDB()
         .then((db) => {
           db.transaction((tx) => {
@@ -215,17 +224,40 @@ export default class Database {
             this.closeDatabase(db)
           })
           .catch((err) => {
-            console.log(err)
+            reject(Error(err))
           })
         })
         .catch((err) => {
-          console.log(err)
+          reject(Error(err))
+        })
+    })
+  }
+
+  deleteAllMagazine () {
+    return new Promise((resolve, reject) => {
+      this.initDB()
+        .then((db) => {
+          db.transaction((tx) => {
+            tx.executeSql('DELETE FROM Magazine', [])
+              .then(([tx, results]) => {
+                resolve(results)
+              })
+          })
+          .then((result) => {
+            this.closeDatabase(db)
+          })
+          .catch((err) => {
+            reject(Error(err))
+          })
+        })
+        .catch((err) => {
+          reject(Error(err))
         })
     })
   }
 
   resetDB () {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       this.initDB()
         .then((db) => {
           db.transaction((tx) => {
@@ -238,11 +270,11 @@ export default class Database {
             this.closeDatabase(db)
           })
           .catch((err) => {
-            console.log(err)
+            reject(Error(err))
           })
         })
         .catch((err) => {
-          console.log(err)
+          reject(Error(err))
         })
     })
   }

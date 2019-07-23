@@ -34,6 +34,7 @@ class Splash extends Component {
       const fontSizeMode = await AsyncStorage.getItem('fontSizeMode')
       const readMode = await AsyncStorage.getItem('readMode')
       const lineHeightMode = await AsyncStorage.getItem('lineHeightMode')
+      const deleteMagazineIn = await AsyncStorage.getItem('deleteMagazineIn')
       if (imageMode !== null) {
         this.props.context.setUserSettings(['imageMode', imageMode])
       }
@@ -46,6 +47,9 @@ class Splash extends Component {
       if (lineHeightMode !== null) {
         this.props.context.setUserSettings(['lineHeightMode', lineHeightMode])
       }
+      if (deleteMagazineIn !== null) {
+        this.props.context.setUserSettings(['deleteMagazineIn', deleteMagazineIn])
+      } 
     } catch (e) {
       Alert.alert('Error', e.message)
     }

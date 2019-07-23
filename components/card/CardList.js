@@ -37,7 +37,7 @@ class CardList extends Component {
 
   render () {
     return (
-      <TouchableOpacity activeOpacity={0.2} onPress={this.props.onPress}>
+      <TouchableOpacity activeOpacity={1} onPress={this.props.onPress}>
         <View style={styles.cardListWrapper}>
           <View>
             <Text style={[styles.cardListText, this.isDarkMode() && { color: '#FFFFFF' }]}>{ this.props.text }</Text>

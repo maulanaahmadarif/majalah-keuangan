@@ -11,7 +11,8 @@ import {
   ImageBackground,
   Image,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  FlatList
 } from 'react-native'
 
 import Container from '../../components/layout/Container'
@@ -96,7 +97,8 @@ class Article extends Component {
     this.state = {
       isLoading: true,
       articles: null,
-      searchText: ''
+      searchText: '',
+      searchResults: []
     }
   }
 
@@ -117,6 +119,13 @@ class Article extends Component {
       })
   }
 
+  componentWillUnmount () {
+    this.setState({
+      searchText: '',
+      searchResults: []
+    })
+  }
+
   renderBanner () {
     if (this.state.articles !== null) {
       const { title, description, cover_image } = this.state.articles
@@ -134,39 +143,74 @@ class Article extends Component {
     }
   }
 
-  renderCategory (category) {
-    return category.map((cat, index) => {
-      return (
-        <TouchableOpacity activeOpacity={1} key={cat.id} style={[styles.categoryContainer]} onPress={() => this.onClickCategory(category, cat, index)}>
-          { cat.main_image ? (
-              <Image resizeMode='cover' source={{ uri: `http://mediakeuangan.kemenkeu.go.id/Images/article/${cat.main_image}` }} style={[styles.categoryImage]} />
-            ) : (
-              <Image resizeMode='cover' source={require('../../assets/images/logo.png')} style={[styles.categoryImage]} />
-          ) }
-          <Text style={[styles.categoryText, { fontSize: 18, marginVertical: 10 }, this.isDarkMode() && { color: '#FFFFFF'}]}>{ cat.title }</Text>
-          <Text style={[styles.categoryText, this.isDarkMode() && { color: '#FFFFFF'}]}>{ cat.author }</Text>
-        </TouchableOpacity>
-      )
-    })
+  // renderCategory (category) {
+  //   return category.map((cat, index) => {
+  //     return (
+  //       <TouchableOpacity activeOpacity={1} key={cat.id} style={[styles.categoryContainer]} onPress={() => this.onClickCategory(category, cat, index)}>
+  //         { cat.main_image ? (
+  //             <Image resizeMode='cover' source={{ uri: `http://mediakeuangan.kemenkeu.go.id/Images/article/${cat.main_image}` }} style={[styles.categoryImage]} />
+  //           ) : (
+  //             <Image resizeMode='cover' source={require('../../assets/images/logo.png')} style={[styles.categoryImage]} />
+  //         ) }
+  //         <Text style={[styles.categoryText, { fontSize: 18, marginVertical: 10 }, this.isDarkMode() && { color: '#FFFFFF'}]}>{ cat.title }</Text>
+  //         <Text style={[styles.categoryText, { fontSize: 14 }, this.isDarkMode() && { color: '#aaaaaa' }]}>Author</Text>
+  //         <Text style={[styles.categoryText, this.isDarkMode() && { color: '#FFFFFF'}]}>{ cat.author }</Text>
+  //       </TouchableOpacity>
+  //     )
+  //   })
+  // }
+
+
+  // renderArticles (items) {
+  //   return items.map((sec) => {
+  //     return (
+  //       <View key={sec.id} style={{ marginBottom: 20 }} ref={`section-${sec.id}`}>
+  //         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
+  //           <View style={[{ width: 15, height: 15, backgroundColor: '#000000', marginRight: 15}, this.isDarkMode() && { backgroundColor: '#FFFFFF'}]}></View>
+  //           <Text style={[{ color: '#000000', fontSize: 18 }, this.isDarkMode() && { color: '#FFFFFF'}]}>{ sec.title }</Text>
+  //         </View>
+  //         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+  //           { this.renderCategory(sec.article) }
+  //         </ScrollView>
+  //       </View>
+  //     )
+  //   })
+  // }
+
+  renderCategory (cat, index, category) {
+    return (
+      <TouchableOpacity activeOpacity={1} key={cat.id} style={[styles.categoryContainer]} onPress={() => this.onClickCategory(category, cat, index)}>
+        { cat.main_image ? (
+            <Image resizeMode='cover' source={{ uri: `http://mediakeuangan.kemenkeu.go.id/Images/article/${cat.main_image}` }} style={[styles.categoryImage]} />
+          ) : (
+            <Image resizeMode='cover' source={require('../../assets/images/logo.png')} style={[styles.categoryImage]} />
+        ) }
+        <Text style={[styles.categoryText, { fontSize: 18, marginVertical: 10 }, this.isDarkMode() && { color: '#FFFFFF'}]}>{ cat.title }</Text>
+        <Text style={[styles.categoryText, { fontSize: 14 }, this.isDarkMode() && { color: '#aaaaaa' }]}>Author</Text>
+        <Text style={[styles.categoryText, this.isDarkMode() && { color: '#FFFFFF'}]}>{ cat.author }</Text>
+      </TouchableOpacity>
+    )
   }
 
-  renderArticles () {
-    if (this.state.articles !== null) {
-      const { section } = this.state.articles
-      return section.map((sec) => {
-        return (
-          <View key={sec.id} style={{ marginBottom: 20 }} ref={`section-${sec.id}`}>
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
-              <View style={[{ width: 15, height: 15, backgroundColor: '#000000', marginRight: 15}, this.isDarkMode() && { backgroundColor: '#FFFFFF'}]}></View>
-              <Text style={[{ color: '#000000', fontSize: 18 }, this.isDarkMode() && { color: '#FFFFFF'}]}>{ sec.title }</Text>
-            </View>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              { this.renderCategory(sec.article) }
-            </ScrollView>
-          </View>
-        )
-      })
-    }
+  renderArticles (data) {
+    return (
+      <View style={{ marginBottom: 20 }} ref={`section-${data.id}`}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
+          <View style={[{ width: 15, height: 15, backgroundColor: '#000000', marginRight: 15}, this.isDarkMode() && { backgroundColor: '#FFFFFF'}]}></View>
+          <Text style={[{ color: '#000000', fontSize: 18 }, this.isDarkMode() && { color: '#FFFFFF'}]}>{ data.title }</Text>
+        </View>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <FlatList
+            data={data.article}
+            horizontal
+            extraData={this.props.context.userSettings.readMode}
+            removeClippedSubviews
+            keyExtractor={(item) => `id-${item.id}`}
+            renderItem={({ item, index }) => this.renderCategory(item, index, data.article)}
+          />
+        </ScrollView>
+      </View>
+    )
   }
 
   onClickCategory = (category, cat, index) => {
@@ -180,7 +224,56 @@ class Article extends Component {
   }
 
   onSearch = () => {
-    
+    const { section } = this.state.articles
+    const searchResults = []
+    for (let i = 0; i < section.length; i++) {
+      const sec = section[i]
+      const articles = []
+      for (let j = 0; j < section[i].article.length; j++) {
+        if (section[i].article[j].title.toLowerCase().includes(this.state.searchText.toLowerCase())) {
+          articles.push(section[i].article[j])
+        }
+      }
+      if (articles.length !== 0) {
+        searchResults.push({
+          id: sec.id,
+          title: sec.title,
+          description: sec.description,
+          article: articles
+        })
+      }
+    }
+    if (searchResults.length === 0) {
+      Alert.alert('Info', `Tidak ditemukan kata kunci ${this.state.searchText}`)
+    } else {
+      this.setState({
+        searchResults
+      })
+    }
+  }
+
+  renderArticlesAndSearch = () => {
+    const { articles, searchResults } = this.state
+    if (this.state.searchResults.length !== 0) {
+
+      // return this.renderArticles(searchResults)
+      return <FlatList
+        data={searchResults}
+        extraData={this.props.context.userSettings.readMode}
+        removeClippedSubviews
+        keyExtractor={(item) => `id-${item.id}`}
+        renderItem={({ item }) => this.renderArticles(item)}
+      />
+    } else if (articles !== null) {
+      // return this.renderArticles(articles.section)
+      return <FlatList
+        data={articles.section}
+        extraData={this.props.context.userSettings.readMode}
+        removeClippedSubviews
+        keyExtractor={(item) => `id-${item.id}`}
+        renderItem={({ item }) => this.renderArticles(item)}
+      />
+    }
   }
 
   render () {
@@ -193,7 +286,7 @@ class Article extends Component {
         />
         <View style={[styles.inputSearchContainer, this.isDarkMode() && { backgroundColor: '#000000'}]} >
           <TextInput
-            style={[styles.inputField, this.isDarkMode() && { borderColor: '#FFFFFF'}]}
+            style={[styles.inputField, this.isDarkMode() && { borderColor: '#aaaaaa', backgroundColor: '#FFFFFF' }]}
             onChangeText={(searchText) => this.setState({ searchText })}
             value={this.state.searchText}
             placeholder='Cari Artikel'
@@ -205,7 +298,7 @@ class Article extends Component {
         { this.renderBanner() }
         <View style={{ marginTop: 15 }}>
           <Container>
-            { this.renderArticles() }
+            { this.renderArticlesAndSearch() }
           </Container>
         </View>
       </ScrollView>

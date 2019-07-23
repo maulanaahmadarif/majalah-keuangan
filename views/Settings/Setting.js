@@ -18,7 +18,10 @@ import CardModal from '../../components/card/CardModal'
 import SocialAuth from '../../components/layout/SocialAuth'
 import LoginAuth from '../../components/layout/LoginAuth'
 import RadioButton from '../../components/button/RadioButton'
+import Database from '../../Database'
 import { withContext } from '../../context/withContext'
+
+const db = new Database()
 
 const deleteMagazineRadioItem = [
   {
@@ -43,6 +46,7 @@ class Settings extends Component {
       isLoading: false,
       modalModeVisible: false,
       modalDeleteMagazineVisible: false,
+      deleteMagazineIn: 3
     }
   }
 
@@ -56,8 +60,14 @@ class Settings extends Component {
       .auth()
       .signOut()
       .then(() => {
-        this.props.context.setUser(null)
-        this.props.navigation.navigate('Auth')
+        db.resetDB()
+          .then((res) => {
+            this.props.context.setUser(null)
+            this.props.navigation.navigate('Auth')
+          })
+          .catch((err) => {
+            console.log(err.message)
+          })
       })
       .catch((err) => {
         Alert.alert('Error', err.message)
@@ -104,11 +114,12 @@ class Settings extends Component {
       [
         {
           text: 'Batal',
-          onPress: () => console.log('Ask me later pressed')
+          onPress: () => console.log('Ask me later pressed'),
+          style: 'cancel'
         },
         {
           text: 'Iya',
-          onPress: () => console.log('OK Pressed')
+          onPress: () => this.onDeleteMagazine()
         },
       ],
       {
@@ -117,13 +128,24 @@ class Settings extends Component {
     );
   }
 
-  onRadioDeleteMagazineChange = async (value, name) => {
-    // try {
-    //   await AsyncStorage.setItem(name, value)
-    //   this.props.context.setUserSettings([name, value])
-    // } catch (e) {
-    //   Alert.alert('Error', e.message)
-    // }
+  onDeleteMagazine = (value, name) => {
+    this.setState({ isLoading: true })
+    db.deleteAllMagazine()
+      .then((res) => {
+        Alert.alert('Info', 'Berhasil dihapus')
+      })
+      .catch((err) => {
+        Alert.alert('Error', err.message)
+      })
+      .finally(() => {
+        this.setState({ isLoading: false })
+      })
+  }
+
+  onRadioDeleteMagazineChange = (value, name) => {
+    this.setState({
+      deleteMagazineIn: value
+    })
   }
 
   isDarkMode = () => {
@@ -133,6 +155,11 @@ class Settings extends Component {
   render () {
     return (
       <ScrollView style={this.isDarkMode() ? { backgroundColor: '#000000' } : { backgroundColor: '#FFFFFF' }}>
+        <Spinner
+          visible={this.state.isLoading}
+          overlayColor="rgba(0,0,0,0.7)"
+          textStyle={{ color: '#fff' }}
+        />
         <CardModal
           onBackButtonPress={() => this.setState({ modalModeVisible: false })}
           onBackdropPress={() => this.setState({ modalModeVisible: false })}
@@ -146,9 +173,9 @@ class Settings extends Component {
           title="Hapus Majalah"
           isVisible={this.state.modalDeleteMagazineVisible}>
           <View>
-            <RadioButton label="Hapus otomatis, kecuali" data={deleteMagazineRadioItem} onChange={this.onRadioDeleteMagazineChange} />
+            <RadioButton value={this.state.deleteMagazineIn} label="Hapus otomatis, kecuali" data={deleteMagazineRadioItem} onChange={this.onRadioDeleteMagazineChange} />
             <View>
-              <TouchableOpacity style={{ backgroundColor: '#000000', padding: 10 }}>
+              <TouchableOpacity style={{ backgroundColor: '#000000', padding: 10 }} onPress={this.onDeleteMagazine}>
                 <Text style={{ fontSize: 16, color: '#FFFFFF', textAlign: 'center' }}>Hapus</Text>
               </TouchableOpacity>
             </View>
@@ -159,11 +186,6 @@ class Settings extends Component {
             </View>
           </View>
         </CardModal>
-        <Spinner
-          visible={this.state.isLoading}
-          overlayColor="rgba(0,0,0,0.7)"
-          textStyle={{ color: '#fff' }}
-        />
         { this.renderAuthSettings() }
         <CardList text="Berikan Rating di Google Play" onPress={() => this.handleOpenURL('market://details?id=com.facebook.katana')} />
         <CardList text="Cara Penggunaan" onPress={() => this.props.navigation.navigate('Guide')} />

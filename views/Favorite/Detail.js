@@ -1,30 +1,30 @@
 import React, { Component } from 'react'
 import HTML from 'react-native-render-html'
-import Share, { ShareSheet } from 'react-native-share';
+import Share, { ShareSheet } from 'react-native-share'
+import ImageViewer from 'react-native-image-zoom-viewer'
 import {
   View,
   Text,
   ScrollView,
   Image,
   Dimensions,
-  Alert
+  Alert,
+  Modal,
+  TouchableOpacity
 } from 'react-native'
-
-import Database from '../../Database'
 
 import { withContext } from '../../context/withContext'
 import SettingsModal from '../../components/layout/SettingsModal'
 import CardModal from '../../components/card/CardModal'
 import Container from '../../components/layout/Container'
 
-const db = new Database()
-
 class Detail extends Component {
   constructor () {
     super()
 
     this.state = {
-      currentIndex: null
+      showImageViewer: false,
+      images: []
     }
   }
 
@@ -57,11 +57,11 @@ class Detail extends Component {
   getLineHeight = () => {
     const { lineHeightMode } = this.props.context.userSettings
     if (lineHeightMode === 'wide') {
-      return 20
+      return 25
     } else if (lineHeightMode === 'medium') {
-      return 16
+      return 20
     } else {
-      return 12
+      return 18
     }
   }
 
@@ -82,7 +82,7 @@ class Detail extends Component {
             Alert.alert('Share', 'Shared')
           })
           .catch((err) => {
-            Alert.alert('Share', err.message)
+            // Alert.alert('Share', err.message)
           })
           .finally(() => {
             this.props.context.setShowShare(false)
@@ -96,13 +96,18 @@ class Detail extends Component {
       return content.map((con, index) => {
         let bodyContent = null
         if (con.type === 'paragraph') {
-          bodyContent = <HTML html={con.body} tagsStyles={this.getHTMLStyle()} />
-        } else if (con.type === 'keterangan') {
-          bodyContent = <Text style={[this.isDarkMode() && { color: '#FFFFFF'}, { fontSize: this.getFontSize() }]}>{ con.body }</Text>
+          bodyContent = <Container><HTML html={con.body} tagsStyles={this.getHTMLStyle()} /></Container>
         } else if (con.type === 'image') {
           !this.isImageHide() ? (
-            bodyContent = <Image source={{ uri: con.body }} style={[{ width: (Dimensions.get('window').width * 0.9), height: 200 }]} resizeMode='contain' />
+            bodyContent = <TouchableOpacity activeOpacity={1} onPress={() => this.onPressImage(con.body)}><Image source={{ uri: con.body }} style={[{ width: (Dimensions.get('window').width), aspectRatio: 1.2 }]} resizeMode='contain' /></TouchableOpacity>
           ) : null
+        } else if (con.type === 'keterangan') {
+          bodyContent = (
+            <Container>
+              <Text style={[{ fontSize: this.getFontSize() * 0.8, color: '#AAAAAA' }]}>{ con.item[0].title }</Text>
+              <Text style={[{ color: this.isDarkMode() ? '#FFFFFF' : '#000000' }, { fontSize: this.getFontSize() }]}>{ con.item[0].text }</Text>
+            </Container>
+          )
         }
         return (
           <View key={index} style={{ marginBottom: 10 }}>
@@ -125,9 +130,21 @@ class Detail extends Component {
     return this.props.context.userSettings.imageMode !== 'show'
   }
 
+  onPressImage = (imageUrl) => {
+    this.setState({
+      showImageViewer: true,
+      images: [{
+        url: imageUrl
+      }]
+    })
+  }
+
   render () {
     return (
       <ScrollView style={[this.isDarkMode() && { backgroundColor: '#000000'}]}>
+        <Modal visible={this.state.showImageViewer} onRequestClose={() => this.setState({ showImageViewer: false })} transparent={true}>
+          <ImageViewer imageUrls={this.state.images}/>
+        </Modal>
         <CardModal
           onBackButtonPress={() => this.props.context.setShowSettingsModal(false)}
           onBackdropPress={() => this.props.context.setShowSettingsModal(false)}
@@ -135,9 +152,7 @@ class Detail extends Component {
           isVisible={this.props.context.showSettingsModal}>
           <SettingsModal onCloseModal={() => this.props.context.setShowSettingsModal(false)} />
         </CardModal>
-        <Container>
-          <View style={{ paddingVertical: 15 }}>{ this.renderContent() }</View>
-        </Container>
+        <View style={{ paddingVertical: 15 }}>{ this.renderContent() }</View>
         <View>
           <ShareSheet visible={this.props.context.showShare} onCancel={this.onCancel} />
         </View>

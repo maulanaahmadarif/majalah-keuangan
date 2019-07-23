@@ -13,12 +13,11 @@ import {
 
 import SocialButton from '../button/SocialButton'
 
-const { RNTwitterSignIn } = NativeModules
+// TODO: WILL NEED REWORK
+// const { RNTwitterSignIn } = NativeModules
 const { TwitterAuthProvider } = firebase.auth
 
 const TwitterKeys = {
-  // TWITTER_CONSUMER_KEY: '53uuJ2EOu8BiXXM2ZyVnB5YRf',
-  // TWITTER_CONSUMER_SECRET: '1IL22rZwwYhvDI08Upxlt7u0IwQDCKkT6UqL5Ae70aNiqxSnMh'
   TWITTER_CONSUMER_KEY: 'D3g97AOOvTFomVU0vaHBlTMcg',
   TWITTER_CONSUMER_SECRET: 'eC4szm2mmFd7LNi5m67WIefo762hP6OVnuLwBwy0ROPvRHpclt'
 }
@@ -46,8 +45,6 @@ class SocialAuth extends Component {
     } catch (e) {
       this.setState({ isLoading: false })
       Alert.alert('Error', e.message)
-    } finally {
-      this.setState({ isLoading: false })
     }
   }
 
@@ -63,8 +60,6 @@ class SocialAuth extends Component {
     } catch (e) {
       this.setState({ isLoading: false })
       Alert.alert('Error', e.message)
-    } finally {
-      this.setState({ isLoading: false })
     }
   }
 
@@ -93,8 +88,6 @@ class SocialAuth extends Component {
     } catch (e) {
       this.setState({ isLoading: false })
       Alert.alert('Error', e.message)
-    } finally {
-      this.setState({ isLoading: false })
     }
   }
 
@@ -112,7 +105,7 @@ class SocialAuth extends Component {
         />
         <SocialButton icon="facebook" onPress={this.signInWithFacebook} settingPage={this.props.settingPage} />
         <SocialButton icon="gmail" onPress={this.signInWithGoogle} settingPage={this.props.settingPage} />
-        <SocialButton icon="twitter" onPress={this.signInWithTwitter} settingPage={this.props.settingPage} />
+        {/* <SocialButton icon="twitter" onPress={this.signInWithTwitter} settingPage={this.props.settingPage} /> */}
       </View>
     )
   }

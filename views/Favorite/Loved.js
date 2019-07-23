@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import {
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert,
+  View,
+  Text,
+  FlatList
 } from 'react-native'
 
 import Database from '../../Database';
@@ -15,35 +19,44 @@ class Loved extends Component {
     super()
 
     this.state = {
-      magazines: []
+      magazines: [],
+      isRefreshing: false
     }
   }
 
   componentDidMount () {
     this._subscribe = this.props.navigation.addListener('didFocus', () => {
-      db.listFavoriteMagazine('yes')
-        .then((data) => {
-          this.setState({
-            magazines: data
-          })
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      this.onRefresh()
     })
   }
 
-  renderArticleCard = () => {
-    const { magazines } = this.state
-    if (magazines.length !== 0) {
-      return magazines.map((mag, index) => {
-        return (
-          <TouchableOpacity key={index} activeOpacity={1} onPress={() => this.onClickCard(mag)}>
-            <ArticleCard image={mag.main_image} title={mag.title} author={mag.author} />
-          </TouchableOpacity>
-        )
+  onRefresh = () => {
+    this.setState({
+      isRefreshing: true
+    })
+    db.listFavoriteMagazine('yes')
+      .then((data) => {
+        this.setState({
+          magazines: data
+        })
       })
-    }
+      .catch((err) => {
+        // Alert.alert('Error', err.message)
+        console.log('Error:', err)
+      })
+      .finally(() => {
+        this.setState({
+          isRefreshing: false
+        })
+      })
+  }
+
+  renderArticleCard = (item, index) => {
+    return (
+      <TouchableOpacity key={index} activeOpacity={1} onPress={() => this.onClickCard(item)}>
+        <ArticleCard image={item.main_image} title={item.title} author={item.author} />
+      </TouchableOpacity>
+    )
   }
 
   onClickCard = (data) => {
@@ -58,7 +71,19 @@ class Loved extends Component {
     return (
       <ScrollView style={this.isDarkMode() && { backgroundColor: '#000000' }}>
         <Container style={{ marginVertical: 15 }}>
-          { this.renderArticleCard() }
+          { this.state.magazines.length !== 0 ? (
+            <FlatList
+              data={this.state.magazines}
+              onRefresh={this.onRefresh}
+              refreshing={this.state.isRefreshing}
+              keyExtractor={(item, index) => `id-${index}`}
+              renderItem={({ item, index }) => this.renderArticleCard(item, index)}
+            />
+          ) : (
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+              <Text style={{ color: this.isDarkMode() ? '#FFFFFF' : '#AAAAAA' }}>Belum ada artikel</Text>
+            </View>
+          ) }
         </Container>
       </ScrollView>
     )

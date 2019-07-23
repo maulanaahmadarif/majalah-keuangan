@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   tabBarContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingVertical: 10,
+    paddingVertical: 5,
     borderTopColor: 'rgba(0,0,0,.2)',
     borderTopWidth: 1
   }
@@ -25,20 +25,38 @@ class TabBarMagazine extends Component {
     return this.props.context.userSettings.readMode !== 'normal'
   }
 
+  getIconColor = (index) => {
+    let color = ''
+    if (this.isDarkMode()) {
+      if (this.props.activeIndex === index) {
+        color = '#FFFFFF'
+      } else {
+        color = '#aaaaaa'
+      }
+    } else {
+      if (this.props.activeIndex === index) {
+        color = '#000000'
+      } else {
+        color = '#aaaaaa'
+      }
+    }
+    return color
+  }
+
   render () {
     return (
       <View style={[styles.tabBarContainer, this.isDarkMode() && { backgroundColor: '#000000', borderTopColor: 'rgba(255,255,255,.2)' }]}>
         <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => this.props.navigation.navigate('Magazine')}>
-          <Ionicons name="ios-book" size={25} color={this.isDarkMode() ? '#FFFFFF' : '#000000'} />
-          <Text style={[{ fontSize: 10, color: this.isDarkMode() ? '#FFFFFF' : '#000000' }]}>Magazine</Text>
+          <Ionicons name="ios-book" size={25} color={this.getIconColor(0)} />
+          <Text style={[{ fontSize: 10, color: this.getIconColor(0) }]}>Magazine</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => this.props.navigation.navigate('Favorite')}>
-          <Ionicons name="ios-heart" size={25} color={this.isDarkMode() ? '#FFFFFF' : '#000000'} />
-          <Text style={[{ fontSize: 10, color: this.isDarkMode() ? '#FFFFFF' : '#000000' }]}>Favorite</Text>
+          <Ionicons name="ios-heart" size={25} color={this.getIconColor(1)} />
+          <Text style={[{ fontSize: 10, color: this.getIconColor(1) }]}>Favorite</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => this.props.navigation.navigate('Settings')}>
-          <Ionicons name="ios-cog" size={25} color={ this.isDarkMode() ? '#FFFFFF' : '#000000' } />
-          <Text style={[{ fontSize: 10, color: this.isDarkMode() ? '#FFFFFF' : '#000000' }]}>Settings</Text>
+          <Ionicons name="ios-cog" size={25} color={ this.getIconColor(2) } />
+          <Text style={[{ fontSize: 10, color: this.getIconColor(2) }]}>Settings</Text>
         </TouchableOpacity>
       </View>
     )

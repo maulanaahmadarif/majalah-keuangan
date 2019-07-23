@@ -9,7 +9,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  Dimensions
+  Dimensions,
+  FlatList
 } from 'react-native'
 
 import { withContext } from '../../context/withContext'
@@ -21,14 +22,15 @@ const { width: viewportWidth } = Dimensions.get('window')
 const styles = StyleSheet.create({
   editionWrapper: {
     backgroundColor: '#FFFFFF',
-    shadowColor: '#000',
+    shadowColor: '#000000',
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 5
     },
     shadowOpacity: 0.5,
-    shadowRadius: 3,
-    elevation: 3
+    shadowRadius: 5,
+    elevation: 4,
+    marginBottom: 40
   },
   editionContainerStyle: {
     paddingVertical: 5,
@@ -46,7 +48,6 @@ const styles = StyleSheet.create({
     borderBottomColor: 'rgb(2, 46, 91)'
   },
   magazineContainer: {
-    marginTop: 15,
     width: viewportWidth * 0.7,
     alignItems: 'center',
     marginLeft: 20
@@ -129,34 +130,71 @@ class Magazine extends Component {
     return excerpt.join(' ')
   }
 
-  renderMagazine = () => {
+  getSortedMagazine = () => {
     const { activeEdition } = this.state
     if (this.props.context.magazines.length > 0) {
       return this.props.context.magazines
         .filter(magazine => magazine.edition_years === activeEdition)
-        .map((mag) => {
-          return (
-            <TouchableOpacity activeOpacity={1} key={mag.id} style={[styles.magazineContainer]} onPress={() => this.props.navigation.navigate('Article', { id: mag.id, title: formatDate(mag.edition, 'MMMM YYYY') })}>
-              <View style={{ marginBottom: 10 }}>
-                <Text style={[styles.magazineText, { textTransform: 'uppercase' }, this.isDarkMode() && { color: '#FFFFFF' }]}>
-                  { formatDate(mag.edition, 'MMMM YYYY') }
-                  { '\n' }
-                  <Text style={[styles.magazineText, { color: '#000' }, this.isDarkMode() && { color: '#FFFFFF' }]}>{ mag.edition_number }</Text>
-                </Text>
-              </View>
-              <View>
-                <Image source={{ uri: mag.cover_image }} style={[styles.imageStyle]} />
-              </View>
-              <View style={{ marginVertical: 15 }}>
-                <Text style={[styles.magazineText, { color: '#000', fontWeight: 'bold' }, this.isDarkMode() && { color: '#FFFFFF' }]}>{ mag.title }</Text>
-              </View>
-              <View>
-                <Text style={[styles.magazineText, this.isDarkMode() && { color: '#FFFFFF' }]}>{ this.generateExcerpt(mag.description, 8) }</Text>
-              </View>
-            </TouchableOpacity>
-          )
+        .sort((a, b) => {
+          return new Date(b.edition) - new Date(a.edition)
         })
     }
+  }
+
+  // renderMagazine = () => {
+  //   const { activeEdition } = this.state
+  //   if (this.props.context.magazines.length > 0) {
+  //     return this.props.context.magazines
+  //       .filter(magazine => magazine.edition_years === activeEdition)
+  //       .sort((a, b) => {
+  //         return new Date(b.edition) - new Date(a.edition)
+  //       })
+  //       .map((mag) => {
+  //         return (
+  //           <TouchableOpacity activeOpacity={1} key={mag.id} style={[styles.magazineContainer]} onPress={() => this.props.navigation.navigate('Article', { id: mag.id, title: formatDate(mag.edition, 'MMMM YYYY') })}>
+  //             <View style={{ marginBottom: 10 }}>
+  //               <Text style={[styles.magazineText, { textTransform: 'uppercase' }, this.isDarkMode() && { color: '#FFFFFF' }]}>
+  //                 { formatDate(mag.edition, 'MMMM YYYY') }
+  //                 { '\n' }
+  //                 <Text style={[styles.magazineText, { color: '#000' }, this.isDarkMode() && { color: '#FFFFFF' }]}>{ mag.edition_number }</Text>
+  //               </Text>
+  //             </View>
+  //             <View>
+  //               <Image source={{ uri: mag.cover_image }} style={[styles.imageStyle]} />
+  //             </View>
+  //             <View style={{ marginVertical: 15 }}>
+  //               <Text style={[styles.magazineText, { color: '#000', fontWeight: 'bold' }, this.isDarkMode() && { color: '#FFFFFF' }]}>{ mag.title }</Text>
+  //             </View>
+  //             <View>
+  //               <Text style={[styles.magazineText, this.isDarkMode() && { color: '#FFFFFF' }]}>{ this.generateExcerpt(mag.description, 8) }</Text>
+  //             </View>
+  //           </TouchableOpacity>
+  //         )
+  //       })
+  //   }
+  // }
+
+  renderMagazine = (mag) => {
+    return (
+      <TouchableOpacity activeOpacity={1} style={[styles.magazineContainer]} onPress={() => this.props.navigation.navigate('Article', { id: mag.id, title: formatDate(mag.edition, 'MMMM YYYY') })}>
+        <View style={{ marginBottom: 10 }}>
+          <Text style={[styles.magazineText, { textTransform: 'uppercase' }, this.isDarkMode() && { color: '#FFFFFF' }]}>
+            { formatDate(mag.edition, 'MMMM YYYY') }
+            { '\n' }
+            <Text style={[styles.magazineText, { color: '#000' }, this.isDarkMode() && { color: '#FFFFFF' }]}>{ mag.edition_number }</Text>
+          </Text>
+        </View>
+        <View>
+          <Image source={{ uri: mag.cover_image }} style={[styles.imageStyle]} />
+        </View>
+        <View style={{ marginVertical: 15 }}>
+          <Text style={[styles.magazineText, { color: '#000', fontWeight: 'bold' }, this.isDarkMode() && { color: '#FFFFFF' }]}>{ mag.title }</Text>
+        </View>
+        <View>
+          <Text style={[styles.magazineText, this.isDarkMode() && { color: '#FFFFFF' }]}>{ this.generateExcerpt(mag.description, 8) }</Text>
+        </View>
+      </TouchableOpacity>
+    )
   }
 
   render () {
@@ -171,7 +209,17 @@ class Magazine extends Component {
           { this.renderEdition() }
         </ScrollView>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          { this.renderMagazine() }
+          { this.props.context.magazines.length !== 0 && (
+            <FlatList
+              horizontal
+              extraData={this.props.context.userSettings.readMode}
+              removeClippedSubviews
+              data={this.getSortedMagazine()}
+              keyExtractor={(item) => `id-${item.id}`}
+              renderItem={({ item }) => this.renderMagazine(item)}
+            />
+          ) }
+          {/* { this.renderMagazine() } */}
         </ScrollView>
       </ScrollView>
     )

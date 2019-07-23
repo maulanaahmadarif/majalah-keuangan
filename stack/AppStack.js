@@ -75,7 +75,7 @@ const AppStack = createBottomTabNavigator(
         tabBarVisible
       }
     },
-    tabBarComponent: TabBarMagazine,
+    tabBarComponent: ({ navigation }) => <TabBarMagazine activeIndex={navigation.state.index} />,
     tabBarOptions: {
       activeTintColor: 'black',
       inactiveTintColor: 'gray',

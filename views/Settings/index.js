@@ -4,6 +4,7 @@ import About from './About'
 import Account from './Account'
 import Setting from './Setting'
 import Guide from './Guide'
+import SignupSetting from './SignupSetting'
 
 const SettingStack = createStackNavigator(
   {
@@ -25,15 +26,17 @@ const SettingStack = createStackNavigator(
         header: null
       },
     },
+    SignupSetting: {
+      screen: SignupSetting,
+      navigationOptions: {
+        title: 'Registrasi'
+      },
+    },
     Setting: {
       screen: Setting,
       navigationOptions: ({ navigation, screenProps }) => {
         return {
           title: 'Setting',
-          // headerTintColor: '#FFFFFF',
-          // headerStyle: {
-          //   backgroundColor: '#000000'
-          // },
           headerTitleStyle: { 
             textAlign: 'center', 
             flex: 1,

@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import HTML from 'react-native-render-html'
-import Share, { ShareSheet } from 'react-native-share';
+import Share, { ShareSheet } from 'react-native-share'
+import ImageViewer from 'react-native-image-zoom-viewer'
 import {
   View,
   Text,
   ScrollView,
   Image,
   Dimensions,
-  Alert
+  Alert,
+  Modal,
+  TouchableOpacity
 } from 'react-native'
 
 import Database from '../../Database'
@@ -24,7 +27,9 @@ class Category extends Component {
     super()
 
     this.state = {
-      currentIndex: null
+      currentIndex: null,
+      showImageViewer: false,
+      images: []
     }
   }
 
@@ -37,7 +42,8 @@ class Category extends Component {
       main_image: article.main_image,
       author: article.author,
       content: JSON.stringify(article.content),
-      isLoved: 'no'
+      isLoved: 'no',
+      createdAt: new Date().toString()
     }
     db.addMagazine(data)
       .then((res) => {
@@ -77,11 +83,11 @@ class Category extends Component {
   getLineHeight = () => {
     const { lineHeightMode } = this.props.context.userSettings
     if (lineHeightMode === 'wide') {
-      return 20
+      return 25
     } else if (lineHeightMode === 'medium') {
-      return 16
+      return 20
     } else {
-      return 12
+      return 18
     }
   }
 
@@ -102,7 +108,7 @@ class Category extends Component {
             Alert.alert('Share', 'Shared')
           })
           .catch((err) => {
-            Alert.alert('Share', err.message)
+            // Alert.alert('Share', err.message)
           })
           .finally(() => {
             this.props.context.setShowShare(false)
@@ -116,13 +122,18 @@ class Category extends Component {
       return category[currentCategory].content.map((content, index) => {
         let bodyContent = null
         if (content.type === 'paragraph') {
-          bodyContent = <HTML html={content.body} tagsStyles={this.getHTMLStyle()} />
-        } else if (content.type === 'keterangan') {
-          bodyContent = <Text style={[this.isDarkMode() && { color: '#FFFFFF'}, { fontSize: this.getFontSize() }]}>{ content.body }</Text>
+          bodyContent = <Container><HTML html={content.body} tagsStyles={this.getHTMLStyle()} /></Container>
         } else if (content.type === 'image') {
           !this.isImageHide() ? (
-            bodyContent = <Image source={{ uri: content.body }} style={[{ width: (Dimensions.get('window').width * 0.9), height: 200 }]} resizeMode='contain' />
+            bodyContent = <TouchableOpacity activeOpacity={1} onPress={() => this.onPressImage(content.body)}><Image source={{ uri: content.body }} style={[{ width: (Dimensions.get('window').width), aspectRatio: 1.2 }]} resizeMode='contain' /></TouchableOpacity>
           ) : null
+        } else if (content.type === 'keterangan') {
+          bodyContent = (
+            <Container>
+              <Text style={[{ fontSize: this.getFontSize() * 0.8, color: '#AAAAAA' }]}>{ content.item[0].title }</Text>
+              <Text style={[{ color: this.isDarkMode() ? '#FFFFFF' : '#000000' }, { fontSize: this.getFontSize() }]}>{ content.item[0].text }</Text>
+            </Container>
+          )
         }
         return (
           <View key={index} style={{ marginBottom: 10 }}>
@@ -145,9 +156,21 @@ class Category extends Component {
     return this.props.context.userSettings.imageMode !== 'show'
   }
 
+  onPressImage = (imageUrl) => {
+    this.setState({
+      showImageViewer: true,
+      images: [{
+        url: imageUrl
+      }]
+    })
+  }
+
   render () {
     return (
       <ScrollView style={[this.isDarkMode() && { backgroundColor: '#000000'}]}>
+        <Modal visible={this.state.showImageViewer} onRequestClose={() => this.setState({ showImageViewer: false })} transparent={true}>
+          <ImageViewer imageUrls={this.state.images} onSwipeDown={() => this.setState({ showImageViewer: false })} enableSwipeDown  />
+        </Modal>
         <CardModal
           onBackButtonPress={() => this.props.context.setShowSettingsModal(false)}
           onBackdropPress={() => this.props.context.setShowSettingsModal(false)}
@@ -155,9 +178,7 @@ class Category extends Component {
           isVisible={this.props.context.showSettingsModal}>
           <SettingsModal onCloseModal={() => this.props.context.setShowSettingsModal(false)} />
         </CardModal>
-        <Container>
-          <View style={{ paddingVertical: 15 }}>{ this.renderContent() }</View>
-        </Container>
+        <View style={{ paddingVertical: 15 }}>{ this.renderContent() }</View>
         <View>
           <ShareSheet visible={this.props.context.showShare} onCancel={this.onCancel} />
         </View>
