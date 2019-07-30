@@ -7,7 +7,8 @@ import {
   Text,
   Dimensions,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  SafeAreaView
 } from 'react-native'
 
 import step1 from '../../assets/images/step-1.jpeg'
@@ -94,44 +95,46 @@ class Guide extends Component {
 
   render () {
     return (
-      <ScrollView>
-        <View>
-          <Carousel
-            ref={(c) => this._slider1Ref = c}
-            data={ENTRIES}
-            renderItem={this.renderItem}
-            sliderWidth={viewportWidth}
-            itemWidth={viewportWidth}
-            hasParallaxImages={true}
-            firstItem={ACTIVE_SLIDE}
-            inactiveSlideScale={0.94}
-            inactiveSlideOpacity={0.7}
-            // inactiveSlideShift={20}
-            containerCustomStyle={{ overflow: 'visible' }}
-            contentContainerCustomStyle={{ paddingVertical: 10 }}
-            loop={false}
-            loopClonesPerSide={2}
-            autoplay={false}
-            autoplayDelay={500}
-            autoplayInterval={3000}
-            onSnapToItem={(index) => this.setState({ activeSlider: index }) }
-          />
-          <TouchableOpacity style={[styles.paginationStyle, { left: 10 }]} onPress={() => this._slider1Ref.snapToPrev()} >
-            <IconComponent name="ios-arrow-back" size={25} color="#000000" />
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.paginationStyle, { right: 10 }]} onPress={() => this._slider1Ref.snapToNext()}>
-            <IconComponent name="ios-arrow-forward" size={25} color="#000000" />
-          </TouchableOpacity>
-        </View>
-        <View style={{ flexDirection: 'row' }}>
-          <View style={[styles.textContainerStyle, { flex: 2 }]}>
-            <Text style={[styles.textStyle, { fontSize: 20 }]}>Info { this.state.activeSlider + 1 } dari { ENTRIES.length }</Text>
+      <SafeAreaView>
+        <ScrollView>
+          <View>
+            <Carousel
+              ref={(c) => this._slider1Ref = c}
+              data={ENTRIES}
+              renderItem={this.renderItem}
+              sliderWidth={viewportWidth}
+              itemWidth={viewportWidth}
+              hasParallaxImages={true}
+              firstItem={ACTIVE_SLIDE}
+              inactiveSlideScale={0.94}
+              inactiveSlideOpacity={0.7}
+              // inactiveSlideShift={20}
+              containerCustomStyle={{ overflow: 'visible' }}
+              contentContainerCustomStyle={{ paddingVertical: 10 }}
+              loop={false}
+              loopClonesPerSide={2}
+              autoplay={false}
+              autoplayDelay={500}
+              autoplayInterval={3000}
+              onSnapToItem={(index) => this.setState({ activeSlider: index }) }
+            />
+            <TouchableOpacity style={[styles.paginationStyle, { left: 10 }]} onPress={() => this._slider1Ref.snapToPrev()} >
+              <IconComponent name="ios-arrow-back" size={25} color="#000000" />
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.paginationStyle, { right: 10 }]} onPress={() => this._slider1Ref.snapToNext()}>
+              <IconComponent name="ios-arrow-forward" size={25} color="#000000" />
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity activeOpacity={1} style={[styles.textContainerStyle, { flex: 1, borderLeftWidth: 1, borderLeftColor: '#000000' }]} onPress={() => this.props.navigation.goBack()}>
-            <Text style={[styles.textStyle, { textAlign: 'center' }]}>Lewati</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={[styles.textContainerStyle, { flex: 2 }]}>
+              <Text style={[styles.textStyle, { fontSize: 20 }]}>Info { this.state.activeSlider + 1 } dari { ENTRIES.length }</Text>
+            </View>
+            <TouchableOpacity activeOpacity={1} style={[styles.textContainerStyle, { flex: 1, borderLeftWidth: 1, borderLeftColor: '#000000' }]} onPress={() => this.props.navigation.goBack()}>
+              <Text style={[styles.textStyle, { textAlign: 'center' }]}>Lewati</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
     )
   }
 }

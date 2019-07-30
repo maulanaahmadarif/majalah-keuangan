@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "deploy-crashlytics": "cd android && ./gradlew assembleRelease crashlyticsUploadDistributionRelease",
+    "build": "cd android && ./gradlew bundleRelease",
     "postinstall": "rm -rf node_modules/react-native-twitter-signin/node_modules/react-native",
     "test": "jest"
   },
