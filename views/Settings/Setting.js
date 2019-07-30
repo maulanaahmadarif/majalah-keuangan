@@ -8,7 +8,8 @@ import {
   Text,
   Alert,
   Linking,
-  TouchableOpacity
+  TouchableOpacity,
+  Platform
 } from 'react-native'
 
 import Container from '../../components/layout/Container'
@@ -151,6 +152,20 @@ class Settings extends Component {
   isDarkMode = () => {
     return this.props.context.userSettings.readMode !== 'normal'
   }
+
+  isAndroid = () => {
+    return Platform.OS !== 'ios'
+  }
+
+  getMarketLink = () => {
+    let link = ''
+    if (this.isAndroid()) {
+      link = 'market://details?id=go.id.kemenkeu.iMagazine'
+    } else {
+      link = 'itms-apps://itunes.apple.com/us/app/id?mt=8'
+    }
+    return link
+  }
   
   render () {
     return (
@@ -187,13 +202,13 @@ class Settings extends Component {
           </View>
         </CardModal>
         { this.renderAuthSettings() }
-        <CardList text="Berikan Rating di Google Play" onPress={() => this.handleOpenURL('market://details?id=com.facebook.katana')} />
+        <CardList text="Berikan Rating di Google Play" onPress={() => this.handleOpenURL(this.getMarketLink())} />
         <CardList text="Cara Penggunaan" onPress={() => this.props.navigation.navigate('Guide')} />
         <CardList text="Hapus Majalah" onPress={this.onAlertPopup} />
         <CardList text="Hapus Riwayat Majalah" onPress={() => this.setState({ modalDeleteMagazineVisible: true }) } />
         <CardList text="Pengaturan Mode Baca" onPress={() => this.setState({ modalModeVisible: true })} />
         <CardList text="Tentang Kami" onPress={() => this.props.navigation.navigate('About')} />
-        <CardList text="Website Kemenkeu" onPress={() => this.handleOpenURL('http://mediakeuangan.kemenkeu.go.id/')} />
+        <CardList text="Website Kemenkeu" onPress={() => this.handleOpenURL('https://www.kemenkeu.go.id/')} />
         { this.isLoggedIn() && <CardList text="Logout" onPress={this.onSignOut} /> }
       </ScrollView>
     )
