@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -24,7 +23,6 @@
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		14D252C93CEE42E2829FDD8B /* FiraSans-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D9E064C4AB4B49799F6948AC /* FiraSans-Black.ttf */; };
-		1B06EE75704847F090A23523 /* libRNTwitterSignIn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 491E8AA7A3E1471AAD95E197 /* libRNTwitterSignIn.a */; };
 		1B7B3BC375554A69B137EBF3 /* FiraSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F772F91CE00425D8B42C550 /* FiraSans-ExtraLightItalic.ttf */; };
 		1B9467AFE6C149FB810E8C7F /* FiraSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A45493A17A2948558447713F /* FiraSans-Medium.ttf */; };
 		25440BCE36384B348505D5F2 /* FiraSans-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 881B7B4EF1E447D293817556 /* FiraSans-BlackItalic.ttf */; };
@@ -411,13 +409,6 @@
 			remoteGlobalIDString = 9FD355121D3E4A2900D06170;
 			remoteInfo = RNGoogleSignin;
 		};
-		A8BD64CC22DFC08500C0C863 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 231FD50C0C034772886A92FA /* RNTwitterSignIn.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D07E57251F07806700A7160F;
-			remoteInfo = RNTwitterSignIn;
-		};
 		A8EBDD6E22DFEFDE00EEC22B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A8EBDD3F22DFEFDE00EEC22B /* RNShare.xcodeproj */;
@@ -462,7 +453,6 @@
 		189FB9E09511A96B2BDC87A8 /* Pods-MajalahKeuanganTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MajalahKeuanganTests.release.xcconfig"; path = "Target Support Files/Pods-MajalahKeuanganTests/Pods-MajalahKeuanganTests.release.xcconfig"; sourceTree = "<group>"; };
 		1A74D174E3BFDAC0FE6F0EFD /* Pods-MajalahKeuangan-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MajalahKeuangan-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-MajalahKeuangan-tvOS/Pods-MajalahKeuangan-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		2061598604674F5ABE3566F1 /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGestureHandler.xcodeproj; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; };
-		231FD50C0C034772886A92FA /* RNTwitterSignIn.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNTwitterSignIn.xcodeproj; path = "../node_modules/react-native-twitter-signin/ios/RNTwitterSignIn.xcodeproj"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* MajalahKeuangan-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MajalahKeuangan-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* MajalahKeuangan-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MajalahKeuangan-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -471,7 +461,6 @@
 		4023070C02E94193BA423076 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDK.xcodeproj; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; };
 		4776438E352D4AD388626624 /* FiraSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-BoldItalic.ttf"; path = "../assets/fonts/FiraSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		4789478DE3D94F84BF4E17B8 /* FiraSans-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-LightItalic.ttf"; path = "../assets/fonts/FiraSans-LightItalic.ttf"; sourceTree = "<group>"; };
-		491E8AA7A3E1471AAD95E197 /* libRNTwitterSignIn.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNTwitterSignIn.a; sourceTree = "<group>"; };
 		495B6D6573908BE38CA15834 /* Pods-MajalahKeuangan-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MajalahKeuangan-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-MajalahKeuangan-tvOSTests/Pods-MajalahKeuangan-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		4C1C98D4E68840DD9280A742 /* RNGoogleSignin.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGoogleSignin.xcodeproj; path = "../node_modules/react-native-google-signin/ios/RNGoogleSignin.xcodeproj"; sourceTree = "<group>"; };
 		5C500044A5BF4928D036C26E /* Pods-MajalahKeuangan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MajalahKeuangan.release.xcconfig"; path = "Target Support Files/Pods-MajalahKeuangan/Pods-MajalahKeuangan.release.xcconfig"; sourceTree = "<group>"; };
@@ -570,7 +559,6 @@
 				9D358884439740D0AF26CB8A /* libRNGestureHandler.a in Frameworks */,
 				AB8447C243DD4F69B259297A /* libRNFirebase.a in Frameworks */,
 				8E3C2DBCDAE8472B881E3471 /* libRNGoogleSignin.a in Frameworks */,
-				1B06EE75704847F090A23523 /* libRNTwitterSignIn.a in Frameworks */,
 				A880ED0A22DFE12E0084A128 /* FBSDKShareKit.framework in Frameworks */,
 				D205CD4C876F4FCCBCF4FBDA /* libRCTFBSDK.a in Frameworks */,
 				F056D9E467B44E2CB621A03F /* libRNCAsyncStorage.a in Frameworks */,
@@ -808,7 +796,6 @@
 				2061598604674F5ABE3566F1 /* RNGestureHandler.xcodeproj */,
 				5CDF855F26D845A38EF5BAA3 /* RNFirebase.xcodeproj */,
 				4C1C98D4E68840DD9280A742 /* RNGoogleSignin.xcodeproj */,
-				231FD50C0C034772886A92FA /* RNTwitterSignIn.xcodeproj */,
 				4023070C02E94193BA423076 /* RCTFBSDK.xcodeproj */,
 				DA225EB5381C4F17AFC70F4B /* RNCAsyncStorage.xcodeproj */,
 			);
@@ -911,14 +898,6 @@
 			isa = PBXGroup;
 			children = (
 				A8BD64CA22DFC08500C0C863 /* libRNGoogleSignin.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		A8BD648622DFC07C00C0C863 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A8BD64CD22DFC08500C0C863 /* libRNTwitterSignIn.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1172,10 +1151,6 @@
 				{
 					ProductGroup = A8EBDD4022DFEFDE00EEC22B /* Products */;
 					ProjectRef = A8EBDD3F22DFEFDE00EEC22B /* RNShare.xcodeproj */;
-				},
-				{
-					ProductGroup = A8BD648622DFC07C00C0C863 /* Products */;
-					ProjectRef = 231FD50C0C034772886A92FA /* RNTwitterSignIn.xcodeproj */;
 				},
 				{
 					ProductGroup = A88732C322E0A5320060FB43 /* Products */;
@@ -1492,13 +1467,6 @@
 			fileType = archive.ar;
 			path = libRNGoogleSignin.a;
 			remoteRef = A8BD64C922DFC08500C0C863 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A8BD64CD22DFC08500C0C863 /* libRNTwitterSignIn.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNTwitterSignIn.a;
-			remoteRef = A8BD64CC22DFC08500C0C863 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		A8EBDD6F22DFEFDE00EEC22B /* libRNShare.a */ = {
@@ -1831,7 +1799,6 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
-					"$(SRCROOT)/../node_modules/react-native-twitter-signin/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
 				);
@@ -1840,8 +1807,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1864,7 +1829,6 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
-					"$(SRCROOT)/../node_modules/react-native-twitter-signin/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
 				);
@@ -1873,8 +1837,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1903,7 +1865,6 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
-					"$(SRCROOT)/../node_modules/react-native-twitter-signin/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
 					"${PODS_ROOT}/Headers/Public/**/**",
@@ -1937,7 +1898,6 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
-					"$(SRCROOT)/../node_modules/react-native-twitter-signin/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
 				);
@@ -1972,7 +1932,6 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
-					"$(SRCROOT)/../node_modules/react-native-twitter-signin/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
 				);
@@ -1980,8 +1939,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2013,7 +1970,6 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
-					"$(SRCROOT)/../node_modules/react-native-twitter-signin/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
 				);
@@ -2021,8 +1977,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2053,7 +2007,6 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
-					"$(SRCROOT)/../node_modules/react-native-twitter-signin/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
 				);
@@ -2061,8 +2014,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2093,7 +2044,6 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
-					"$(SRCROOT)/../node_modules/react-native-twitter-signin/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
 				);
@@ -2101,8 +2051,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
