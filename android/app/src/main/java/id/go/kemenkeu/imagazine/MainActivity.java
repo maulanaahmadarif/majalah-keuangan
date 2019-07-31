@@ -1,4 +1,4 @@
-package go.id.kemenkeu.iMagazine;
+package id.go.kemenkeu.iMagazine;
 
 import android.content.Intent;
 import com.facebook.react.ReactActivity;

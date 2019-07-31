@@ -160,7 +160,7 @@ class Settings extends Component {
   getMarketLink = () => {
     let link = ''
     if (this.isAndroid()) {
-      link = 'market://details?id=go.id.kemenkeu.iMagazine'
+      link = 'market://details?id=id.go.kemenkeu.iMagazine'
     } else {
       link = 'itms-apps://itunes.apple.com/us/app/id?mt=8'
     }

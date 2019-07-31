@@ -35,12 +35,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "go.id.kemenkeu.iMagazine",
+    package = "id.go.kemenkeu.iMagazine",
 )
 
 android_resource(
     name = "res",
-    package = "go.id.kemenkeu.iMagazine",
+    package = "id.go.kemenkeu.iMagazine",
     res = "src/main/res",
 )
 

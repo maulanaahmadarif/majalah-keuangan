@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="go.id.kemenkeu.iMagazine">
+  package="id.go.kemenkeu.iMagazine">
 
     <uses-permission android:name="android.permission.INTERNET" />
 

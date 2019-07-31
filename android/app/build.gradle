@@ -103,7 +103,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "go.id.kemenkeu.iMagazine"
+        applicationId "id.go.kemenkeu.iMagazine"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
