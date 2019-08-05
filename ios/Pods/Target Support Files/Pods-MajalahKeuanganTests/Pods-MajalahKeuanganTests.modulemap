@@ -1,6 +1,0 @@
-framework module Pods_MajalahKeuanganTests {
-  umbrella header "Pods-MajalahKeuanganTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
