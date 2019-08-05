@@ -162,7 +162,7 @@ class Settings extends Component {
     if (this.isAndroid()) {
       link = 'market://details?id=go.id.kemenkeu.iMagazine'
     } else {
-      link = 'itms-apps://itunes.apple.com/us/app/id?mt=8'
+      link = 'itms-apps://itunes.apple.com/us/app/id1157852487?mt=8'
     }
     return link
   }
@@ -202,7 +202,7 @@ class Settings extends Component {
           </View>
         </CardModal>
         { this.renderAuthSettings() }
-        <CardList text="Berikan Rating di Google Play" onPress={() => this.handleOpenURL(this.getMarketLink())} />
+        <CardList text={`Berikan Rating di ${this.isAndroid() ? 'Google Play' : 'App Store'}`} onPress={() => this.handleOpenURL(this.getMarketLink())} />
         <CardList text="Cara Penggunaan" onPress={() => this.props.navigation.navigate('Guide')} />
         <CardList text="Hapus Majalah" onPress={this.onAlertPopup} />
         <CardList text="Hapus Riwayat Majalah" onPress={() => this.setState({ modalDeleteMagazineVisible: true }) } />

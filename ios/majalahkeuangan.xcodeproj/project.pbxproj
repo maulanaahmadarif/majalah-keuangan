@@ -869,7 +869,6 @@
 				F3FD5FEA917F49C9BF257586 /* libRNGestureHandler.a */,
 				9AD8DF0D67FF44629E478DD0 /* libRNFirebase.a */,
 				9A621D1720E94973819104DC /* libRNGoogleSignin.a */,
-				491E8AA7A3E1471AAD95E197 /* libRNTwitterSignIn.a */,
 				5F2A6EF40A794B8BBA56658E /* libRCTFBSDK.a */,
 				159897EE233F4D1484FF1C3D /* libRNCAsyncStorage.a */,
 				B881720A90F7472CB484BE19 /* libRNGestureHandler-tvOS.a */,
@@ -1805,9 +1804,7 @@
 				INFOPLIST_FILE = MajalahKeuanganTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1835,9 +1832,7 @@
 				INFOPLIST_FILE = MajalahKeuanganTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1900,6 +1895,7 @@
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"${PODS_ROOT}/Headers/Public/**",
 				);
 				INFOPLIST_FILE = MajalahKeuangan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1937,9 +1933,7 @@
 				);
 				INFOPLIST_FILE = "MajalahKeuangan-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1975,9 +1969,7 @@
 				);
 				INFOPLIST_FILE = "MajalahKeuangan-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -2012,9 +2004,7 @@
 				);
 				INFOPLIST_FILE = "MajalahKeuangan-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -2049,9 +2039,7 @@
 				);
 				INFOPLIST_FILE = "MajalahKeuangan-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
