@@ -133,13 +133,16 @@ class Settings extends Component {
     this.setState({ isLoading: true })
     db.deleteAllMagazine()
       .then((res) => {
-        Alert.alert('Info', 'Berhasil dihapus')
+        this.setState({ isLoading: false })
+        setTimeout(() => {
+          Alert.alert('Info', 'Berhasil dihapus')
+        }, 100)
       })
       .catch((err) => {
-        Alert.alert('Error', err.message)
-      })
-      .finally(() => {
         this.setState({ isLoading: false })
+        setTimeout(() => {
+          Alert.alert('Error', err.message)
+        }, 100)
       })
   }
 

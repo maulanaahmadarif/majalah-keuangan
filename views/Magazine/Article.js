@@ -293,7 +293,7 @@ class Article extends Component {
             multiline={false}
             onSubmitEditing={this.onSearch}
           />
-          <Ionicons style={[styles.inputSearchIcon]} name="ios-search" size={25} color={ this.isDarkMode() ? '#FFFFFF' : '#000000' } />
+          <Ionicons style={[styles.inputSearchIcon]} name="ios-search" size={25} color="#000000" />
         </View>
         { this.renderBanner() }
         <View style={{ marginTop: 15 }}>
