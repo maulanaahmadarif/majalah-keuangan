@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import firebase from 'react-native-firebase'
-import { GoogleSignin } from 'react-native-google-signin'
+import { GoogleSignin, statusCodes } from 'react-native-google-signin'
 import { AccessToken, LoginManager } from 'react-native-fbsdk'
 import { withNavigation } from 'react-navigation'
 import { withContext } from '../../context/withContext'
@@ -44,7 +44,23 @@ class SocialAuth extends Component {
       this.props.navigation.navigate('App')
     } catch (e) {
       this.setState({ isLoading: false })
-      Alert.alert('Error', e.message)
+      if (e.code === statusCodes.SIGN_IN_CANCELLED) {
+        setTimeout(() => {
+          Alert.alert('Info', 'user cancelled the login flow')
+        }, 100)
+      } else if (e.code === statusCodes.IN_PROGRESS) {
+        setTimeout(() => {
+          Alert.alert('Error', 'operation (f.e. sign in) is in progress already')
+        }, 100)
+      } else if (e.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        setTimeout(() => {
+          Alert.alert('Error', 'play services not available or outdated')
+        }, 100)
+      } else {
+        setTimeout(() => {
+          Alert.alert('Error', e.message)
+        }, 100)
+      }
     }
   }
 
@@ -59,7 +75,9 @@ class SocialAuth extends Component {
       this.props.navigation.navigate('App')
     } catch (e) {
       this.setState({ isLoading: false })
-      Alert.alert('Error', e.message)
+      setTimeout(() => {
+        Alert.alert('Error', e.message)
+      }, 100)
     }
   }
 
@@ -69,25 +87,34 @@ class SocialAuth extends Component {
       const result = await LoginManager.logInWithPermissions(['public_profile', 'email'])
       if (result.isCancelled) {
         // handle this however suites the flow of your app
-        Alert.alert('Error', 'User cancelled request')
         this.setState({ isLoading: false })
+        setTimeout(() => {
+          Alert.alert('Error', 'User cancelled request')
+        }, 100)
+      } else {
+        // console.log(`Login success with permissions: ${result.grantedPermissions.toString()}`);
+        // get the access token
+        const data = await AccessToken.getCurrentAccessToken();
+        if (!data) {
+          // handle this however suites the flow of your app
+          this.setState({ isLoading: false })
+          setTimeout(() => {
+            Alert.alert('Error', 'Something went wrong obtaining the users access token')
+          }, 100)
+        } else {
+          // create a new firebase credential with the token
+          const credential = firebase.auth.FacebookAuthProvider.credential(data.accessToken);
+          // login with credential
+          const firebaseUserCredential = await firebase.auth().signInWithCredential(credential);
+          this.props.context.setUser(firebaseUserCredential.user)
+          this.props.navigation.navigate('App')
+        }
       }
-      // console.log(`Login success with permissions: ${result.grantedPermissions.toString()}`);
-      // get the access token
-      const data = await AccessToken.getCurrentAccessToken();
-      if (!data) {
-        // handle this however suites the flow of your app
-        Alert.alert('Error', 'Something went wrong obtaining the users access token')
-      }
-      // create a new firebase credential with the token
-      const credential = firebase.auth.FacebookAuthProvider.credential(data.accessToken);
-      // login with credential
-      const firebaseUserCredential = await firebase.auth().signInWithCredential(credential);
-      this.props.context.setUser(firebaseUserCredential.user)
-      this.props.navigation.navigate('App')
     } catch (e) {
       this.setState({ isLoading: false })
-      Alert.alert('Error', e.message)
+      setTimeout(() => {
+        Alert.alert('Error', e.message)
+      }, 100)
     }
   }
 

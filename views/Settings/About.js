@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import DeviceInfo from 'react-native-device-info'
 import {
   View,
   Text,
@@ -12,8 +13,6 @@ import {
 
 import Container from '../../components/layout/Container'
 import SocialButton from '../../components/button/SocialButton'
-// TODO
-import { version } from '../../package.json'
 
 const styles = StyleSheet.create({
   textStyle: {
@@ -55,7 +54,7 @@ class About extends Component {
             </View>
             <View>
               <Text style={[styles.textStyle, { textAlign: 'center' }]}>Media Keuangan for { Platform.OS === 'ios' ? 'iOS' : 'Android' }</Text>
-              <Text style={[styles.textStyle, { textAlign: 'center' }]}>Version { version }</Text>
+              <Text style={[styles.textStyle, { textAlign: 'center' }]}>Version { DeviceInfo.getVersion() }</Text>
             </View>
           </View>
           <View style={styles.separator} />

@@ -1,12 +1,13 @@
 {
   "name": "MajalahKeuangan",
-  "version": "0.0.1",
+  "version": "1.1.2",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "deploy-crashlytics": "cd android && ./gradlew assembleRelease crashlyticsUploadDistributionRelease",
     "build": "cd android && ./gradlew bundleRelease",
     "postinstall": "rm -rf node_modules/react-native-twitter-signin/node_modules/react-native",
+    "clean": "react-native-clean-project",
     "test": "jest"
   },
   "dependencies": {
@@ -15,6 +16,7 @@
     "moment": "^2.24.0",
     "react": "16.8.3",
     "react-native": "0.59.8",
+    "react-native-device-info": "^2.3.2",
     "react-native-fbsdk": "^0.10.1",
     "react-native-firebase": "^5.5.4",
     "react-native-gesture-handler": "^1.2.1",
@@ -35,6 +37,7 @@
     "babel-jest": "^24.8.0",
     "jest": "^24.8.0",
     "metro-react-native-babel-preset": "^0.54.1",
+    "react-native-clean-project": "^3.2.4",
     "react-test-renderer": "16.8.3"
   },
   "jest": {
