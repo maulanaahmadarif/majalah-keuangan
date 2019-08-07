@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Media Keuangan</string>
+	<string>MajalahKeuangan</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -40,7 +40,7 @@
 	<key>FacebookAppID</key>
 	<string>2395555487341257</string>
 	<key>FacebookDisplayName</key>
-	<string>Media Keuangan</string>
+	<string>MajalahKeuangan</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>twitter</string>
