@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "269582413397-qbeef2bie9i51qn6b8a62bdtq11tvvpf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.go.kemenkeu.iMagazine",
+            "certificate_hash": "f629ede4a760310f192f0e6ccf3d73aec6112d05"
+          }
+        },
+        {
           "client_id": "269582413397-d64hui3c10mq8a2frboc36eaavfdl1bn.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -43,7 +51,8 @@
               "client_id": "269582413397-r5el20m6cjlaojobsmp24v2j3c943bsb.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "go.id.kemenkeu.eMagazine"
+                "bundle_id": "go.id.kemenkeu.eMagazine",
+                "app_store_id": "1157852487"
               }
             }
           ]
