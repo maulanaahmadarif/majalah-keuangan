@@ -3,6 +3,8 @@ import { createContext } from 'react'
 export const Context = createContext(
   {
     context: {
+      accessToken: null,
+      setAccessToken: () => {},
       user: null,
       setUser: () => {},
       magazines: [],

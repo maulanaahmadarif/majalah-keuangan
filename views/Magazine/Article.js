@@ -18,6 +18,7 @@ import {
 import Container from '../../components/layout/Container'
 import { withContext } from '../../context/withContext'
 import { fetchArticles } from '../../api'
+import { IMAGE_PROXY_URL } from '../../utils/constant'
 
 const { width: viewportWidth } = Dimensions.get('window')
 
@@ -131,7 +132,7 @@ class Article extends Component {
       const { title, description, cover_image } = this.state.articles
       return (
         <View>
-          <ImageBackground source={{ uri: cover_image }} style={styles.bannerImage}>
+          <ImageBackground source={{ uri: IMAGE_PROXY_URL + cover_image }} style={styles.bannerImage}>
             <View style={{ zIndex: 2, position: 'relative', paddingHorizontal: 15 }}>
               <Text style={[styles.bannerText, { marginBottom: 15, fontSize: 20, fontWeight: 'bold', textTransform: 'uppercase' }]}>{ title }</Text>
               <Text style={[styles.bannerText]}>{ description }</Text>
@@ -181,7 +182,7 @@ class Article extends Component {
     return (
       <TouchableOpacity activeOpacity={1} key={cat.id} style={[styles.categoryContainer]} onPress={() => this.onClickCategory(category, cat, index)}>
         { cat.main_image ? (
-            <Image resizeMode='cover' source={{ uri: `http://mediakeuangan.kemenkeu.go.id/Images/article/${cat.main_image}` }} style={[styles.categoryImage]} />
+            <Image resizeMode='cover' source={{ uri: `${IMAGE_PROXY_URL}https://mediakeuangan.kemenkeu.go.id/Images/article/${cat.main_image}` }} style={[styles.categoryImage]} />
           ) : (
             <Image resizeMode='cover' source={require('../../assets/images/logo.png')} style={[styles.categoryImage]} />
         ) }

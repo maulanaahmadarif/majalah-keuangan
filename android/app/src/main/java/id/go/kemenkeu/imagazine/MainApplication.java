@@ -6,6 +6,7 @@ import cl.json.RNSharePackage;
 import cl.json.ShareApplication;
 import org.pgsqlite.SQLitePluginPackage;
 import com.facebook.react.ReactApplication;
+import com.rnappauth.RNAppAuthPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
@@ -46,6 +47,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNAppAuthPackage(),
           new RNDeviceInfo(),
           new AsyncStoragePackage(),
           new SQLitePluginPackage(),

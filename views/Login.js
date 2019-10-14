@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Image,
   StatusBar } from 'react-native'
+import { authorize } from 'react-native-app-auth'
 
 import SocialAuth from '../components/layout/SocialAuth'
 import LoginAuth from '../components/layout/LoginAuth'
@@ -55,7 +56,7 @@ class Login extends Component {
             <Text style={{ color: '#fff', fontFamily: 'FiraSans-Medium', fontSize: 12, textAlign: 'center' }}>TRANSAPARNSI INFORMASI KEBIJAKAN FISKAL</Text>
           </View>
           <LoginAuth />
-          <View style={{ marginBottom: 30 }}>
+          {/* <View style={{ marginBottom: 30 }}>
             <Text style={{ textAlign: 'center', color: '#fff' }}>or Connect With</Text>
           </View>
           <SocialAuth />
@@ -66,7 +67,7 @@ class Login extends Component {
             <View style={[styles.forgetContainer, { marginLeft: 10 }]}>
               <Text style={styles.textForget} onPress={() => this.props.navigation.navigate('App')}>Masuk Tanpa Login</Text>
             </View>
-          </View>
+          </View> */}
         </View>
       </View>
     )

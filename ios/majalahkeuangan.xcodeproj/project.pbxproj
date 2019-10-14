@@ -26,6 +26,7 @@
 		14D252C93CEE42E2829FDD8B /* FiraSans-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D9E064C4AB4B49799F6948AC /* FiraSans-Black.ttf */; };
 		1B7B3BC375554A69B137EBF3 /* FiraSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F772F91CE00425D8B42C550 /* FiraSans-ExtraLightItalic.ttf */; };
 		1B9467AFE6C149FB810E8C7F /* FiraSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A45493A17A2948558447713F /* FiraSans-Medium.ttf */; };
+		2454346C881B45E1A1BBC053 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E16AD2B7E16B448083E560CF /* EvilIcons.ttf */; };
 		25440BCE36384B348505D5F2 /* FiraSans-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 881B7B4EF1E447D293817556 /* FiraSans-BlackItalic.ttf */; };
 		26B3EDD3AB3F7E99C7349349 /* Pods_MajalahKeuangan_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5EF25282DCE7E95C5D37CD8 /* Pods_MajalahKeuangan_tvOS.framework */; };
 		2B703F86A89A469597CA91C6 /* FiraSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 33EA2F30D24649D5B0EBE9FB /* FiraSans-ExtraLight.ttf */; };
@@ -41,14 +42,21 @@
 		2D16E6881FA4F8E400B85C8A /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D16E6891FA4F8E400B85C8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* MajalahKeuanganTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MajalahKeuanganTests.m */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
+		45CE8838DC56418385AA51D9 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8CEF0DFA2E4544A68F444AAE /* Foundation.ttf */; };
 		4DA4EF7E5E494DCAA3218A22 /* FiraSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD179D9106714F09ABBC13E8 /* FiraSans-Italic.ttf */; };
 		5271184DA3AA421385D6EE7F /* FiraSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4776438E352D4AD388626624 /* FiraSans-BoldItalic.ttf */; };
 		565C05C4E47E456EB6E5FFE0 /* libRNGestureHandler-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B881720A90F7472CB484BE19 /* libRNGestureHandler-tvOS.a */; };
+		60610AEA5E9C461DBA0EEF35 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 90B44AEEF3D047C8B6C8149B /* FontAwesome.ttf */; };
 		6697D6973D3C41378E272388 /* FiraSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB81D143E96941B6A212B9AA /* FiraSans-ThinItalic.ttf */; };
 		8040456D194040F3A1CBA9C4 /* FiraSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4789478DE3D94F84BF4E17B8 /* FiraSans-LightItalic.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		84ADBF9FBDCE4A869E1185F3 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 049052C9DFB84CA694DADE99 /* Fontisto.ttf */; };
+		868B8FD9AA274E748F838D29 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C4F6F0775D78456A82860DFE /* Entypo.ttf */; };
+		8AA4924564A54C4388EB3537 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C256E223B66450097E0CDC5 /* FontAwesome5_Regular.ttf */; };
+		8D672885D3924843B63AC075 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3799B4C45FD243329E7FB51F /* Feather.ttf */; };
 		8E3C2DBCDAE8472B881E3471 /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A621D1720E94973819104DC /* libRNGoogleSignin.a */; };
 		9041CA172236DA5DBC785AD4 /* libPods-MajalahKeuanganTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D80EFA4186D246111CDBA752 /* libPods-MajalahKeuanganTests.a */; };
+		99E7FB643F334903962C8617 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84E6FE7C254A408BAE9210C7 /* Zocial.ttf */; };
 		9D358884439740D0AF26CB8A /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3FD5FEA917F49C9BF257586 /* libRNGestureHandler.a */; };
 		A7095A0EDB6E4829B36B53D3 /* FiraSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76D914DB000649DCA648038C /* FiraSans-ExtraBold.ttf */; };
 		A804F13322DFEE560000B006 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804F10622DFEE560000B006 /* Social.framework */; };
@@ -78,20 +86,29 @@
 		A8BE2A6022E096F5004EC83B /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A8BE2A2322E096F4004EC83B /* MaterialIcons.ttf */; };
 		A8EBDD7122DFF00500EEC22B /* libRNShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8EBDD6F22DFEFDE00EEC22B /* libRNShare.a */; };
 		AB8447C243DD4F69B259297A /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD8DF0D67FF44629E478DD0 /* libRNFirebase.a */; };
+		AC7D8BD0061E42009F6A3BA0 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15865F9E90E14CBE99110114 /* Ionicons.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		AF927B8E3D114652AD470709 /* FiraSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 607195F90C6640AE8145D795 /* FiraSans-SemiBold.ttf */; };
 		B20E63C056F03F30A54125C1 /* Pods_MajalahKeuangan_tvOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A6C9E3ED6E2323AE086F393 /* Pods_MajalahKeuangan_tvOSTests.framework */; };
 		B606B31894D64C908CFEB8F8 /* FiraSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 352C37D57894409FADE35E61 /* FiraSans-ExtraBoldItalic.ttf */; };
+		BA809522C51D4B909DB410B7 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E1493BC78FF4496FA0CDF318 /* AntDesign.ttf */; };
 		BE2B80D1289B4111BA157BBC /* FiraSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C66900F5E22D4E1AA6C97D60 /* FiraSans-Light.ttf */; };
 		BE6BE3CF33444494A25F0A08 /* FiraSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04110B79F59D49FDA54B18AA /* FiraSans-Thin.ttf */; };
+		C9FF3A62D5DE4E6384602D0A /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4E919D66DD24EBB8F78E97B /* Octicons.ttf */; };
+		D04B834D5A8E430F988C3337 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E286C7381BA43A482630BD7 /* FontAwesome5_Solid.ttf */; };
 		D205CD4C876F4FCCBCF4FBDA /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F2A6EF40A794B8BBA56658E /* libRCTFBSDK.a */; };
+		E381F84737A34E0889BFBC34 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3FD9E1CA8CE49E69D560E08 /* FontAwesome5_Brands.ttf */; };
 		E4A4A132D714405B904DCA6D /* FiraSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF957A9EB319497C8E543E9A /* FiraSans-SemiBoldItalic.ttf */; };
+		E4F70DA7272A4440B75C18EE /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3455ED8053984B0F89CBE609 /* SimpleLineIcons.ttf */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 		F056D9E467B44E2CB621A03F /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 159897EE233F4D1484FF1C3D /* libRNCAsyncStorage.a */; };
+		F0C3A5F643554F9295362E82 /* libRNAppAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3ECE6303879483D830A027F /* libRNAppAuth.a */; };
+		F16D6E87876E4051B90FA331 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC301509AB164D8A815E8585 /* MaterialIcons.ttf */; };
 		F22F6E307BD0D3D4A657AB70 /* libPods-MajalahKeuangan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A371090DAA6A85478CBB13A8 /* libPods-MajalahKeuangan.a */; };
 		F3ECCDCF223E48EA8340EC8D /* FiraSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 772FE007CE664737B36736AB /* FiraSans-Bold.ttf */; };
 		F5F4F8F6180346C6BBAD34BC /* FiraSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A6188E269D14F3D92C48D60 /* FiraSans-MediumItalic.ttf */; };
+		F9FDDCB0DA7B44FFA3D5F41A /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2694F536D39D4D9584EAAB39 /* MaterialCommunityIcons.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -333,6 +350,13 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		A875352C234DE9FE009D18F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 61A716B60DAC4F82B220C28C /* RNAppAuth.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNAppAuth;
+		};
 		A88732F322E0A5320060FB43 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A88732C222E0A5320060FB43 /* SQLite.xcodeproj */;
@@ -437,6 +461,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* MajalahKeuanganTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MajalahKeuanganTests.m; sourceTree = "<group>"; };
 		04110B79F59D49FDA54B18AA /* FiraSans-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-Thin.ttf"; path = "../assets/fonts/FiraSans-Thin.ttf"; sourceTree = "<group>"; };
+		049052C9DFB84CA694DADE99 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		0A6188E269D14F3D92C48D60 /* FiraSans-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-MediumItalic.ttf"; path = "../assets/fonts/FiraSans-MediumItalic.ttf"; sourceTree = "<group>"; };
 		0A6C9E3ED6E2323AE086F393 /* Pods_MajalahKeuangan_tvOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MajalahKeuangan_tvOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
@@ -450,15 +475,19 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = MajalahKeuangan/main.m; sourceTree = "<group>"; };
 		146748747907C8FCC8CC64BC /* Pods-MajalahKeuanganTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MajalahKeuanganTests.debug.xcconfig"; path = "Target Support Files/Pods-MajalahKeuanganTests/Pods-MajalahKeuanganTests.debug.xcconfig"; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		15865F9E90E14CBE99110114 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		159897EE233F4D1484FF1C3D /* libRNCAsyncStorage.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCAsyncStorage.a; sourceTree = "<group>"; };
 		189FB9E09511A96B2BDC87A8 /* Pods-MajalahKeuanganTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MajalahKeuanganTests.release.xcconfig"; path = "Target Support Files/Pods-MajalahKeuanganTests/Pods-MajalahKeuanganTests.release.xcconfig"; sourceTree = "<group>"; };
 		1A74D174E3BFDAC0FE6F0EFD /* Pods-MajalahKeuangan-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MajalahKeuangan-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-MajalahKeuangan-tvOS/Pods-MajalahKeuangan-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		2061598604674F5ABE3566F1 /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGestureHandler.xcodeproj; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; };
+		2694F536D39D4D9584EAAB39 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* MajalahKeuangan-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MajalahKeuangan-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* MajalahKeuangan-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MajalahKeuangan-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		33EA2F30D24649D5B0EBE9FB /* FiraSans-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-ExtraLight.ttf"; path = "../assets/fonts/FiraSans-ExtraLight.ttf"; sourceTree = "<group>"; };
+		3455ED8053984B0F89CBE609 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		352C37D57894409FADE35E61 /* FiraSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-ExtraBoldItalic.ttf"; path = "../assets/fonts/FiraSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		3799B4C45FD243329E7FB51F /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		4023070C02E94193BA423076 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDK.xcodeproj; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; };
 		4776438E352D4AD388626624 /* FiraSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-BoldItalic.ttf"; path = "../assets/fonts/FiraSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		4789478DE3D94F84BF4E17B8 /* FiraSans-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-LightItalic.ttf"; path = "../assets/fonts/FiraSans-LightItalic.ttf"; sourceTree = "<group>"; };
@@ -470,16 +499,24 @@
 		5F2A6EF40A794B8BBA56658E /* libRCTFBSDK.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTFBSDK.a; sourceTree = "<group>"; };
 		5F772F91CE00425D8B42C550 /* FiraSans-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-ExtraLightItalic.ttf"; path = "../assets/fonts/FiraSans-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		607195F90C6640AE8145D795 /* FiraSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-SemiBold.ttf"; path = "../assets/fonts/FiraSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		61A716B60DAC4F82B220C28C /* RNAppAuth.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAppAuth.xcodeproj; path = "../node_modules/react-native-app-auth/ios/RNAppAuth.xcodeproj"; sourceTree = "<group>"; };
 		6B49145AF3D459A08B87063E /* Pods-MajalahKeuangan-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MajalahKeuangan-tvOS.release.xcconfig"; path = "Target Support Files/Pods-MajalahKeuangan-tvOS/Pods-MajalahKeuangan-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		6E286C7381BA43A482630BD7 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		76D914DB000649DCA648038C /* FiraSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-ExtraBold.ttf"; path = "../assets/fonts/FiraSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		772FE007CE664737B36736AB /* FiraSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-Bold.ttf"; path = "../assets/fonts/FiraSans-Bold.ttf"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
+		7C256E223B66450097E0CDC5 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		84E6FE7C254A408BAE9210C7 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		881B7B4EF1E447D293817556 /* FiraSans-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-BlackItalic.ttf"; path = "../assets/fonts/FiraSans-BlackItalic.ttf"; sourceTree = "<group>"; };
+		8CEF0DFA2E4544A68F444AAE /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		90B44AEEF3D047C8B6C8149B /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		9A621D1720E94973819104DC /* libRNGoogleSignin.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGoogleSignin.a; sourceTree = "<group>"; };
 		9AD8DF0D67FF44629E478DD0 /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFirebase.a; sourceTree = "<group>"; };
 		A371090DAA6A85478CBB13A8 /* libPods-MajalahKeuangan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MajalahKeuangan.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3ECE6303879483D830A027F /* libRNAppAuth.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAppAuth.a; sourceTree = "<group>"; };
 		A45493A17A2948558447713F /* FiraSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-Medium.ttf"; path = "../assets/fonts/FiraSans-Medium.ttf"; sourceTree = "<group>"; };
+		A4E919D66DD24EBB8F78E97B /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		A804F10622DFEE560000B006 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		A804F13422DFEE5F0000B006 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		A875759322DFC61D00114957 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -505,10 +542,12 @@
 		A8BE2A2222E096F4004EC83B /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		A8BE2A2322E096F4004EC83B /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		A8EBDD3F22DFEFDE00EEC22B /* RNShare.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNShare.xcodeproj; path = "../node_modules/react-native-share/ios/RNShare.xcodeproj"; sourceTree = "<group>"; };
+		AC301509AB164D8A815E8585 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		AECAE65B167E45DDAD26C9C3 /* FiraSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-Regular.ttf"; path = "../assets/fonts/FiraSans-Regular.ttf"; sourceTree = "<group>"; };
 		B256EA404EC46BBFFE4F6745 /* Pods-MajalahKeuangan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MajalahKeuangan.debug.xcconfig"; path = "Target Support Files/Pods-MajalahKeuangan/Pods-MajalahKeuangan.debug.xcconfig"; sourceTree = "<group>"; };
 		B881720A90F7472CB484BE19 /* libRNGestureHandler-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNGestureHandler-tvOS.a"; sourceTree = "<group>"; };
+		C4F6F0775D78456A82860DFE /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		C66900F5E22D4E1AA6C97D60 /* FiraSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-Light.ttf"; path = "../assets/fonts/FiraSans-Light.ttf"; sourceTree = "<group>"; };
 		C945B3FF20D7B7E5E5AC74F9 /* Pods-MajalahKeuangan-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MajalahKeuangan-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-MajalahKeuangan-tvOSTests/Pods-MajalahKeuangan-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CB81D143E96941B6A212B9AA /* FiraSans-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-ThinItalic.ttf"; path = "../assets/fonts/FiraSans-ThinItalic.ttf"; sourceTree = "<group>"; };
@@ -516,9 +555,12 @@
 		D80EFA4186D246111CDBA752 /* libPods-MajalahKeuanganTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MajalahKeuanganTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9E064C4AB4B49799F6948AC /* FiraSans-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-Black.ttf"; path = "../assets/fonts/FiraSans-Black.ttf"; sourceTree = "<group>"; };
 		DA225EB5381C4F17AFC70F4B /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCAsyncStorage.xcodeproj; path = "../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; };
+		E1493BC78FF4496FA0CDF318 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		E16AD2B7E16B448083E560CF /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F3FD5FEA917F49C9BF257586 /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = "<group>"; };
+		F3FD9E1CA8CE49E69D560E08 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		F5EF25282DCE7E95C5D37CD8 /* Pods_MajalahKeuangan_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MajalahKeuangan_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF957A9EB319497C8E543E9A /* FiraSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-SemiBoldItalic.ttf"; path = "../assets/fonts/FiraSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -564,6 +606,7 @@
 				D205CD4C876F4FCCBCF4FBDA /* libRCTFBSDK.a in Frameworks */,
 				F056D9E467B44E2CB621A03F /* libRNCAsyncStorage.a in Frameworks */,
 				F22F6E307BD0D3D4A657AB70 /* libPods-MajalahKeuangan.a in Frameworks */,
+				F0C3A5F643554F9295362E82 /* libRNAppAuth.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,6 +720,22 @@
 				FF957A9EB319497C8E543E9A /* FiraSans-SemiBoldItalic.ttf */,
 				04110B79F59D49FDA54B18AA /* FiraSans-Thin.ttf */,
 				CB81D143E96941B6A212B9AA /* FiraSans-ThinItalic.ttf */,
+				E1493BC78FF4496FA0CDF318 /* AntDesign.ttf */,
+				C4F6F0775D78456A82860DFE /* Entypo.ttf */,
+				E16AD2B7E16B448083E560CF /* EvilIcons.ttf */,
+				3799B4C45FD243329E7FB51F /* Feather.ttf */,
+				90B44AEEF3D047C8B6C8149B /* FontAwesome.ttf */,
+				F3FD9E1CA8CE49E69D560E08 /* FontAwesome5_Brands.ttf */,
+				7C256E223B66450097E0CDC5 /* FontAwesome5_Regular.ttf */,
+				6E286C7381BA43A482630BD7 /* FontAwesome5_Solid.ttf */,
+				049052C9DFB84CA694DADE99 /* Fontisto.ttf */,
+				8CEF0DFA2E4544A68F444AAE /* Foundation.ttf */,
+				15865F9E90E14CBE99110114 /* Ionicons.ttf */,
+				2694F536D39D4D9584EAAB39 /* MaterialCommunityIcons.ttf */,
+				AC301509AB164D8A815E8585 /* MaterialIcons.ttf */,
+				A4E919D66DD24EBB8F78E97B /* Octicons.ttf */,
+				3455ED8053984B0F89CBE609 /* SimpleLineIcons.ttf */,
+				84E6FE7C254A408BAE9210C7 /* Zocial.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -799,6 +858,7 @@
 				4C1C98D4E68840DD9280A742 /* RNGoogleSignin.xcodeproj */,
 				4023070C02E94193BA423076 /* RCTFBSDK.xcodeproj */,
 				DA225EB5381C4F17AFC70F4B /* RNCAsyncStorage.xcodeproj */,
+				61A716B60DAC4F82B220C28C /* RNAppAuth.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -856,6 +916,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A8753529234DE9FE009D18F9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A875352D234DE9FE009D18F9 /* libRNAppAuth.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		A88732C322E0A5320060FB43 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -873,6 +941,7 @@
 				5F2A6EF40A794B8BBA56658E /* libRCTFBSDK.a */,
 				159897EE233F4D1484FF1C3D /* libRNCAsyncStorage.a */,
 				B881720A90F7472CB484BE19 /* libRNGestureHandler-tvOS.a */,
+				A3ECE6303879483D830A027F /* libRNAppAuth.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1131,6 +1200,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = A8753529234DE9FE009D18F9 /* Products */;
+					ProjectRef = 61A716B60DAC4F82B220C28C /* RNAppAuth.xcodeproj */;
 				},
 				{
 					ProductGroup = A8BD648A22DFC07C00C0C863 /* Products */;
@@ -1392,6 +1465,13 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		A875352D234DE9FE009D18F9 /* libRNAppAuth.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNAppAuth.a;
+			remoteRef = A875352C234DE9FE009D18F9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		A88732F422E0A5320060FB43 /* libSQLite.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1534,6 +1614,22 @@
 				A8BE2A5622E096F5004EC83B /* MaterialCommunityIcons.ttf in Resources */,
 				A8BE2A5D22E096F5004EC83B /* Zocial.ttf in Resources */,
 				6697D6973D3C41378E272388 /* FiraSans-ThinItalic.ttf in Resources */,
+				BA809522C51D4B909DB410B7 /* AntDesign.ttf in Resources */,
+				868B8FD9AA274E748F838D29 /* Entypo.ttf in Resources */,
+				2454346C881B45E1A1BBC053 /* EvilIcons.ttf in Resources */,
+				8D672885D3924843B63AC075 /* Feather.ttf in Resources */,
+				60610AEA5E9C461DBA0EEF35 /* FontAwesome.ttf in Resources */,
+				E381F84737A34E0889BFBC34 /* FontAwesome5_Brands.ttf in Resources */,
+				8AA4924564A54C4388EB3537 /* FontAwesome5_Regular.ttf in Resources */,
+				D04B834D5A8E430F988C3337 /* FontAwesome5_Solid.ttf in Resources */,
+				84ADBF9FBDCE4A869E1185F3 /* Fontisto.ttf in Resources */,
+				45CE8838DC56418385AA51D9 /* Foundation.ttf in Resources */,
+				AC7D8BD0061E42009F6A3BA0 /* Ionicons.ttf in Resources */,
+				F9FDDCB0DA7B44FFA3D5F41A /* MaterialCommunityIcons.ttf in Resources */,
+				F16D6E87876E4051B90FA331 /* MaterialIcons.ttf in Resources */,
+				C9FF3A62D5DE4E6384602D0A /* Octicons.ttf in Resources */,
+				E4F70DA7272A4440B75C18EE /* SimpleLineIcons.ttf in Resources */,
+				99E7FB643F334903962C8617 /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1793,11 +1889,15 @@
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 				);
 				INFOPLIST_FILE = MajalahKeuanganTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1821,11 +1921,15 @@
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 				);
 				INFOPLIST_FILE = MajalahKeuanganTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1856,6 +1960,7 @@
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
 					"${PODS_ROOT}/Headers/Public/**/**",
+					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 				);
 				INFOPLIST_FILE = MajalahKeuangan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1889,6 +1994,7 @@
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
 					"${PODS_ROOT}/Headers/Public/**",
+					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 				);
 				INFOPLIST_FILE = MajalahKeuangan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1923,10 +2029,14 @@
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 				);
 				INFOPLIST_FILE = "MajalahKeuangan-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1959,10 +2069,14 @@
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 				);
 				INFOPLIST_FILE = "MajalahKeuangan-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1994,10 +2108,14 @@
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 				);
 				INFOPLIST_FILE = "MajalahKeuangan-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -2029,10 +2147,14 @@
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 				);
 				INFOPLIST_FILE = "MajalahKeuangan-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",

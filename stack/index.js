@@ -7,7 +7,10 @@ import Splash from '../views/Splash'
 export default createSwitchNavigator(
   {
     Auth: AuthStack,
-    App: AppStack,
+    App: {
+      screen: AppStack,
+      path: ''
+    },
     Splash
   },
   {

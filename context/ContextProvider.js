@@ -6,6 +6,8 @@ export default class ContextProvider extends Component {
     super(props)
 
     this.state = {
+      accessToken: null,
+      setAccessToken: this.setAccessToken,
       user: null,
       setUser: this.setUser,
       magazines: [],
@@ -30,6 +32,10 @@ export default class ContextProvider extends Component {
       showSettingsModal: false,
       setShowSettingsModal: this.setShowSettingsModal
     }
+  }
+
+  setAccessToken = (accessToken) => {
+    this.setState({ accessToken })
   }
 
   setUser = (user) => {

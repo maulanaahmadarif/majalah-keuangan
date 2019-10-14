@@ -2,36 +2,28 @@ import React, { Component } from 'react'
 import { withNavigation } from 'react-navigation'
 import firebase from 'react-native-firebase'
 import Spinner from 'react-native-loading-spinner-overlay'
+import { authorize } from 'react-native-app-auth'
+import jwtDecode from 'jwt-decode'
 import {
-  TextInput,
   View,
-  StyleSheet,
   Alert
 } from 'react-native'
 
 import RegularButton from '../button/RegularButton'
 import { withContext } from '../../context/withContext'
 
-const styles = StyleSheet.create({
-  inputField: {
-    borderColor: '#fff',
-    alignItems: 'stretch',
-    color: '#000',
-    height: 40,
-    textAlignVertical: 'top',
-    borderLeftWidth: 1,
-    borderTopWidth: 1,
-    borderRightWidth: 1,
-    borderBottomWidth: 1,
-    paddingLeft: 10,
-    paddingRight: 10,
-    backgroundColor: 'rgba(255,255,255,.7)',
-    borderRadius: 5
+const config = {
+  serviceConfiguration: {
+    authorizationEndpoint: 'https://demo-account.kemenkeu.go.id/connect/authorize',
+    tokenEndpoint: 'https://demo-account.kemenkeu.go.id/connect/token'
   },
-  inputSetting: {
-    borderColor: 'rgb(188,188,188)'
-  }
-})
+  clientId: 'media-keuangan',
+  clientSecret: 'MKDev',
+  redirectUrl: 'id.go.majalahkeuangan://callback',
+  scopes: ['profile', 'openid', 'profil.hris.api.kemenkeu.go.id', 'gateway'],
+  useNonce: false,
+  usePKCE: false
+}
 
 class LoginAuth extends Component {
   constructor(props) {
@@ -45,6 +37,20 @@ class LoginAuth extends Component {
       user: null,
       isLoading: false
     }
+  }
+
+  auth =  async () => {
+    authorize(config)
+      .then((res) => {
+        const accessToken = res.accessToken
+        const decodedJWT = jwtDecode(accessToken)
+        this.props.context.setAccessToken(res.accessToken)
+        this.props.context.setUser(decodedJWT)
+        this.props.navigation.navigate('App')
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   handleSignIn = () => {
@@ -89,47 +95,27 @@ class LoginAuth extends Component {
           overlayColor="rgba(0,0,0,0.7)"
           textStyle={{ color: '#fff' }}
         />
-        <View style={{ alignItems: 'stretch', marginBottom: 10 }}>
-          <View style={{ alignItems: 'stretch', marginBottom: 10 }}>
-            <TextInput
-              style={[styles.inputField, this.props.settingPage && styles.inputSetting]}
-              onChangeText={(email) => this.setState({ email })}
-              value={this.state.email}
-              keyboardType="email-address"
-              placeholder='Email'
-              multiline={false}
-            />
-          </View>
-          <View style={{ alignItems: 'stretch' }}>
-            <TextInput
-              style={[styles.inputField, this.props.settingPage && styles.inputSetting]}
-              onChangeText={(password) => this.setState({ password })}
-              value={this.state.password}
-              placeholder='Password'
-              secureTextEntry={true}
-              multiline={false}
-            />
-          </View>
+        <View style={{ marginBottom: 10 }}>
+          <RegularButton
+            text="SIGN IN"
+            bgColor={this.props.settingPage ? 'rgb(188,188,188)' : 'rgba(255,255,255,.8)'}
+            color="rgb(0,0,0)"
+            onPress={this.auth}
+          />
         </View>
-        <View style={{ flexDirection: 'row', marginBottom: 10 }}>
-          <View style={{ marginRight: 5, flex: 1 }}>
+        { this.props.settingPage ? (
+          null
+        ) : (
+          <View>
             <RegularButton
-              text="SIGN IN"
-              bgColor={this.props.settingPage ? 'rgb(188,188,188)' : 'rgba(255,255,255,.8)'}
-              color="rgb(0,0,0)"
-              onPress={this.handleSignIn}
-            />
-          </View>
-          <View style={{ flex: 1 }}>
-            <RegularButton
-              text="DAFTAR"
+              text="MASUK TANPA SIGN IN"
               bgColor={this.props.settingPage ? 'rgb(254,116,118)' : 'rgba(255,255,255,.8)'}
               color={this.props.settingPage ? 'rgb(255,255,255)' : 'rgb(0,0,0)'}
-              onPress={this.onPressSignup}
+              onPress={() => this.props.navigation.navigate('App')}
               settingPage={this.props.settingPage}
             />
           </View>
-        </View>
+        )}
       </View>
     )
   }

@@ -7,6 +7,8 @@ import {
   Dimensions
 } from 'react-native'
 
+import { IMAGE_PROXY_URL } from '../../utils/constant'
+
 const { width: viewportWidth } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
@@ -31,7 +33,7 @@ class ArticleCard extends Component {
       <View style={styles.viewContainer}>
         <View>
           { this.props.image ? (
-            <Image source={{ uri: `http://mediakeuangan.kemenkeu.go.id/Images/article/${this.props.image}` }} style={{ width: viewportWidth * 0.9, height: 150 }} resizeMode="cover" />
+            <Image source={{ uri: `${IMAGE_PROXY_URL}https://mediakeuangan.kemenkeu.go.id/Images/article/${this.props.image}` }} style={{ width: viewportWidth * 0.9, height: 150 }} resizeMode="cover" />
           ) : (
             <Image source={require('../../assets/images/logo.png')} style={{ width: viewportWidth * 0.9, height: 150 }} resizeMode="cover" />
           ) }

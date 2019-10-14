@@ -159,7 +159,7 @@ class TabBarCategory extends Component {
       if (prevIndex === null) {
         color = 'rgba(0,0,0,.2)'
       } else {
-        color = '#FFFFFF'
+        color = '#000000'
       }
     }
     return color
@@ -178,7 +178,7 @@ class TabBarCategory extends Component {
       if (nextIndex === null) {
         color = 'rgba(0,0,0,.2)'
       } else {
-        color = '#FFFFFF'
+        color = '#000000'
       }
     }
     return color

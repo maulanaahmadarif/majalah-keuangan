@@ -10,6 +10,7 @@ target 'MajalahKeuangan' do
   pod 'Firebase/Auth', '~> 6.3.0'
   pod 'GoogleSignIn', '~> 4.4.0'
   pod 'TwitterKit', '~> 3.3.0'
+  pod 'AppAuth', '~> 0.95.0'
 
   pod 'React', :path => '../node_modules/react-native'
   pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'

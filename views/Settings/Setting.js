@@ -39,6 +39,19 @@ const deleteMagazineRadioItem = [
   }
 ]
 
+const config = {
+  serviceConfiguration: {
+    authorizationEndpoint: 'https://demo-account.kemenkeu.go.id/connect/authorize',
+    tokenEndpoint: 'https://demo-account.kemenkeu.go.id/connect/token'
+  },
+  clientId: 'media-keuangan',
+  clientSecret: 'MKDev',
+  redirectUrl: 'id.go.majalahkeuangan://callback',
+  scopes: ['profile', 'openid', 'profil.hris.api.kemenkeu.go.id', 'gateway'],
+  useNonce: false,
+  usePKCE: false
+}
+
 class Settings extends Component {
   constructor (props) {
     super(props)
@@ -56,23 +69,25 @@ class Settings extends Component {
   }
 
   onSignOut = () => {
-    this.setState({ isLoading: true })
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        db.resetDB()
-          .then((res) => {
-            this.props.context.setUser(null)
-            this.props.navigation.navigate('Auth')
-          })
-          .catch((err) => {
-            console.log(err.message)
-          })
-      })
-      .catch((err) => {
-        Alert.alert('Error', err.message)
-      })
+    this.props.context.setAccessToken(null)
+    this.props.context.setUser(null)
+    this.props.navigation.navigate('Auth')
+    // firebase
+    //   .auth()
+    //   .signOut()
+    //   .then(() => {
+    //     db.resetDB()
+    //       .then((res) => {
+    //         this.props.context.setUser(null)
+    //         this.props.navigation.navigate('Auth')
+    //       })
+    //       .catch((err) => {
+    //         console.log(err.message)
+    //       })
+    //   })
+    //   .catch((err) => {
+    //     Alert.alert('Error', err.message)
+    //   })
   }
 
   componentWillUnmount () {
@@ -81,19 +96,21 @@ class Settings extends Component {
 
   renderAuthSettings = () => {
     if (this.isLoggedIn()) {
-      // return (
-      //   <CardList text="Akun" onPress={() => this.props.navigation.navigate('Account')} />
-      // )
+      const user = this.props.context.user
+      return (
+        <View style={{ paddingTop: 20, paddingBottom: 20 }}>
+          <Container>
+            <Text style={{ fontSize: 16, textAlign: 'center', fontWeight: 'bold' }}>{ user.name }</Text>
+            <Text style={{ fontSize: 16, textAlign: 'center', fontWeight: 'bold' }}>{ user.email }</Text>
+          </Container>
+        </View>
+      )
       return null
     } else {
       return (
         <View style={{ paddingTop: 20, paddingBottom: 20 }}>
           <Container>
             <LoginAuth settingPage />
-              <View style={{ marginBottom: 30 }}>
-                <Text style={{ textAlign: 'center', color: '#000' }}>or Connect With</Text>
-              </View>
-              <SocialAuth settingPage />
           </Container>
         </View>
       )

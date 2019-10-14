@@ -1,0 +1,1 @@
+export const IMAGE_PROXY_URL = 'https://belajar-dari-cinta.appspot.com/ssl-reject-image?url='

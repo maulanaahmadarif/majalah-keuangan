@@ -13,6 +13,7 @@
 #import <React/RCTRootView.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <RNGoogleSignin/RNGoogleSignin.h>
+#import <React/RCTLinkingManager.h>
 
 @implementation AppDelegate
 
@@ -37,17 +38,29 @@
   [self.window makeKeyAndVisible];
   return YES;
 }
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *, id> *) options
+{
+  return [self.authorizationFlowManagerDelegate resumeExternalUserAgentFlowWithURL:url];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+  return [RCTLinkingManager application:application openURL:url
+                      sourceApplication:sourceApplication annotation:annotation];
+}
   
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
-  {
-    BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey] annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
-                    ] || [RNGoogleSignin application:application
-                                             openURL:url
-                                   sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
-                                          annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
-                          ];;
-    return handled;
-  }
+//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+//  {
+//    BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey] annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
+//                    ] || [RNGoogleSignin application:application
+//                                             openURL:url
+//                                   sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+//                                          annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
+//                          ];;
+//    return handled;
+//  }
 
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge

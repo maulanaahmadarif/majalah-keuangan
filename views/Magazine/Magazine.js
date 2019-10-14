@@ -16,6 +16,7 @@ import {
 import { withContext } from '../../context/withContext'
 import { fetchMagazine } from '../../api'
 import { formatDate } from '../../utils/dates'
+import { IMAGE_PROXY_URL } from '../../utils/constant'
 
 const { width: viewportWidth } = Dimensions.get('window')
 
@@ -185,7 +186,7 @@ class Magazine extends Component {
           </Text>
         </View>
         <View>
-          <Image source={{ uri: mag.cover_image }} style={[styles.imageStyle]} />
+          <Image source={{ uri: IMAGE_PROXY_URL + mag.cover_image }} style={[styles.imageStyle]} />
         </View>
         <View style={{ marginVertical: 15 }}>
           <Text style={[styles.magazineText, { color: '#000', fontWeight: 'bold' }, this.isDarkMode() && { color: '#FFFFFF' }]}>{ mag.title }</Text>
