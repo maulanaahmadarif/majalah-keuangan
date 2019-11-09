@@ -100,8 +100,8 @@ class Settings extends Component {
       return (
         <View style={{ paddingTop: 20, paddingBottom: 20 }}>
           <Container>
-            <Text style={{ fontSize: 16, textAlign: 'center', fontWeight: 'bold' }}>{ user.name }</Text>
-            <Text style={{ fontSize: 16, textAlign: 'center', fontWeight: 'bold' }}>{ user.email }</Text>
+            <Text style={{ fontFamily: 'FiraSans-Black', fontSize: 16, textAlign: 'center', color: this.isDarkMode() ? '#fff' : '#000' }}>{ user.name }</Text>
+            <Text style={{ fontFamily: 'FiraSans-Black', fontSize: 16, textAlign: 'center', color: this.isDarkMode() ? '#fff' : '#000' }}>{ user.email }</Text>
           </Container>
         </View>
       )
@@ -211,12 +211,12 @@ class Settings extends Component {
             <RadioButton value={this.state.deleteMagazineIn} label="Hapus otomatis, kecuali" data={deleteMagazineRadioItem} onChange={this.onRadioDeleteMagazineChange} />
             <View>
               <TouchableOpacity style={{ backgroundColor: '#000000', padding: 10 }} onPress={this.onDeleteMagazine}>
-                <Text style={{ fontSize: 16, color: '#FFFFFF', textAlign: 'center' }}>Hapus</Text>
+                <Text style={{ fontSize: 16, color: '#FFFFFF', textAlign: 'center', fontFamily: 'FiraSans-Regular' }}>Hapus</Text>
               </TouchableOpacity>
             </View>
             <View style={{ marginVertical: 5 }}>
               <TouchableOpacity style={{ backgroundColor: '#000000', padding: 10 }} onPress={() => this.setState({ modalDeleteMagazineVisible: false })}>
-                <Text style={{ fontSize: 16, color: '#FFFFFF', textAlign: 'center' }}>Batal</Text>
+                <Text style={{ fontSize: 16, color: '#FFFFFF', textAlign: 'center', fontFamily: 'FiraSans-Regular' }}>Batal</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -225,7 +225,7 @@ class Settings extends Component {
         <CardList text={`Berikan Rating di ${this.isAndroid() ? 'Google Play' : 'App Store'}`} onPress={() => this.handleOpenURL(this.getMarketLink())} />
         <CardList text="Cara Penggunaan" onPress={() => this.props.navigation.navigate('Guide')} />
         <CardList text="Hapus Majalah" onPress={this.onAlertPopup} />
-        <CardList text="Hapus Riwayat Majalah" onPress={() => this.setState({ modalDeleteMagazineVisible: true }) } />
+        <CardList text="Hapus Majalah Disukai dan Sudah Dibaca" onPress={() => this.setState({ modalDeleteMagazineVisible: true }) } />
         <CardList text="Pengaturan Mode Baca" onPress={() => this.setState({ modalModeVisible: true })} />
         <CardList text="Tentang Kami" onPress={() => this.props.navigation.navigate('About')} />
         <CardList text="Website Kemenkeu" onPress={() => this.handleOpenURL('https://www.kemenkeu.go.id/')} />

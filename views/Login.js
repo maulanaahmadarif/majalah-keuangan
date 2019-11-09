@@ -6,9 +6,12 @@ import {
   Image,
   StatusBar } from 'react-native'
 import { authorize } from 'react-native-app-auth'
+import firebase from 'react-native-firebase'
 
 import SocialAuth from '../components/layout/SocialAuth'
 import LoginAuth from '../components/layout/LoginAuth'
+
+const analytics = firebase.analytics()
 
 const styles = StyleSheet.create({
   backgroundImage: {
@@ -42,6 +45,10 @@ const styles = StyleSheet.create({
 })
 
 class Login extends Component {
+  componentDidMount () {
+    analytics.setCurrentScreen('Login', 'Login.js')
+  }
+
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center' }}>
@@ -52,7 +59,7 @@ class Login extends Component {
             <Image source={require('../assets/images/logo-kemenkeu.png')} style={{ width: 125, height: 86 }} />
           </View>
           <View style={{ marginBottom: 100 }}>
-            <Text textBreakStrategy='balanced' style={{ color: '#fff', fontFamily: 'FiraSans-Medium', fontSize: 40, textAlign: 'center' }}>MEDIA<Text style={{ fontFamily: 'FiraSans-Black' }}>KEUANGAN</Text></Text>
+            <Text textBreakStrategy='balanced' style={{ color: '#fff', fontFamily: 'FiraSans-Medium', fontSize: 35, textAlign: 'center' }}>MEDIA<Text style={{ fontFamily: 'FiraSans-Black' }}>KEUANGAN</Text></Text>
             <Text style={{ color: '#fff', fontFamily: 'FiraSans-Medium', fontSize: 12, textAlign: 'center' }}>TRANSAPARNSI INFORMASI KEBIJAKAN FISKAL</Text>
           </View>
           <LoginAuth />

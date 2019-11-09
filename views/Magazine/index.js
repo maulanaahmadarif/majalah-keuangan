@@ -1,4 +1,5 @@
 import React from 'react'
+import { Text } from 'react-native'
 import {
   createStackNavigator,
   createAppContainer,
@@ -17,18 +18,30 @@ import DrawerMenu from '../../components/layout/DrawerMenu'
 import TabBarCategory from '../../components/layout/TabBarCategory'
 import ButtonShare from '../../components/button/ButtonShare'
 
+const generateExcerpt = (text, maxWord) => {
+  const textArr = text.split(' ')
+  if (maxWord > textArr.length) {
+    maxWord = textArr.length
+  }
+  const excerpt = []
+  for (let i = 0; i < maxWord; i++) {
+    excerpt.push(textArr[i])
+  }
+  return excerpt.join(' ')
+}
+
 const MagazineStack = createStackNavigator(
   {
     Magazine: {
       screen: Magazine,
       navigationOptions: {
-        title: 'Tahun Terbit',
+        headerTitle: <Text style={{ textAlign: 'center', flex: 1, fontFamily: 'FiraSans-Black', fontSize: 20, color: '#000' }}>Majalah Keuangan</Text>,
         headerTitleStyle: { 
           textAlign: 'center', 
           flex: 1,
-          alignSelf: 'center'
+          alignSelf: 'center',
         },
-      },
+      }
     },
     Category: {
       screen: createBottomTabNavigator(
@@ -40,7 +53,7 @@ const MagazineStack = createStackNavigator(
         {
           navigationOptions: ({ navigation }) => {
             return {
-              title: navigation.state.params.title,
+              headerTitle: <Text style={{ textAlign: 'center', flex: 1, fontFamily: 'FiraSans-Black', fontSize: 20, color: '#000' }}>{ `${generateExcerpt(navigation.state.params.title, 3)} ...` }</Text>,
               headerTitleStyle: { 
                 textAlign: 'center', 
                 flex: 1,
@@ -75,7 +88,7 @@ const MagazineStack = createStackNavigator(
       ),
       navigationOptions: ({ navigation }) => {
         return {
-          title: navigation.state.params.title,
+          headerTitle: <Text style={{ textAlign: 'center', flex: 1, fontFamily: 'FiraSans-Black', fontSize: 20, color: '#000' }}>{ navigation.state.params.title }</Text>,
           headerTitleStyle: { 
             textAlign: 'center', 
             flex: 1,

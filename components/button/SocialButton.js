@@ -78,7 +78,7 @@ class SocialButton extends Component {
 
   render () {
     return (
-      <View style={styles.logoContainer}>
+      <View style={styles.logoContainer, this.props.flexStart && { alignItems: 'flex-start' }}>
         <View style={[styles.logoBorder, this.props.settingPage && { borderColor: 'rgb(188,188,188)' }]}>
           <TouchableOpacity onPress={this.props.onPress}>
             { this.renderLogo() }

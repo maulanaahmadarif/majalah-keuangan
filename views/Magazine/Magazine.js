@@ -12,6 +12,7 @@ import {
   Dimensions,
   FlatList
 } from 'react-native'
+import RNPickerSelect from 'react-native-picker-select'
 
 import { withContext } from '../../context/withContext'
 import { fetchMagazine } from '../../api'
@@ -65,15 +66,50 @@ const styles = StyleSheet.create({
     height: 254
   }
 })
-
 class Magazine extends Component {
   constructor (props) {
     super(props)
 
+    this.inputRefs = {
+      firstTextInput: null,
+      favSport0: null
+    }
+
     this.state = {
       isLoading: true,
-      activeEdition: null
+      activeEdition: null,
+      selectedYear: null
     }
+  }
+
+  getStyles () {
+    const pickerSelectStyles = StyleSheet.create({
+      inputIOS: {
+        fontFamily: 'FiraSans-Regular',
+        fontSize: 16,
+        paddingVertical: 12,
+        paddingHorizontal: 10,
+        borderWidth: 1,
+        borderColor: 'gray',
+        borderRadius: 4,
+        color: this.isDarkMode() ? '#FFF' : '#000',
+        paddingRight: 30, // to ensure the text is never behind the icon
+      },
+      inputAndroid: {
+        fontFamily: 'FiraSans-Regular',
+        fontSize: 16,
+        paddingHorizontal: 10,
+        paddingVertical: 8,
+        borderWidth: 0.5,
+        borderColor: 'purple',
+        borderRadius: 8,
+        height: 50,
+        color: this.isDarkMode() ? '#FFF' : '#000',
+        width: 150,
+        paddingRight: 30, // to ensure the text is never behind the icon
+      },
+    })
+    return pickerSelectStyles
   }
 
   componentDidMount () {
@@ -90,7 +126,10 @@ class Magazine extends Component {
           this.props.context.setMagazines(res.magazine)
           this.props.context.setEdition(res.years)
           // this.setState({ activeEdition: activeEdition.HeaderEdition })
-          this.setState({ activeEdition: res.years[0].HeaderEdition })
+          this.setState({
+            activeEdition: res.years[0].HeaderEdition,
+            selectedYear: res.years[0].HeaderEdition.toString(),
+          })
         }
       })
       .catch((err) => {
@@ -180,35 +219,72 @@ class Magazine extends Component {
       <TouchableOpacity activeOpacity={1} style={[styles.magazineContainer]} onPress={() => this.props.navigation.navigate('Article', { id: mag.id, title: formatDate(mag.edition, 'MMMM YYYY') })}>
         <View style={{ marginBottom: 10 }}>
           <Text style={[styles.magazineText, { textTransform: 'uppercase' }, this.isDarkMode() && { color: '#FFFFFF' }]}>
-            { formatDate(mag.edition, 'MMMM YYYY') }
-            { '\n' }
-            <Text style={[styles.magazineText, { color: '#000' }, this.isDarkMode() && { color: '#FFFFFF' }]}>{ mag.edition_number }</Text>
+            <Text style={[styles.magazineText, { color: '#000', fontFamily: 'FiraSans-Medium' }, this.isDarkMode() && { color: '#FFFFFF' }]}>{ mag.edition_number }</Text>
           </Text>
         </View>
         <View>
           <Image source={{ uri: IMAGE_PROXY_URL + mag.cover_image }} style={[styles.imageStyle]} />
         </View>
         <View style={{ marginVertical: 15 }}>
-          <Text style={[styles.magazineText, { color: '#000', fontWeight: 'bold' }, this.isDarkMode() && { color: '#FFFFFF' }]}>{ mag.title }</Text>
+          <Text style={[styles.magazineText, { color: '#000', fontFamily: 'FiraSans-Black' }, this.isDarkMode() && { color: '#FFFFFF' }]}>{ mag.title }</Text>
         </View>
         <View>
-          <Text style={[styles.magazineText, this.isDarkMode() && { color: '#FFFFFF' }]}>{ this.generateExcerpt(mag.description, 8) }</Text>
+          <Text style={[styles.magazineText, { fontFamily: 'FiraSans-Regular' }, this.isDarkMode() && { color: '#FFFFFF' }]}>{ `${this.generateExcerpt(mag.description, 8)} ...` }</Text>
         </View>
       </TouchableOpacity>
     )
   }
 
+  renderPickerItem () {
+    if (this.props.context.edition.length > 0) {
+      return this.props.context.edition
+        .sort((a, b) => b.HeaderEdition - a.HeaderEdition)
+        .map((year, index) => (
+          { key: `edisi-${index}`, label: year.HeaderEdition.toString(), value: year.HeaderEdition.toString() }
+        ))
+    }
+    return []
+  }
+
+  onSelectYearChange (value) {
+    this.setState({
+      selectedYear: value,
+      activeEdition: parseInt(value, 10)
+    })
+  }
+
   render () {
     return (
-      <ScrollView stickyHeaderIndices={[1]} style={[ this.isDarkMode() && { backgroundColor: '#000000'} ]}>
+      <ScrollView style={[ this.isDarkMode() && { backgroundColor: '#000000'} ]}>
         <Spinner
           visible={this.state.isLoading}
           overlayColor="rgba(0,0,0,0.7)"
           textStyle={{ color: '#fff' }}
         />
-        <ScrollView style={[styles.editionWrapper, this.isDarkMode() && { backgroundColor: '#000000', shadowColor: '#FFFFFF' }]} horizontal showsHorizontalScrollIndicator={false} >
+        {/* <ScrollView style={[styles.editionWrapper, this.isDarkMode() && { backgroundColor: '#000000', shadowColor: '#FFFFFF' }]} horizontal showsHorizontalScrollIndicator={false} >
           { this.renderEdition() }
-        </ScrollView>
+        </ScrollView> */}
+        <View style={{ paddingHorizontal: 15, paddingVertical: 15, alignItems: 'center' }}>
+          <View><Text style={[{ fontFamily: 'FiraSans-Medium', fontSize: 18, textAlign: 'center' }, this.isDarkMode() ? { color: '#fff' } : { color: '#000' }]}>Pilih Tahun Edisi</Text></View>
+          <View style={{ flex: 1 }}>
+            <RNPickerSelect
+              placeholder={{ label: 'Pilih Edisi', value: null }}
+              items={this.renderPickerItem()}
+              onValueChange={(itemValue) => this.onSelectYearChange(itemValue)}
+              onUpArrow={() => {
+                this.inputRefs.firstTextInput.focus();
+              }}
+              onDownArrow={() => {
+                this.inputRefs.favSport0.togglePicker();
+              }}
+              style={this.getStyles()}
+              value={this.state.selectedYear}
+              ref={el => {
+                this.inputRefs.favSport0 = el;
+              }}
+            />
+          </View>
+        </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           { this.props.context.magazines.length !== 0 && (
             <FlatList

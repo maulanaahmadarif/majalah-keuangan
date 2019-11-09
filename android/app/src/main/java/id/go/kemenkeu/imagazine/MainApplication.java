@@ -18,6 +18,7 @@ import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
+import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -47,7 +48,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RNAppAuthPackage(),
+          new RNAppAuthPackage(),
           new RNDeviceInfo(),
           new AsyncStoragePackage(),
           new SQLitePluginPackage(),
@@ -58,6 +59,7 @@ public class MainApplication extends Application implements ReactApplication {
           new RNFirebasePackage(),
           new RNFirebaseAuthPackage(),
           new RNFirebaseMessagingPackage(),
+          new RNFirebaseAnalyticsPackage(),
           new RNSharePackage()
       );
     }

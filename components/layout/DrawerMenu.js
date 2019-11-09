@@ -13,7 +13,8 @@ import { withContext } from '../../context/withContext'
 
 const styles = StyleSheet.create({
   textMenu: {
-    color: '#FFFFFF'
+    color: '#FFFFFF',
+    fontFamily: 'FiraSans-Regular'
   }
 })
 

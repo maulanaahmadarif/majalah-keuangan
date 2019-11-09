@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Spinner from 'react-native-loading-spinner-overlay'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import HTML from 'react-native-render-html'
 import {
   ScrollView,
   View,
@@ -19,8 +20,11 @@ import Container from '../../components/layout/Container'
 import { withContext } from '../../context/withContext'
 import { fetchArticles } from '../../api'
 import { IMAGE_PROXY_URL } from '../../utils/constant'
+import Database from '../../Database'
 
 const { width: viewportWidth } = Dimensions.get('window')
+
+const db = new Database()
 
 const styles = StyleSheet.create({
   inputSearchContainer: {
@@ -99,11 +103,57 @@ class Article extends Component {
       isLoading: true,
       articles: null,
       searchText: '',
-      searchResults: []
+      searchResults: [],
+      bookmarkItems: []
     }
   }
 
+  isBookMarked (id) {
+    const data = this.state.bookmarkItems
+    let bookmarked = false
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].id === id) {
+        bookmarked = true
+        break
+      }
+    }
+    return bookmarked
+  }
+
+  onArticleBookmarkPress (article) {
+    const data = {
+      id: article.id,
+      title: article.title,
+      main_image: article.main_image,
+      author: article.author,
+      content: JSON.stringify(article.content),
+      isLoved: this.isBookMarked(article.id) ? 'no' : 'yes'
+    }
+    db.updateMagazine(data)
+      .then((res) => {
+        this.refresh()
+      })
+      .catch((err) => {
+        console.log('err', err)
+      })
+  }
+
+  refresh = () => {
+    db.listFavoriteMagazine('yes')
+      .then((data) => {
+        this.setState({
+          bookmarkItems: data
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   componentDidMount () {
+    this._subscribe = this.props.navigation.addListener('didFocus', () => {
+      this.refresh()
+    })
     const { id } = this.props.navigation.state.params
     fetchArticles(id)
       .then((res) => {
@@ -134,8 +184,8 @@ class Article extends Component {
         <View>
           <ImageBackground source={{ uri: IMAGE_PROXY_URL + cover_image }} style={styles.bannerImage}>
             <View style={{ zIndex: 2, position: 'relative', paddingHorizontal: 15 }}>
-              <Text style={[styles.bannerText, { marginBottom: 15, fontSize: 20, fontWeight: 'bold', textTransform: 'uppercase' }]}>{ title }</Text>
-              <Text style={[styles.bannerText]}>{ description }</Text>
+              <Text style={[styles.bannerText, { marginBottom: 15, fontSize: 20, fontFamily: 'FiraSans-Black', textTransform: 'uppercase' }]}>{ title }</Text>
+              <Text style={[styles.bannerText, { fontFamily: 'FiraSans-Regular' }]}>{ description }</Text>
             </View>
             <View style={styles.overlay} />
           </ImageBackground>
@@ -178,17 +228,69 @@ class Article extends Component {
   //   })
   // }
 
+  generateExcerpt = (text, maxWord) => {
+    const textArr = text.split(' ')
+    if (maxWord > textArr.length) {
+      maxWord = textArr.length
+    }
+    const excerpt = []
+    for (let i = 0; i < maxWord; i++) {
+      excerpt.push(textArr[i])
+    }
+    return excerpt.join(' ')
+  }
+
+  removeHTMLTag (htmlContent) {
+    const regex = /(<([^>]+)>)/ig;
+    return htmlContent.replace(regex, '');
+  }
+
+  getExcerptCategory (content) {
+    let text = ''
+    for (let i = 0;i < content.length; i++) {
+      if (content[i].type === 'paragraph') {
+        text = `${this.generateExcerpt(this.removeHTMLTag(content[i].body), 15)} ...`
+        break
+      }
+    }
+    return text
+  }
+
   renderCategory (cat, index, category) {
     return (
       <TouchableOpacity activeOpacity={1} key={cat.id} style={[styles.categoryContainer]} onPress={() => this.onClickCategory(category, cat, index)}>
-        { cat.main_image ? (
-            <Image resizeMode='cover' source={{ uri: `${IMAGE_PROXY_URL}https://mediakeuangan.kemenkeu.go.id/Images/article/${cat.main_image}` }} style={[styles.categoryImage]} />
-          ) : (
-            <Image resizeMode='cover' source={require('../../assets/images/logo.png')} style={[styles.categoryImage]} />
-        ) }
-        <Text style={[styles.categoryText, { fontSize: 18, marginVertical: 10 }, this.isDarkMode() && { color: '#FFFFFF'}]}>{ cat.title }</Text>
-        <Text style={[styles.categoryText, { fontSize: 14 }, this.isDarkMode() && { color: '#aaaaaa' }]}>Author</Text>
-        <Text style={[styles.categoryText, this.isDarkMode() && { color: '#FFFFFF'}]}>{ cat.author }</Text>
+        <View>
+          <View>
+            { cat.main_image ? (
+                <Image resizeMode='cover' source={{ uri: `${IMAGE_PROXY_URL}https://mediakeuangan.kemenkeu.go.id/Images/article/${cat.main_image}` }} style={[styles.categoryImage]} />
+              ) : (
+                <Image resizeMode='cover' source={require('../../assets/images/logo.png')} style={[styles.categoryImage]} />
+            ) }
+          </View>
+          <View style={{ flex: 1, flexDirection: 'row' }}>
+            <View style={{ width: '85%', paddingRight: 15 }}>
+              <Text style={[styles.categoryText, { fontSize: 18, marginVertical: 10, fontFamily: 'FiraSans-Regular' }, this.isDarkMode() && { color: '#FFFFFF'}]}>{ cat.title }</Text>
+            </View>
+            <View style={{ width: '15%', marginTop: 10 }}>
+              { this.isDarkMode() ? (
+                <Ionicons onPress={() => this.onArticleBookmarkPress(cat)} style={[styles.inputSearchIcon]} name="ios-bookmark" size={25} color={ this.isBookMarked(cat.id) ? '#ffffff' : 'rgba(255,255,255,.3)' } />
+              ) : (
+                <Ionicons onPress={() => this.onArticleBookmarkPress(cat)} style={[styles.inputSearchIcon]} name="ios-bookmark" size={25} color={ this.isBookMarked(cat.id) ? '#000000' : 'rgba(0,0,0,.3)' } />
+              ) }
+            </View>
+          </View>
+          <View>
+            <View style={{ marginBottom: 10 }}>
+              <Text style={[styles.categoryText, { fontFamily: 'FiraSans-Regular' }, this.isDarkMode() && { color: '#FFFFFF'}]}>{ this.getExcerptCategory(cat.content) }</Text>
+            </View>
+            { cat.author ? (
+              <View>
+                <Text style={[styles.categoryText, { fontSize: 14, fontFamily: 'FiraSans-Regular' }, this.isDarkMode() && { color: '#aaaaaa'}]}>Author</Text>
+                <Text style={[styles.categoryText, { fontFamily: 'FiraSans-Regular' }, this.isDarkMode() && { color: '#FFFFFF'}]}>{ cat.author }</Text>
+              </View>
+            ) : null }
+          </View>
+        </View>
       </TouchableOpacity>
     )
   }
@@ -198,13 +300,14 @@ class Article extends Component {
       <View style={{ marginBottom: 20 }} ref={`section-${data.id}`}>
         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
           <View style={[{ width: 15, height: 15, backgroundColor: '#000000', marginRight: 15}, this.isDarkMode() && { backgroundColor: '#FFFFFF'}]}></View>
-          <Text style={[{ color: '#000000', fontSize: 18 }, this.isDarkMode() && { color: '#FFFFFF'}]}>{ data.title }</Text>
+          <Text style={[{ color: '#000000', fontSize: 18, fontFamily: 'FiraSans-Regular' }, this.isDarkMode() && { color: '#FFFFFF'}]}>{ data.title }</Text>
         </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <FlatList
             data={data.article}
             horizontal
-            extraData={this.props.context.userSettings.readMode}
+            // extraData={this.props.context.userSettings.readMode}
+            extraData={this.state.bookmarkItems}
             removeClippedSubviews
             keyExtractor={(item) => `id-${item.id}`}
             renderItem={({ item, index }) => this.renderCategory(item, index, data.article)}
@@ -260,7 +363,7 @@ class Article extends Component {
       // return this.renderArticles(searchResults)
       return <FlatList
         data={searchResults}
-        extraData={this.props.context.userSettings.readMode}
+        extraData={this.state.bookmarkItems}
         removeClippedSubviews
         keyExtractor={(item) => `id-${item.id}`}
         renderItem={({ item }) => this.renderArticles(item)}
@@ -269,7 +372,7 @@ class Article extends Component {
       // return this.renderArticles(articles.section)
       return <FlatList
         data={articles.section}
-        extraData={this.props.context.userSettings.readMode}
+        extraData={this.state.bookmarkItems}
         removeClippedSubviews
         keyExtractor={(item) => `id-${item.id}`}
         renderItem={({ item }) => this.renderArticles(item)}
@@ -287,7 +390,7 @@ class Article extends Component {
         />
         <View style={[styles.inputSearchContainer, this.isDarkMode() && { backgroundColor: '#000000'}]} >
           <TextInput
-            style={[styles.inputField, this.isDarkMode() && { borderColor: '#aaaaaa', backgroundColor: '#FFFFFF' }]}
+            style={[styles.inputField, { fontFamily: 'FiraSans-Regular' }, this.isDarkMode() && { borderColor: '#aaaaaa', backgroundColor: '#FFFFFF' }]}
             onChangeText={(searchText) => this.setState({ searchText })}
             value={this.state.searchText}
             placeholder='Cari Artikel'

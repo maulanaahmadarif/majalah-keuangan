@@ -1,3 +1,5 @@
+import React from 'react'
+import { Text } from 'react-native'
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import About from './About'
@@ -11,13 +13,13 @@ const SettingStack = createStackNavigator(
     About: {
       screen: About,
       navigationOptions: {
-        title: 'Tentang Kami'
+        headerTitle: <Text style={{ flex: 1, fontFamily: 'FiraSans-Black', fontSize: 20, color: '#000' }}>Tentang Kami</Text>,
       },
     },
     Account: {
       screen: Account,
       navigationOptions: {
-        title: 'Account'
+        headerTitle: <Text style={{ flex: 1, fontFamily: 'FiraSans-Black', fontSize: 20, color: '#000' }}>Akun</Text>,
       },
     },
     Guide: {
@@ -29,14 +31,14 @@ const SettingStack = createStackNavigator(
     SignupSetting: {
       screen: SignupSetting,
       navigationOptions: {
-        title: 'Registrasi'
+        headerTitle: <Text style={{ flex: 1, fontFamily: 'FiraSans-Black', fontSize: 20, color: '#000' }}>Registrasi</Text>,
       },
     },
     Setting: {
       screen: Setting,
       navigationOptions: ({ navigation, screenProps }) => {
         return {
-          title: 'Setting',
+          headerTitle: <Text style={{ textAlign: 'center', flex: 1, fontFamily: 'FiraSans-Black', fontSize: 20, color: '#000' }}>Setting</Text>,
           headerTitleStyle: { 
             textAlign: 'center', 
             flex: 1,

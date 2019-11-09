@@ -81,7 +81,7 @@ class Loved extends Component {
             />
           ) : (
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-              <Text style={{ color: this.isDarkMode() ? '#FFFFFF' : '#AAAAAA' }}>Belum ada artikel</Text>
+              <Text style={{ color: this.isDarkMode() ? '#FFFFFF' : '#AAAAAA' }, { fontFamily: 'FiraSans-Regular' }}>Belum ada artikel</Text>
             </View>
           ) }
         </Container>

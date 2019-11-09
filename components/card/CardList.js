@@ -40,7 +40,7 @@ class CardList extends Component {
       <TouchableOpacity activeOpacity={1} onPress={this.props.onPress}>
         <View style={styles.cardListWrapper}>
           <View>
-            <Text style={[styles.cardListText, this.isDarkMode() && { color: '#FFFFFF' }]}>{ this.props.text }</Text>
+            <Text style={[styles.cardListText, this.isDarkMode() && { color: '#FFFFFF' }, { fontFamily: 'FiraSans-Regular' }]}>{ this.props.text }</Text>
           </View>
           <View>
             <IconComponent name="ios-arrow-forward" size={20} color="gray" />

@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
   titleStyle: {
     textAlign: 'center',
     fontSize: 20,
-    fontWeight: 'bold',
-    color: '#000000'
+    color: '#000000',
+    fontFamily: 'FiraSans-Black'
   }
 })
 

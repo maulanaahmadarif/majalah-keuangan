@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     color: '#fff',
-    fontWeight: '700'
+    fontFamily: 'FiraSans-Regular'
   },
   textContainerStyle: {
     paddingHorizontal: 15,

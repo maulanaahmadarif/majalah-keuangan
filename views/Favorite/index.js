@@ -40,7 +40,8 @@ const TabScreen = createMaterialTopTabNavigator(
       },
       labelStyle: {
         textAlign: 'center',
-        textTransform: 'uppercase'
+        textTransform: 'uppercase',
+        fontFamily: 'FiraSans-Regular'
       },
       indicatorStyle: {
         borderBottomColor: 'rgb(2, 46, 91)',

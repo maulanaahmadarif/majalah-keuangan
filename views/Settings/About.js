@@ -17,7 +17,8 @@ import SocialButton from '../../components/button/SocialButton'
 const styles = StyleSheet.create({
   textStyle: {
     fontSize: 16,
-    color: '#000000'
+    color: '#000000',
+    fontFamily: 'FiraSans-Regular'
   },
   imageCenter: {
     alignItems: 'center'
@@ -53,8 +54,8 @@ class About extends Component {
               <Image source={require('../../assets/images/logo.png')} style={{ width: 100, height: 100 }} />
             </View>
             <View>
-              <Text style={[styles.textStyle, { textAlign: 'center' }]}>Media Keuangan for { Platform.OS === 'ios' ? 'iOS' : 'Android' }</Text>
-              <Text style={[styles.textStyle, { textAlign: 'center' }]}>Version { DeviceInfo.getVersion() }</Text>
+              <Text style={[styles.textStyle, { textAlign: 'center', fontFamily: 'FiraSans-Regular' }]}>Media Keuangan for { Platform.OS === 'ios' ? 'iOS' : 'Android' }</Text>
+              <Text style={[styles.textStyle, { textAlign: 'center', fontFamily: 'FiraSans-Regular' }]}>Version { DeviceInfo.getVersion() }</Text>
             </View>
           </View>
           <View style={styles.separator} />
@@ -65,7 +66,7 @@ class About extends Component {
           </View>
           <View style={{ marginTop: 15 }}>
             <Text style={styles.textStyle}>
-              Ikuti kami di <Text style={styles.linkText} onPress={() => this.handleOpenURL('https://web.facebook.com/?_rdc=1&_rdr')}>@majalahmediakeuangan</Text>
+              Ikuti kami di <Text style={styles.linkText, { fontFamily: 'FiraSans-Regular' }} onPress={() => this.handleOpenURL('https://www.instagram.com/majalahmediakeuangan/?hl=id')}>@majalahmediakeuangan</Text>
             </Text>
           </View>
           <View style={styles.separator} />
@@ -117,11 +118,8 @@ class About extends Component {
               mediakeuangan@kemenkeu.go.id
             </Text>
           </View>
-          <View style={{ flexDirection: 'row', marginTop: 10, marginBottom: 10 }}>
-            <SocialButton icon="facebook" settingPage onPress={() => this.handleOpenURL('https://web.facebook.com/?_rdc=1&_rdr')} />
-            <SocialButton icon="twitter" settingPage onPress={() => this.handleOpenURL('https://web.facebook.com/?_rdc=1&_rdr')} />
-            <SocialButton icon="youtube" settingPage onPress={() => this.handleOpenURL('https://web.facebook.com/?_rdc=1&_rdr')} />
-            <SocialButton icon="instagram" settingPage onPress={() => this.handleOpenURL('https://web.facebook.com/?_rdc=1&_rdr')} />
+          <View style={{ marginTop: 10, marginBottom: 10 }}>
+            <SocialButton icon="instagram" flexStart settingPage onPress={() => this.handleOpenURL('https://www.instagram.com/majalahmediakeuangan/?hl=id')} />
           </View>
           <View style={{ marginBottom: 20 }}>
             <Text style={styles.textStyle}>

@@ -65,7 +65,8 @@ class Category extends Component {
         marginBottom: 15,
         fontSize: this.getFontSize(),
         lineHeight: this.getLineHeight(),
-        color: this.isDarkMode() ? '#FFF' : '#000'
+        color: this.isDarkMode() ? '#FFF' : '#000',
+        fontFamily: 'FiraSans-Regular'
       }
     }
   }
@@ -123,7 +124,7 @@ class Category extends Component {
       return category[currentCategory].content.map((content, index) => {
         let bodyContent = null
         if (content.type === 'paragraph') {
-          bodyContent = <Container><HTML html={content.body} tagsStyles={this.getHTMLStyle()} /></Container>
+          bodyContent = <Container><HTML ignoredStyles={['display']} html={content.body} tagsStyles={this.getHTMLStyle()} /></Container>
         } else if (content.type === 'image') {
           !this.isImageHide() ? (
             bodyContent = <TouchableOpacity activeOpacity={1} onPress={() => this.onPressImage(IMAGE_PROXY_URL + content.body)}><Image source={{ uri: IMAGE_PROXY_URL + content.body }} style={[{ width: (Dimensions.get('window').width), aspectRatio: 1.2 }]} resizeMode='contain' /></TouchableOpacity>
@@ -131,8 +132,8 @@ class Category extends Component {
         } else if (content.type === 'keterangan') {
           bodyContent = (
             <Container>
-              <Text style={[{ fontSize: this.getFontSize() * 0.8, color: '#AAAAAA' }]}>{ content.item[0].title }</Text>
-              <Text style={[{ color: this.isDarkMode() ? '#FFFFFF' : '#000000' }, { fontSize: this.getFontSize() }]}>{ content.item[0].text }</Text>
+              <Text style={[{ fontSize: this.getFontSize() * 0.8, color: '#AAAAAA', fontFamily: 'FiraSans-Regular' }]}>{ content.item[0].title }</Text>
+              <Text style={[{ color: this.isDarkMode() ? '#FFFFFF' : '#000000' },  { fontSize: this.getFontSize(), fontFamily: 'FiraSans-Regular' }]}>{ content.item[0].text }</Text>
             </Container>
           )
         }

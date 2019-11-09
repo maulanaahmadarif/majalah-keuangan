@@ -21,7 +21,7 @@ class RegularButton extends Component {
       <TouchableOpacity
         onPress={this.props.onPress}
         style={[styles.buttonStyle, { backgroundColor: this.props.bgColor }]}>
-        <Text style={{ color: this.props.color }}>{ this.props.text }</Text>
+        <Text style={{ color: this.props.color, fontFamily: 'FiraSans-Regular' }}>{ this.props.text }</Text>
       </TouchableOpacity>
     )
   }

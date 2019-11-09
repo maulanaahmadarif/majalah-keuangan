@@ -39,8 +39,8 @@ class ArticleCard extends Component {
           ) }
         </View>
         <View style={{ padding: 15 }}>
-          <Text style={{ textAlign: 'center', fontSize: 20, color: '#000000', fontWeight: 'bold' }}>{ this.props.title }</Text>
-          <Text style={{ textAlign: 'center' }}>{ this.props.author }</Text>
+          <Text style={{ fontFamily: 'FiraSans-Black', textAlign: 'center', fontSize: 20, color: '#000000' }}>{ this.props.title }</Text>
+          <Text style={{ fontFamily: 'FiraSans-Regular', textAlign: 'center' }}>{ this.props.author }</Text>
         </View>
       </View>
     )

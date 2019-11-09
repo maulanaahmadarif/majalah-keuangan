@@ -112,7 +112,7 @@ class SettingsModal extends Component {
         </View>
         <View style={{ marginVertical: 5 }}>
           <TouchableOpacity style={{ backgroundColor: '#000000', padding: 10 }} onPress={() => this.props.onCloseModal()}>
-            <Text style={{ fontSize: 16, color: '#FFFFFF', textAlign: 'center' }}>Tutup</Text>
+            <Text style={{ fontSize: 16, color: '#FFFFFF', textAlign: 'center', fontFamily: 'FiraSans-Regular' }}>Tutup</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

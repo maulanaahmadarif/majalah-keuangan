@@ -12,6 +12,8 @@ import {
 import RegularButton from '../button/RegularButton'
 import { withContext } from '../../context/withContext'
 
+const analytics = firebase.analytics()
+
 const config = {
   serviceConfiguration: {
     authorizationEndpoint: 'https://demo-account.kemenkeu.go.id/connect/authorize',
@@ -42,6 +44,7 @@ class LoginAuth extends Component {
   auth =  async () => {
     authorize(config)
       .then((res) => {
+        analytics.logEvent('Login', { status: 'Login Success' })
         const accessToken = res.accessToken
         const decodedJWT = jwtDecode(accessToken)
         this.props.context.setAccessToken(res.accessToken)

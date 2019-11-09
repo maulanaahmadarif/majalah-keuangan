@@ -48,15 +48,15 @@ class TabBarMagazine extends Component {
       <View style={[styles.tabBarContainer, this.isDarkMode() && { backgroundColor: '#000000', borderTopColor: 'rgba(255,255,255,.2)' }]}>
         <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => this.props.navigation.navigate('Magazine')}>
           <Ionicons name="ios-book" size={25} color={this.getIconColor(0)} />
-          <Text style={[{ fontSize: 10, color: this.getIconColor(0) }]}>Magazine</Text>
+          <Text style={[{ fontSize: 10, color: this.getIconColor(0), fontFamily: 'FiraSans-Regular' }]}>Magazine</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => this.props.navigation.navigate('Favorite')}>
           <Ionicons name="ios-heart" size={25} color={this.getIconColor(1)} />
-          <Text style={[{ fontSize: 10, color: this.getIconColor(1) }]}>Favorite</Text>
+          <Text style={[{ fontSize: 10, color: this.getIconColor(1), fontFamily: 'FiraSans-Regular' }]}>Favorite</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => this.props.navigation.navigate('Settings')}>
           <Ionicons name="ios-cog" size={25} color={ this.getIconColor(2) } />
-          <Text style={[{ fontSize: 10, color: this.getIconColor(2) }]}>Settings</Text>
+          <Text style={[{ fontSize: 10, color: this.getIconColor(2), fontFamily: 'FiraSans-Regular' }]}>Settings</Text>
         </TouchableOpacity>
       </View>
     )

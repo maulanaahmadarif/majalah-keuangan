@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   radioLabelStyle: {
     color: '#000000',
     fontSize: 16,
-    fontWeight: '500'
+    fontFamily: 'FiraSans-Regular'
   }
 })
 
@@ -83,7 +83,7 @@ class RadioButton extends Component {
     return (
       <View>
         <View style={{ marginBottom: 5 }}>
-          <Text style={{ fontSize: 16, fontWeight: '700', color: '#000000' }}>{ this.props.label }</Text>
+          <Text style={{ fontSize: 16, fontWeight: '700', color: '#000000', fontFamily: 'FiraSans-Regular' }}>{ this.props.label }</Text>
         </View>
         <View style={[this.props.inline && styles.radioButtonContainerInline]}>
           { this.renderRadioList() }
