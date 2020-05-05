@@ -16,13 +16,13 @@ const analytics = firebase.analytics()
 
 const config = {
   serviceConfiguration: {
-    authorizationEndpoint: 'https://demo-account.kemenkeu.go.id/connect/authorize',
-    tokenEndpoint: 'https://demo-account.kemenkeu.go.id/connect/token'
+    authorizationEndpoint: 'https://sso.kemenkeu.go.id/connect/authorize',
+    tokenEndpoint: 'https://sso.kemenkeu.go.id/connect/token'
   },
   clientId: 'media-keuangan',
-  clientSecret: 'MKDev',
+  clientSecret: 'c4779b1542f041d89dc1b875924741f2',
   redirectUrl: 'id.go.majalahkeuangan://callback',
-  scopes: ['profile', 'openid', 'profil.hris.api.kemenkeu.go.id', 'gateway'],
+  scopes: ['profile', 'openid', 'profil.hris', 'gateway'],
   useNonce: false,
   usePKCE: false
 }

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 // const BASE_URL = 'https://mediakeuangan.kemenkeu.go.id'
-const BASE_URL = 'https://belajar-dari-cinta.appspot.com/ssl-reject?url=https://mediakeuangan.kemenkeu.go.id'
+const BASE_URL = 'https://ssl-reject.herokuapp.com/ssl-reject?url=https://mediakeuangan.kemenkeu.go.id'
 
 export const fetchMagazine = () => {
   return axios

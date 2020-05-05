@@ -336,6 +336,16 @@ class Article extends Component {
       for (let j = 0; j < section[i].article.length; j++) {
         if (section[i].article[j].title.toLowerCase().includes(this.state.searchText.toLowerCase())) {
           articles.push(section[i].article[j])
+        } else {
+          for (let k = 0; k < section[i].article[j].content.length; k++) {
+            if (section[i].article[j].content[k].type === 'paragraph') {
+              if (section[i].article[j].content[k].body.toLowerCase().includes(this.state.searchText.toLowerCase())) {
+                articles.push(section[i].article[j])
+              }
+            } else {
+              continue
+            }
+          }
         }
       }
       if (articles.length !== 0) {

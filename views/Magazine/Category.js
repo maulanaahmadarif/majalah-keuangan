@@ -10,7 +10,9 @@ import {
   Dimensions,
   Alert,
   Modal,
-  TouchableOpacity
+  TouchableOpacity,
+  Platform,
+  PixelRatio
 } from 'react-native'
 
 import Database from '../../Database'
@@ -22,6 +24,10 @@ import Container from '../../components/layout/Container'
 import { IMAGE_PROXY_URL } from '../../utils/constant'
 
 const db = new Database()
+
+const width = 80 * (Platform.OS === 'ios' ? 1 : PixelRatio.get());
+const height = 80 * (Platform.OS === 'ios' ? 1 : PixelRatio.get());
+
 
 class Category extends Component {
   constructor () {
@@ -118,13 +124,24 @@ class Category extends Component {
     }
   }
 
+  renderImageHTML = () => {
+    let index = 0
+    const that = this
+    return {
+      img (htmlAttribs, children, convertedCSSStyles, passProps) {
+        index += 1
+        return <TouchableOpacity key={`image-${index}`} activeOpacity={1} onPress={() => that.onPressImage(htmlAttribs.src)}><Image source={{ uri: htmlAttribs.src }} style={[{ width: (Dimensions.get('window').width) - 40, aspectRatio: 1.2 }]} resizeMode='contain' /></TouchableOpacity>
+      }
+    }
+  }
+
   renderContent = () => {
     const { category, currentCategory } = this.props.context
     if (currentCategory !== null) {
       return category[currentCategory].content.map((content, index) => {
         let bodyContent = null
         if (content.type === 'paragraph') {
-          bodyContent = <Container><HTML ignoredStyles={['display']} html={content.body} tagsStyles={this.getHTMLStyle()} /></Container>
+          bodyContent = <Container><HTML ignoredStyles={['display']} html={content.body} tagsStyles={this.getHTMLStyle()} textSelectable={true} renderers={this.renderImageHTML()} /></Container>
         } else if (content.type === 'image') {
           !this.isImageHide() ? (
             bodyContent = <TouchableOpacity activeOpacity={1} onPress={() => this.onPressImage(IMAGE_PROXY_URL + content.body)}><Image source={{ uri: IMAGE_PROXY_URL + content.body }} style={[{ width: (Dimensions.get('window').width), aspectRatio: 1.2 }]} resizeMode='contain' /></TouchableOpacity>
