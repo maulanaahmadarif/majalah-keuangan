@@ -21,7 +21,6 @@ import { withContext } from '../../context/withContext'
 import SettingsModal from '../../components/layout/SettingsModal'
 import CardModal from '../../components/card/CardModal'
 import Container from '../../components/layout/Container'
-import { IMAGE_PROXY_URL } from '../../utils/constant'
 
 const db = new Database()
 
@@ -144,7 +143,7 @@ class Category extends Component {
           bodyContent = <Container><HTML ignoredStyles={['display']} html={content.body} tagsStyles={this.getHTMLStyle()} textSelectable={true} renderers={this.renderImageHTML()} /></Container>
         } else if (content.type === 'image') {
           !this.isImageHide() ? (
-            bodyContent = <TouchableOpacity activeOpacity={1} onPress={() => this.onPressImage(IMAGE_PROXY_URL + content.body)}><Image source={{ uri: IMAGE_PROXY_URL + content.body }} style={[{ width: (Dimensions.get('window').width), aspectRatio: 1.2 }]} resizeMode='contain' /></TouchableOpacity>
+            bodyContent = <TouchableOpacity activeOpacity={1} onPress={() => this.onPressImage(content.body)}><Image source={{ uri: content.body }} style={[{ width: (Dimensions.get('window').width), aspectRatio: 1.2 }]} resizeMode='contain' /></TouchableOpacity>
           ) : null
         } else if (content.type === 'keterangan') {
           bodyContent = (

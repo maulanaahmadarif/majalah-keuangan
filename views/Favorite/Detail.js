@@ -17,7 +17,6 @@ import { withContext } from '../../context/withContext'
 import SettingsModal from '../../components/layout/SettingsModal'
 import CardModal from '../../components/card/CardModal'
 import Container from '../../components/layout/Container'
-import { IMAGE_PROXY_URL } from '../../utils/constant'
 
 class Detail extends Component {
   constructor () {
@@ -101,7 +100,7 @@ class Detail extends Component {
           bodyContent = <Container><HTML ignoredStyles={['display']} html={con.body} tagsStyles={this.getHTMLStyle()} /></Container>
         } else if (con.type === 'image') {
           !this.isImageHide() ? (
-            bodyContent = <TouchableOpacity activeOpacity={1} onPress={() => this.onPressImage(IMAGE_PROXY_URL + con.body)}><Image source={{ uri: IMAGE_PROXY_URL + con.body }} style={[{ width: (Dimensions.get('window').width), aspectRatio: 1.2 }]} resizeMode='contain' /></TouchableOpacity>
+            bodyContent = <TouchableOpacity activeOpacity={1} onPress={() => this.onPressImage(con.body)}><Image source={{ uri: con.body }} style={[{ width: (Dimensions.get('window').width), aspectRatio: 1.2 }]} resizeMode='contain' /></TouchableOpacity>
           ) : null
         } else if (con.type === 'keterangan') {
           bodyContent = (
